@@ -265,31 +265,31 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface{
 		OrderInfoJDBCDAO dao = new OrderInfoJDBCDAO();
 		
 		//新增
-//		OrderInfoVO orderInfoVO1 = new OrderInfoVO();
-//		orderInfoVO1.setOrderStatus(1);
-//		orderInfoVO1.setOrderDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-//		orderInfoVO1.setPaymentMethodId(2);
-//		orderInfoVO1.setDeliveryMethodId(1);
-//		orderInfoVO1.setConsignee("Wendy");
-//		orderInfoVO1.setMobile("0981098897");
-//		orderInfoVO1.setAddress("台北市中山區南京東路三段219巷6樓");
-//		orderInfoVO1.setInvoiceId("");
-//		orderInfoVO1.setUserId(0005);
-//		dao.insert(orderInfoVO1);
+		OrderInfoVO orderInfoVO1 = new OrderInfoVO();
+		orderInfoVO1.setOrderStatus(1);
+		orderInfoVO1.setOrderDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+		orderInfoVO1.setPaymentMethodId(2);
+		orderInfoVO1.setDeliveryMethodId(1);
+		orderInfoVO1.setConsignee("Wendy");
+		orderInfoVO1.setMobile("0981098897");
+		orderInfoVO1.setAddress("台北市中山區南京東路三段219巷6樓");
+		orderInfoVO1.setInvoiceId("");
+		orderInfoVO1.setUserId(0005);
+		dao.insert(orderInfoVO1);
 		
 		//修改
-//		OrderInfoVO orderInfoVO2 = new OrderInfoVO();
-//		orderInfoVO2.setOrderId(001);
-//		orderInfoVO2.setOrderStatus(5);
-//		orderInfoVO2.setOrderDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-//		orderInfoVO2.setPaymentMethodId(2);
-//		orderInfoVO2.setDeliveryMethodId(1);
-//		orderInfoVO2.setConsignee("ALLEN");
-//		orderInfoVO2.setMobile("0981098897");
-//		orderInfoVO2.setAddress("台北市中山區南京東路三段219巷6樓");
-//		orderInfoVO2.setInvoiceId("MW97602397");
-//		orderInfoVO2.setUserId(0001);
-//		dao.update(orderInfoVO2);
+		OrderInfoVO orderInfoVO2 = new OrderInfoVO();
+		orderInfoVO2.setOrderId(001);
+		orderInfoVO2.setOrderStatus(5);
+		orderInfoVO2.setOrderDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+		orderInfoVO2.setPaymentMethodId(2);
+		orderInfoVO2.setDeliveryMethodId(1);
+		orderInfoVO2.setConsignee("ALLEN");
+		orderInfoVO2.setMobile("0981098897");
+		orderInfoVO2.setAddress("台北市中山區南京東路三段219巷6樓");
+		orderInfoVO2.setInvoiceId("MW97602397");
+		orderInfoVO2.setUserId(0001);
+		dao.update(orderInfoVO2);
 		
 		// 查詢
 		OrderInfoVO orderInfoVO3 = dao.findByPrimaryKey(002);
@@ -306,21 +306,21 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface{
 		System.out.println("---------------------");
 		
 		// 查詢
-//		List<OrderInfoVO> list = dao.getAll();
-//		for (OrderInfoVO aOrderInfo : list) {
-//			System.out.print(aOrderInfo.getOrderId() + ",");
-//			System.out.print(aOrderInfo.getOrderStatus() + ",");
-//			System.out.print(aOrderInfo.getOrderDate() + ",");
-//			System.out.print(aOrderInfo.getPaymentMethodId() + ",");
-//			System.out.print(aOrderInfo.getDeliveryMethodId() + ",");
-//			System.out.print(aOrderInfo.getConsignee() + ",");
-//			System.out.print(aOrderInfo.getMobile() + ",");
-//			System.out.print(aOrderInfo.getAddress() + ",");
-//			System.out.print(aOrderInfo.getInvoiceId() + ",");
-//			System.out.println(aOrderInfo.getUserId());
-//			System.out.println();
+		List<OrderInfoVO> list = dao.getAll();
+		for (OrderInfoVO aOrderInfo : list) {
+			System.out.print(aOrderInfo.getOrderId() + ",");
+			System.out.print(aOrderInfo.getOrderStatus() + ",");
+			System.out.print(aOrderInfo.getOrderDate() + ",");
+			System.out.print(aOrderInfo.getPaymentMethodId() + ",");
+			System.out.print(aOrderInfo.getDeliveryMethodId() + ",");
+			System.out.print(aOrderInfo.getConsignee() + ",");
+			System.out.print(aOrderInfo.getMobile() + ",");
+			System.out.print(aOrderInfo.getAddress() + ",");
+			System.out.print(aOrderInfo.getInvoiceId() + ",");
+			System.out.println(aOrderInfo.getUserId());
+			System.out.println();
 		}
 		
 	}
-
+}
 

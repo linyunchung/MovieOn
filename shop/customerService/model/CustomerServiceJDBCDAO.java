@@ -5,9 +5,9 @@ import java.sql.*;
 
 public class CustomerServiceJDBCDAO implements CustomerServiceDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/MOVIEON?serverTimezone=Asia/Taipei";
+	String url = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
+	String passwd = "Ab3345678";
 	
 	private static final String INSERT_STMT =
 		"INSERT INTO customerService(msgTime,msgTitle,msgContext,reContext) VALUES (?,?,?,?)";
