@@ -10,16 +10,16 @@ public class FollowApp {
 	
 	public static void main(String[] args) {
 		
-		//新增一個共用DAO
+		
 		FollowDAOImpl dao = new FollowDAOImpl();
 		
-		//CREATE	      		
+		//CREATE!!!!!!!!!!!!!!!!!!!!	      		
 		FollowVO vo1 = new FollowVO(2, 3);    //把時戳的程式移到後台，前台只需要指定相關對象			
 		dao.create(vo1);
 		System.out.println("new follow created");
 		
 		
-		//UPDATE
+		//UPDATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		FollowVO vo2 = new FollowVO();
 		vo2.setFollowID(5);
 		vo2.setSourceID(3);
