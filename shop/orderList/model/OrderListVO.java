@@ -1,4 +1,4 @@
-package com.orderList.model;
+package com.orderlist.model;
 
 public class OrderListVO implements java.io.Serializable {
 	private Integer orderListId;       //­q³æ©ú²Ó½s¸¹

@@ -1,4 +1,4 @@
-package com.orderList.model;
+package com.orderlist.model;
 
 import java.util.List;
 
