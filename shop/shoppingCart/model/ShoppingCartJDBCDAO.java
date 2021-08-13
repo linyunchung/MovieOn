@@ -1,26 +1,29 @@
-package com.orderList.model;
+package com.shoppingCart.model;
 
 import java.util.*;
 import java.sql.*;
 
-public class OrderListJDBCDAO implements OrderListDAO_interface{
+public class ShoppingCartJDBCDAO implements ShoppingCartDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
 	String userid = "root";
 	String passwd = "Ab3345678";
 	
 	private static final String INSERT_STMT =
-		"INSERT INTO orderList(price,itemQty,orderRemark,orderId,itemId) VALUES (?,?,?,?,?)";
+		"INSERT INTO shoppingCart (itemQty,userId,itemId) VALUES (?,?,?)";
 	private static final String GET_ALL_STMT =
-		"SELECT orderListId,price,itemQty,orderRemark,orderId,itemId FROM orderList order by orderListId";
+		"SELECT cartId,itemQty,userId,itemId FROM shoppingCart order by cartId";
 	private static final String GET_ONE_STMT =
-		"SELECT orderListId,price,itemQty,orderRemark,orderId,itemId FROM orderList where orderListId = ?";
+		"SELECT cartId,itemQty,userId,itemId FROM shoppingCart where cartId = ?";
+	private static final String DELETE =
+		"DELETE FROM shoppingCart where cartId =?";
 	private static final String UPDATE =
-		"UPDATE orderList set price=?, itemQty=?, orderRemark=?, orderId=?, itemId=? where orderListID = ?";
+		"UPDATE shoppingCart set itemQty=?, userId=?, itemId=? where cartId = ?";
+	
 	
 	
 	@Override
-	public void insert(OrderListVO orderListVO) {
+	public void insert(ShoppingCartVO shoppingCartVO) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -30,14 +33,11 @@ public class OrderListJDBCDAO implements OrderListDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
-			pstmt.setInt(1, orderListVO.getPrice());
-			pstmt.setInt(2, orderListVO.getItemQty());
-			pstmt.setString(3, orderListVO.getOrderRemark());
-			pstmt.setInt(4, orderListVO.getOrderId());
-			pstmt.setInt(5, orderListVO.getItemId());
+			pstmt.setInt(1, shoppingCartVO.getItemQty());
+			pstmt.setInt(2, shoppingCartVO.getUserId());
+			pstmt.setInt(3, shoppingCartVO.getItemId());
 			
 			pstmt.executeUpdate();
-			
 		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
@@ -64,27 +64,25 @@ public class OrderListJDBCDAO implements OrderListDAO_interface{
 		}
 
 	}
-		
-
+	
+	
+	
 	
 	@Override
-	public void update(OrderListVO orderListVO) {
+	public void update(ShoppingCartVO shoppingCartVO) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 			
-			pstmt.setInt(1, orderListVO.getPrice());
-			pstmt.setInt(2, orderListVO.getItemQty());
-			pstmt.setString(3, orderListVO.getOrderRemark());
-			pstmt.setInt(4, orderListVO.getOrderId());
-			pstmt.setInt(5, orderListVO.getItemId());
-			pstmt.setInt(6, orderListVO.getOrderListId());
+			pstmt.setInt(1, shoppingCartVO.getItemQty());
+			pstmt.setInt(2, shoppingCartVO.getUserId());
+			pstmt.setInt(3, shoppingCartVO.getItemId());
+			pstmt.setInt(4, shoppingCartVO.getCartId());
 			
 			pstmt.executeUpdate();
 			
@@ -114,14 +112,54 @@ public class OrderListJDBCDAO implements OrderListDAO_interface{
 		}
 
 	}
-			
+	
+	@Override
+	public void delete(Integer cartId) {
 
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(DELETE);
+			
+			pstmt.setInt(1, cartId);
+			
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+		
 	
 	
 	@Override
-	public OrderListVO findByPrimaryKey(Integer orderListId) {
-
-		OrderListVO orderListVO = null;
+	public ShoppingCartVO findByPrimaryKey(Integer cartId) {
+		
+		ShoppingCartVO shoppingCartVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -132,21 +170,18 @@ public class OrderListJDBCDAO implements OrderListDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			
-			pstmt.setInt(1, orderListId);
-			
+			pstmt.setInt(1, cartId);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-				orderListVO = new OrderListVO();
-				orderListVO.setOrderListId(rs.getInt("orderListId"));
-				orderListVO.setPrice(rs.getInt("price"));
-				orderListVO.setItemQty(rs.getInt("itemQty"));
-				orderListVO.setOrderRemark(rs.getString("orderRemark"));
-				orderListVO.setOrderId(rs.getInt("orderId"));
-				orderListVO.setItemId(rs.getInt("itemId"));
+			while (rs.next()) {
+				shoppingCartVO = new ShoppingCartVO();
+				shoppingCartVO.setCartId(rs.getInt("cartId"));
+				shoppingCartVO.setItemQty(rs.getInt("itemQty"));
+				shoppingCartVO.setUserId(rs.getInt("userId"));
+				shoppingCartVO.setItemId(rs.getInt("itemId"));
 			}
 			
-		} catch (ClassNotFoundException e) {
+		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
 			// Handle any SQL errors
@@ -177,16 +212,16 @@ public class OrderListJDBCDAO implements OrderListDAO_interface{
 				}
 			}
 		}
-		return orderListVO;
+		return shoppingCartVO;
 	}
-
 		
+
 	
 	
 	@Override
-	public List<OrderListVO> getAll() {
-		List<OrderListVO> list = new ArrayList<OrderListVO>();
-		OrderListVO orderListVO = null;
+	public List<ShoppingCartVO> getAll() {
+		List<ShoppingCartVO> list = new ArrayList<ShoppingCartVO>();
+		ShoppingCartVO shoppingCartVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -199,14 +234,12 @@ public class OrderListJDBCDAO implements OrderListDAO_interface{
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				orderListVO = new OrderListVO();
-				orderListVO.setOrderListId(rs.getInt("orderListId"));
-				orderListVO.setPrice(rs.getInt("price"));
-				orderListVO.setItemQty(rs.getInt("itemQty"));
-				orderListVO.setOrderRemark(rs.getString("orderRemark"));
-				orderListVO.setOrderId(rs.getInt("orderId"));
-				orderListVO.setItemId(rs.getInt("itemId"));
-				list.add(orderListVO);
+				shoppingCartVO = new ShoppingCartVO();
+				shoppingCartVO.setCartId(rs.getInt("cartId"));
+				shoppingCartVO.setItemQty(rs.getInt("itemQty"));
+				shoppingCartVO.setUserId(rs.getInt("userId"));
+				shoppingCartVO.setItemId(rs.getInt("itemId"));
+				list.add(shoppingCartVO);
 			}
 			
 		}catch (ClassNotFoundException e) {
@@ -242,52 +275,50 @@ public class OrderListJDBCDAO implements OrderListDAO_interface{
 		}
 		return list;
 	}
-		
 
+	
 	public static void main(String[] args) {
 		
-		OrderListJDBCDAO dao = new OrderListJDBCDAO();
+		ShoppingCartJDBCDAO dao = new ShoppingCartJDBCDAO();
 		
 		//新增
-		OrderListVO orderListVO1 = new OrderListVO();
-		orderListVO1.setPrice(650);
-		orderListVO1.setItemQty(3);
-		orderListVO1.setOrderRemark("盡快發貨!");
-		orderListVO1.setOrderId(004);
-		orderListVO1.setItemId(10);
-		dao.insert(orderListVO1);
+		ShoppingCartVO shoppingCartVO1 = new ShoppingCartVO();
+		shoppingCartVO1.setItemQty(10);
+		shoppingCartVO1.setUserId(0005);
+		shoppingCartVO1.setItemId(30);
+		dao.insert(shoppingCartVO1);
+		
 		
 		//修改
-		OrderListVO orderListVO2 = new OrderListVO();
-		orderListVO2.setOrderListId(0001);
-		orderListVO2.setPrice(300);
-		orderListVO2.setItemQty(1);
-		orderListVO2.setOrderRemark("盡快發貨!");
-		orderListVO2.setOrderId(001);
-		orderListVO2.setItemId(05);
-		dao.update(orderListVO2);
+		ShoppingCartVO shoppingCartVO2 = new ShoppingCartVO();
+		shoppingCartVO2.setCartId(001);
+		shoppingCartVO2.setItemQty(2);
+		shoppingCartVO2.setUserId(0001);
+		shoppingCartVO2.setItemId(2);
+		dao.update(shoppingCartVO2);
 		
-		// 查詢
-		OrderListVO orderListVO3 = dao.findByPrimaryKey(0002);
-		System.out.print(orderListVO3.getOrderListId() + ",");
-		System.out.print(orderListVO3.getPrice() + ",");
-		System.out.print(orderListVO3.getItemQty() + ",");
-		System.out.print(orderListVO3.getOrderRemark() + ",");
-		System.out.print(orderListVO3.getOrderId() + ",");
-		System.out.println(orderListVO3.getItemId());
+		
+		// 刪除
+		dao.delete(004);
+		
+		
+		//查詢
+		ShoppingCartVO shoppingCartVO3 = dao.findByPrimaryKey(003);
+		System.out.print(shoppingCartVO3.getCartId() + ",");
+		System.out.print(shoppingCartVO3.getItemQty() + ",");
+		System.out.print(shoppingCartVO3.getUserId() + ",");
+		System.out.println(shoppingCartVO3.getItemId());
 		System.out.println("---------------------");
 		
 		
 		// 查詢
-		List<OrderListVO> list = dao.getAll();
-		for (OrderListVO aOrderList : list) {
-			System.out.print(aOrderList.getOrderListId() + ",");
-			System.out.print(aOrderList.getPrice() + ",");
-			System.out.print(aOrderList.getItemQty() + ",");
-			System.out.print(aOrderList.getOrderRemark() + ",");
-			System.out.print(aOrderList.getOrderId() + ",");
-			System.out.println(aOrderList.getItemId());
-			System.out.println();	
+		List<ShoppingCartVO> list = dao.getAll();
+		for (ShoppingCartVO aShoppingCart : list) {
+			System.out.print(aShoppingCart.getCartId() + ",");
+			System.out.print(aShoppingCart.getItemQty() + ",");
+			System.out.print(aShoppingCart.getUserId() + ",");
+			System.out.print(aShoppingCart.getItemId());
+			System.out.println();
 		}
 	}
 }
