@@ -76,7 +76,7 @@
 		</div>
 
 		<li class="li1">
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Backstage/emp.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Backstage/movie.do">
 				<input id="Search" class="input" autofocus placeholder='電影編號搜尋'  type='text' name="movieId"> 
 				<input type="hidden" name="action" value="getOne_For_Display">
 				<button class="send" type="submit">送出</button>

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.movie.model.*"%>
 
 <%
@@ -117,13 +119,13 @@
             <td><div  class="Plot_div"><%=movieVO.getPlot()%></div></td>
             </tr>
             <tr>
-                <th>標籤類別：</th>
-		             <td><c:forEach var="MovieTagVO" items="${movieTagSvc.all}">
-		                    <c:if test="${movieVO.movieId==MovieTagVO.movieId}">
-			                    ${MovieTagVO.genreId}
-		                    </c:if>
-		                </c:forEach>
-					</td>
+                <th>標籤類別：${movieTagSvc.getOneMovieTag(movieVO.movieId).genreId} </th>
+<%-- 		             <td><c:forEach var="MovieTagVO" items="${movieTagSvc.all}"> --%>
+<%-- 		                    <c:if test="${movieVO.movieId==MovieTagVO.movieId}"> --%>
+<%-- 			                    ${MovieTagVO.genreId} --%>
+<%-- 		                    </c:if> --%>
+<%-- 		                </c:forEach> --%>
+<!-- 					</td> -->
             </tr>
             
         </table>
