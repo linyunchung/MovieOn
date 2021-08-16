@@ -129,7 +129,7 @@
         </table>
 
         <div class="pic">
-            <img src="/MovieOn/DBGifReaderMovie?movieId= ${movieVO.movieId }"">
+            <img src="/MovieOnClone/DBGifReaderMovie?movieId=${movieVO.movieId}">
         </div>
         
         <button class="modification">修改電影資料</button>
