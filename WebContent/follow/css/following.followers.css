@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  /*border: solid tomato 1px;*/
+  /* border: solid tomato 1px; */
 }
 
 html{
@@ -218,6 +218,7 @@ section.section{
   height: auto;
   max-width: 100%;
   padding-bottom: 30px;
+  /* width: 700px; */
   }
 
 .section-h2{
@@ -387,6 +388,39 @@ td, th {
   padding-left: 12px;
 }
 
+.pagination{
+  overflow: hidden;
+  position: relative;
+  border-top: 1 solid #345;
+  padding-top: 10px;
+}
+
+.paginate-nextprev{
+  font-size: 12px;
+}
+
+.pagination .paginate-nextprev a{
+  color: #9ab;
+  background: #283038;
+  white-space: nowrap;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 hsla(0deg 0% 100% / 5%);
+  display: block;
+  line-height: 1px;
+  padding: 9px 15px;
+}
+
+.pagination .paginate-nextprev a:hover{
+  color:rgb(221, 238, 255);
+  background: rgb(48, 56, 64);
+}
+.pagination .previous{
+  float: left;
+}
+
+.pagination .next{
+  float: right;
+}
 
 
 

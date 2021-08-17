@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="BIG5"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.follow.model.*"%>
@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>¨½ºûªü¥d°Ò§Lªøªº¯»µ·¡CMovieon -</title>
+<title>é‡Œç¶­é˜¿å¡æ›¼å…µé•·çš„ç²‰çµ²ã€‚Movieon -</title>
 
 <!-- font-awesome script -->
 <script src="https://use.fontawesome.com/b0a5afcff9.js"></script>
@@ -64,27 +64,27 @@
 					<div class="profile-mini-person">
 						<a href="userid.jsp" class="avatar"> <img
 							src="https://static.wikia.nocookie.net/shingekinokyojin/images/b/b1/Levi_Ackermann_%28Anime%29_character_image.png"
-							alt="¨½ºûªü¥d°Ò§Lªø" width="24" height="24">
+							alt="é‡Œç¶­é˜¿å¡æ›¼å…µé•·" width="24" height="24">
 						</a>
 						<h1 class="title-3">
-							<a href="userid.jsp">¨½ºûªü¥d°Ò§Lªø</a>
+							<a href="userid.jsp">é‡Œç¶­é˜¿å¡æ›¼å…µé•·</a>
 						</h1>
 					</div>
 					<ul class="navlist">
 						<li class="navitem"><a class="navlink navprofile"
-							href="userid.jsp"> ­Ó¤HÀÉ®× </a></li>
+							href="userid.jsp"> å€‹äººæª”æ¡ˆ </a></li>
 						<li class="navitem"><a class="navlink navfilms"
-							href="films.jsp"> §Ú¬Ý¹Lªº </a></li>
+							href="films.jsp"> æˆ‘çœ‹éŽçš„ </a></li>
 						<li class="navitem"><a class="navlink navreviews" href="">
-								¼vµû </a></li>
+								å½±è©• </a></li>
 						<li class="navitem"><a class="navlink navfollowers"
-							href="followers.jsp"> ¯»µ· </a></li>
+							href="followers.jsp"> ç²‰çµ² </a></li>
 						<li class="navitem"><a class="navlink navfollowing"
-							href="following.jsp"> °lÂÜ¤¤ </a></li>
+							href="following.jsp"> è¿½è¹¤ä¸­ </a></li>
 						<li class="navitem"><a class="navlink navnetwork" href="">
-								°ÊºAÀð </a></li>
+								å‹•æ…‹ç‰† </a></li>
 						<li class="navitem -orders"><a class="navlink navorders"
-							href=""> ÁÊ¶R²M³æ <i class="fa fa-clipboard-list"></i>
+							href=""> è³¼è²·æ¸…å–® <i class="fa fa-clipboard-list"></i>
 						</a></li>
 					</ul>
 				</nav>
@@ -98,18 +98,18 @@
 					<section class="sub-nav-wrapper">
 						<!-- <ul class = "sub-nav">
                             <li>
-                                <a href="followers.html">¯»µ·</a>
+                                <a href="followers.html">ç²‰çµ²</a>
                             </li>
                             <li>
-                                <a href="following.html">°lÂÜ¤¤</a>
+                                <a href="following.html">è¿½è¹¤ä¸­</a>
                             </li>
                             <li>
-                                <a href="">¤w«ÊÂê</a>
+                                <a href="">å·²å°éŽ–</a>
                             </li>
                         </ul> -->
 					</section>
 				</div>
-				<!--<a href="" class = "all-link">¥þ³¡</a>-->
+				<!--<a href="" class = "all-link">å…¨éƒ¨</a>-->
 
 				<%-- Error Handling --%>
 				<c:if test="${not empty errorMsgs}">
@@ -125,11 +125,11 @@
 				<table class="person-table">
 					<thead>
 						<tr>
-							<th class="left-th">¦W¦r</th>
-							<th>¬Ý¹L</th>
-							<th>¯»µ·</th>
-							<th>°lÂÜ¤¤</th>
-							<th>ª¬ºA</th>
+							<th class="left-th">åå­—</th>
+							<th>çœ‹éŽ</th>
+							<th>ç²‰çµ²</th>
+							<th>è¿½è¹¤ä¸­</th>
+							<th>ç‹€æ…‹</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -176,6 +176,14 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div class="pagination">
+					<div class=paginate-nextprev>
+						<a class="previous" href="">å¾€å‰</a>
+					</div>
+					<div class=paginate-nextprev>
+						<a class="next" href="">å¾€å¾Œ</a>
+					</div>
+				</div>
 			</section>
 
 
@@ -188,11 +196,11 @@
 
 		<div class="footer_inner">
 			<ul>
-				<li>¦^¨ì­º­¶</li>
-				<li>Ãö©ó§Ú­Ì</li>
-				<li>ªA°È»¡©ú</li>
-				<li>«ÈªA</li>
-				<li>Ápµ¸§Ú­Ì</li>
+				<li>å›žåˆ°é¦–é </li>
+				<li>é—œæ–¼æˆ‘å€‘</li>
+				<li>æœå‹™èªªæ˜Ž</li>
+				<li>å®¢æœ</li>
+				<li>è¯çµ¡æˆ‘å€‘</li>
 				<li><i class="fa fa-instagram"></i></li>
 				<li><i class="fa fa-facebook"></i></li>
 
