@@ -1,14 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.follow.model.*"%>
+<%@ page import="com.member.model.*"%>
 
 <!--How to get current userID? Using "1" as placeholder below-->
 <%
-    FollowService followSvc = new FollowService();
-    List<FollowVO> list = followSvc.findFollowers(1);  
-    pageContext.setAttribute("list",list);
+	FollowService followSvc = new FollowService();
+	List<FollowVO> list = followSvc.findFollowers(1);
+	pageContext.setAttribute("list", list);
 %>
+
+<jsp:useBean id="memSvc" scope="page"
+	class="com.member.model.MemberService" />
+<jsp:useBean id="followService" scope="page"
+	class="com.follow.model.FollowService" />
 
 <!DOCTYPE html>
 <html>
@@ -83,9 +90,9 @@
 				</nav>
 
 			</section>
-			
+
 			<section class="section">
-						
+
 				<%-- HIDDEN: switch between followers/following/blocked --%>
 				<div id="content-nav" class="tabbed">
 					<section class="sub-nav-wrapper">
@@ -113,42 +120,55 @@
 						</c:forEach>
 					</ul>
 				</c:if>
-				
+
 				<%-- Table Starts --%>
 				<table class="person-table">
 					<thead>
 						<tr>
 							<th class="left-th">名字</th>
 							<th>看過</th>
-							<th>今年</th>
-							<th>影評</th>
+							<th>粉絲</th>
+							<th>追蹤中</th>
 							<th>狀態</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="followVO" items="${list}" >
+						<c:forEach var="followVO" items="${list}">
 							<tr>
 								<td class="table-person">
 									<div class="person-summary">
-										<a class="avatar" href=""> <img src="" alt="">
+										<a class="avatar" href=""> <img
+											src="/MovieOn3/DBGifReaderFollow?userid=${followVO.sourceID}"
+											alt="">
 										</a>
 										<h3 class="title-3">
-											<a class="name" href="">${followVO.sourceID} </a>
+											<a class="name" href="">${memSvc.getoneMember(followVO.sourceID).username}
+											</a>
 										</h3>
-										<small class="metadata"> <a href="">${followVO.updatedAt}</a>
+										<small class="metadata"> <a href="">followed since
+												${followVO.updatedAt}</a>
 										</small>
 									</div>
 								</td>
 								<td class="table-stats"><a class="icon-watched" href="">
-										<span>999</span>
+										<span> <i class="fas fa-eye"></i> 123
+									</span>
 								</a></td>
-								<td class="table-stats"><a href=""> <span>999</span>
+								<td class="table-stats"><a class="icon-followers" href="">
+										<span> <i class="fas fa-th-large"></i>
+											${followService.followerCount(followVO.sourceID)}
+									</span>
 								</a></td>
-								<td class="table-stats"><a href=""> <span>999</span>
+								<td class="table-stats"><a class="icon-following" href="">
+										<span> <i class="fas fa-user-friends"></i>
+											${followService.followingCount(followVO.sourceID)}
+									</span>
 								</a></td>
 								<td class="table-follow-status">
 									<div class="follow-button-wrapper">
-										<a class="-following" href=""> <span class="icon-text">Following</span>
+										<a class="-following" href=""> <span class="icon-text">
+												<i class="fas fa-check-circle"></i>
+										</span>
 										</a>
 									</div>
 								</td>
@@ -166,19 +186,19 @@
 
 	<footer class="footer">
 
-		<div class="footer_inner"></div>
-		<ul>
-			<li>回到首頁</li>
-			<li>關於我們</li>
-			<li>服務說明</li>
-			<li>客服</li>
-			<li>聯絡我們</li>
-			<li><i class="fa fa-instagram"></i></li>
-			<li><i class="fa fa-facebook"></i></li>
+		<div class="footer_inner">
+			<ul>
+				<li>回到首頁</li>
+				<li>關於我們</li>
+				<li>服務說明</li>
+				<li>客服</li>
+				<li>聯絡我們</li>
+				<li><i class="fa fa-instagram"></i></li>
+				<li><i class="fa fa-facebook"></i></li>
 
-		</ul>
-		<span> MovieOn. Made by programming students in Taipei, Taiwan.
-			For learning purposes only.</span>
+			</ul>
+			<span> MovieOn. Made by programming students in Taipei,
+				Taiwan. For learning purposes only.</span>
 		</div>
 	</footer>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->

@@ -21,7 +21,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MovieServlet</servlet-name>
-    <url-pattern>/Backstage/movie.do</url-pattern>
+    <url-pattern>/Backstage/emp.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -39,6 +39,14 @@
 	<servlet-mapping>
 		<servlet-name>FollowServlet</servlet-name>
 		<url-pattern>/follow/follow.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DBGifReaderFollow</servlet-name>
+		<servlet-class>com.follow.model.DBGifReaderFollow</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReaderFollow</servlet-name>
+		<url-pattern>/DBGifReaderFollow</url-pattern>
 	</servlet-mapping>
   
 </web-app>

@@ -10,6 +10,9 @@
     pageContext.setAttribute("list",list);
 %>
 
+<jsp:useBean id="memSvc" scope="page" class="com.member.model.MemberService" />
+<jsp:useBean id="followService" scope="page" class="com.follow.model.FollowService" />
+
 <!DOCTYPE html>
 <html>
 
@@ -120,8 +123,8 @@
 						<tr>
 							<th class="left-th">名字</th>
 							<th>看過</th>
-							<th>今年</th>
-							<th>影評</th>
+							<th>粉絲</th>
+							<th>追蹤中</th>
 							<th>狀態</th>
 						</tr>
 					</thead>
@@ -130,25 +133,40 @@
 							<tr>
 								<td class="table-person">
 									<div class="person-summary">
-										<a class="avatar" href=""> <img src="" alt="">
+										<a class="avatar" href=""> 
+											<img src="/MovieOn3/DBGifReaderFollow?userid=${followVO.targetID}" alt="">
 										</a>
 										<h3 class="title-3">
-											<a class="name" href="">${followVO.targetID} </a>
+											<a class="name" href="">${memSvc.getoneMember(followVO.targetID).username} </a>
 										</h3>
-										<small class="metadata"> <a href="">${followVO.updatedAt}</a>
+										<small class="metadata"> <a href="">followed since ${followVO.updatedAt}</a>
 										</small>
 									</div>
 								</td>
 								<td class="table-stats"><a class="icon-watched" href="">
-										<span>999</span>
+										<span>
+											<i class="fas fa-eye"></i>
+											123
+										</span>
 								</a></td>
-								<td class="table-stats"><a href=""> <span>999</span>
+								<td class="table-stats"><a class = "icon-followers" href=""> 
+										<span>
+											<i class="fas fa-th-large"></i>									
+											${followService.followerCount(followVO.sourceID)}
+										</span>
 								</a></td>
-								<td class="table-stats"><a href=""> <span>999</span>
+								<td class="table-stats"><a class = "icon-following" href=""> 
+									<span>
+										<i class="fas fa-user-friends"></i>
+										${followService.followingCount(followVO.sourceID)}
+									</span>
 								</a></td>
 								<td class="table-follow-status">
 									<div class="follow-button-wrapper">
-										<a class="-following" href=""> <span class="icon-text">Following</span>
+										<a class="-following" href=""> 
+											<span class="icon-text">
+												<i class="fas fa-check-circle"></i>
+											</span>
 										</a>
 									</div>
 								</td>

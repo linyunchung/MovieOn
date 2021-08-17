@@ -45,9 +45,17 @@ public class FollowService {
 	public List<FollowVO> findFollowers(int userID) {
 		return dao.findByTarget(userID);
 	}
-
+	
+	public int followerCount(int userID) {
+		return findFollowers(userID).size();
+	}
+	
 	public List<FollowVO> findFollowing(int userID) {
 		return dao.findBySource(userID);
+	}
+	
+	public int followingCount(int userID) {
+		return findFollowing(userID).size();
 	}
 	
 }

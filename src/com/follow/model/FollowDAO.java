@@ -17,5 +17,6 @@ public interface FollowDAO {
 	List<FollowVO>findBySource(int userID);
 	
 	List<FollowVO>findByTarget(int userID);
+	
 
 }

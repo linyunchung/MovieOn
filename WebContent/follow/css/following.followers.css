@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  /* border: solid tomato 1px; */
+  /*border: solid tomato 1px;*/
 }
 
 html{
@@ -122,7 +122,7 @@ nav.profile-navigation{
   align-self: center;
 }
 
-.profile-mini-person .avatar{
+.profile-mini-person .avatar img{
   display: inline-block;
   border-radius: 12px;
   vertical-align: middle;
@@ -131,7 +131,7 @@ nav.profile-navigation{
 }
 
 .avatar img{
-  border-radius: 12px;
+  /* border-radius: 12px; */
   display: block;
   overflow: hidden;
   object-fit: cover;
@@ -268,9 +268,60 @@ section.section{
   background: #14181c;
   color: #456;
   font-size: 0.8rem;
-  padding: 6px 0 7px 5px;
+  padding: 6px 0 7px 10px;
   border-bottom: 1px solid #2c3440;
 }
+
+
+.person-summary{
+  position:relative;
+  padding-left: 50px;
+  min-height: 40px;
+}
+
+.person-summary>.avatar img{
+  float: left;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+}
+
+.person-summary>.avatar img:hover{
+  content: "";
+  border: 1px solid hsla(0, 0%, 100%);
+  transition: all .3s;
+}
+
+.person-summary>.title-3{
+  margin: 0;
+  padding-top: 4px;
+  /* font-weight: 800; */
+  font-size: 15px;
+}
+
+.person-summary>.metadata{
+  position: relative;
+  bottom: 3px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.person-summary>.metadata a{
+  color: #678;
+}
+
+
+/* .avatar img:hover{
+  content: "";
+  border: 1px solid hsla(0, 0%, 100%, .25);
+  transition: all .2s;
+} */
 
 #content-nav{
   position: relative;
@@ -306,15 +357,35 @@ td, th {
   font-weight: 400;
 }
 
+.person-table .table-stats{
+  vertical-align: middle;
+  padding-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+}
 
 
+.icon-watched>span>i, .icon-followers>span>i, .icon-following>span>i{
+  /* padding-right: 30px; */
+  padding-right: 5px;
+}
 
+.icon-watched>span>i{
+  color:#00e054;
+}
 
+.icon-followers>span>i{
+  color:#40bcf4;
+}
 
+.icon-following>span>i{
+  color:#ffbe0b;
+}
 
-
-
-
+.icon-text{
+  font-size: 30px;
+  padding-left: 12px;
+}
 
 
 
