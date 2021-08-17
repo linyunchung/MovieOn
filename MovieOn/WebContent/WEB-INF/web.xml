@@ -21,7 +21,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MovieServlet</servlet-name>
-    <url-pattern>/Backstage/emp.do</url-pattern>
+    <url-pattern>/Backstage/movie.do</url-pattern>
   </servlet-mapping>
   
   <servlet>

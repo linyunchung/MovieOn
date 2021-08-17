@@ -17,7 +17,7 @@ public class MovieTagJDBCDAO implements MovieTagDAO_interface {
 	private static final String GET_ALL_STMT = 
 		"SELECT tagId,movieId,genreId FROM MovieTag order by tagId";
 	private static final String GET_ONE_STMT = 
-		"SELECT tagId,movieId,genreId FROM MovieTag where tagId = ?";
+		"SELECT tagId,movieId,genreId FROM MovieTag where movieId = ?";
 	private static final String UPDATE = 
 		"UPDATE MovieTag set movieId=?,genreId=? where tagId = ?";
 	private static final String DELETE = 
@@ -160,7 +160,7 @@ public class MovieTagJDBCDAO implements MovieTagDAO_interface {
 	}
 
 	@Override
-	public MovieTagVO findByPrimaryKey(Integer tagId) {
+	public MovieTagVO findByMovieId(Integer movieId) {
 
 		MovieTagVO movieTagVO = null;
 		Connection con = null;
@@ -173,7 +173,7 @@ public class MovieTagJDBCDAO implements MovieTagDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, tagId);
+			pstmt.setInt(1, movieId);
 
 			rs = pstmt.executeQuery();
 
@@ -302,11 +302,11 @@ public class MovieTagJDBCDAO implements MovieTagDAO_interface {
 //				dao.delete(2007);
 //
 //		// ¬d¸ß
-//		MovieTagVO movieTagVO3 = dao.findByPrimaryKey(2002);
-//		System.out.print(movieTagVO3.getTagId() + ",");
-//		System.out.print(movieTagVO3.getMovieId() + ",");
-//		System.out.println(movieTagVO3.getGenreId());
-//		System.out.println("---------------------");
+		MovieTagVO movieTagVO3 = dao.findByMovieId(1001);
+		System.out.print(movieTagVO3.getTagId() + ",");
+		System.out.print(movieTagVO3.getMovieId() + ",");
+		System.out.println(movieTagVO3.getGenreId());
+		System.out.println("---------------------");
 
 //		// ¬d¸ß
 		List<MovieTagVO> list = dao.getAll();

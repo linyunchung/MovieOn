@@ -41,8 +41,8 @@ public class MovieTagService {
 		dao.delete(tagId);
 	}
 
-	public MovieTagVO getOneMovieTag(Integer tagId) {
-		return dao.findByPrimaryKey(tagId);
+	public MovieTagVO getOneMovieTag(Integer movieId) {
+		return dao.findByMovieId(movieId);
 	}
 
 	public List<MovieTagVO> getAll() {
