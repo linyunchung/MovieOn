@@ -7,8 +7,14 @@
 
 <!--How to get current userID? Using "1" as placeholder below-->
 <%
+// 	String id = request.getParameter("id");
+	Integer id = new Integer(request.getParameter("id"));
+	pageContext.setAttribute("id", id);
+%>
+
+<%
 	FollowService followSvc = new FollowService();
-	List<FollowVO> list = followSvc.findFollowers(1);
+	List<FollowVO> list = followSvc.findFollowers(id);
 	pageContext.setAttribute("list", list);
 %>
 
@@ -24,7 +30,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>里維阿卡曼兵長的粉絲。Movieon -</title>
+<title>${memSvc.getoneMember(id).username}的粉絲。Movieon -</title>
 
 <!-- font-awesome script -->
 <script src="https://use.fontawesome.com/b0a5afcff9.js"></script>
@@ -62,25 +68,25 @@
 
 				<nav class="profile-navigation">
 					<div class="profile-mini-person">
-						<a href="userid.jsp" class="avatar"> <img
-							src="https://static.wikia.nocookie.net/shingekinokyojin/images/b/b1/Levi_Ackermann_%28Anime%29_character_image.png"
-							alt="里維阿卡曼兵長" width="24" height="24">
+						<a href="userid.jsp?id=${id}" class="avatar"> 
+							<img src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${id}"
+							alt="${memSvc.getoneMember(id).username}" width="24" height="24">
 						</a>
 						<h1 class="title-3">
-							<a href="userid.jsp">里維阿卡曼兵長</a>
+							<a href="userid.jsp?id=${id}">${memSvc.getoneMember(id).username}</a>
 						</h1>
 					</div>
 					<ul class="navlist">
 						<li class="navitem"><a class="navlink navprofile"
-							href="userid.jsp"> 個人檔案 </a></li>
+							href="userid.jsp?id=${id}"> 個人檔案 </a></li>
 						<li class="navitem"><a class="navlink navfilms"
-							href="films.jsp"> 我看過的 </a></li>
+							href="films.jsp?id=${id}"> 我看過的 </a></li>
 						<li class="navitem"><a class="navlink navreviews" href="">
 								影評 </a></li>
 						<li class="navitem"><a class="navlink navfollowers"
-							href="followers.jsp"> 粉絲 </a></li>
+							href="followers.jsp?id=${id}"> 粉絲 </a></li>
 						<li class="navitem"><a class="navlink navfollowing"
-							href="following.jsp"> 追蹤中 </a></li>
+							href="following.jsp?id=${id}"> 追蹤中 </a></li>
 						<li class="navitem"><a class="navlink navnetwork" href="">
 								動態牆 </a></li>
 						<li class="navitem -orders"><a class="navlink navorders"
@@ -132,34 +138,34 @@
 							<th>狀態</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody> 
 						<c:forEach var="followVO" items="${list}">
 							<tr>
 								<td class="table-person">
 									<div class="person-summary">
 										<a class="avatar" href=""> <img
-											src="/MovieOn3/DBGifReaderFollow?userid=${followVO.sourceID}"
+											src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${followVO.sourceID}"
 											alt="">
 										</a>
 										<h3 class="title-3">
-											<a class="name" href="">${memSvc.getoneMember(followVO.sourceID).username}
+											<a class="name" href="userid.jsp?id=${followVO.sourceID}">${memSvc.getoneMember(followVO.sourceID).username}
 											</a>
 										</h3>
-										<small class="metadata"> <a href="">followed since
+										<small class="metadata"> <a href="userid.jsp?id=${followVO.sourceID}">followed since
 												${followVO.updatedAt}</a>
 										</small>
 									</div>
 								</td>
-								<td class="table-stats"><a class="icon-watched" href="">
+								<td class="table-stats"><a class="icon-watched" href="films.jsp?id=${followVO.sourceID}">
 										<span> <i class="fas fa-eye"></i> 123
 									</span>
 								</a></td>
-								<td class="table-stats"><a class="icon-followers" href="">
+								<td class="table-stats"><a class="icon-followers" href="followers.jsp?id=${followVO.sourceID}">
 										<span> <i class="fas fa-th-large"></i>
 											${followService.followerCount(followVO.sourceID)}
 									</span>
 								</a></td>
-								<td class="table-stats"><a class="icon-following" href="">
+								<td class="table-stats"><a class="icon-following" href="following.jsp?id=${followVO.sourceID}">
 										<span> <i class="fas fa-user-friends"></i>
 											${followService.followingCount(followVO.sourceID)}
 									</span>

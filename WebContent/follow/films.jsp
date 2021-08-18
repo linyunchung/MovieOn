@@ -1,4 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+
+<!--How to get current userID? Using "1" as placeholder below-->
+
+<%
+	String id = request.getParameter("id");
+	pageContext.setAttribute("id", id);
+%>
+
+<jsp:useBean id="memSvc" scope="page"
+	class="com.member.model.MemberService" />
+
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +17,7 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>里維阿卡曼兵長的電影。Movieon - </title>
+    <title>${memSvc.getoneMember(id).username}的電影。Movieon - </title>
 
 	<!-- font-awesome script -->
     <script src="https://use.fontawesome.com/b0a5afcff9.js"></script>
@@ -38,20 +49,21 @@
                 <nav class = "profile-navigation">
                     <div class = "profile-mini-person">
                         <a href="" class="avatar">
-                            <img src="https://static.wikia.nocookie.net/shingekinokyojin/images/b/b1/Levi_Ackermann_%28Anime%29_character_image.png" alt="里維阿卡曼兵長" width="24" height="24">
+                            <img src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${id}"
+							alt="${memSvc.getoneMember(id).username}" width="24" height="24">
                         </a>
                         <h1 class="title-3">
-                            <a href="">里維阿卡曼兵長</a>
+                            <a href="userid.jsp?id=${id}">${memSvc.getoneMember(id).username}</a>
                         </h1>
                     </div>
                     <ul class = "navlist">
                         <li class = "navitem">
-                            <a class = "navlink navprofile" href="userid.jsp">
+                            <a class = "navlink navprofile" href="userid.jsp?id=${id}">
                                 個人檔案
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink navfilms" href="films.jsp">
+                            <a class = "navlink navfilms" href="films.jsp?id=${id}">
                                 我看過的
                             </a>
                         </li>
@@ -61,12 +73,12 @@
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink navfollowers" href="followers.jsp">
+                            <a class = "navlink navfollowers" href="followers.jsp?id=${id}">
                                 粉絲
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink navfollowing" href="following.jsp">
+                            <a class = "navlink navfollowing" href="following.jsp?id=${id}">
                                 追蹤中
                             </a>
                         </li>

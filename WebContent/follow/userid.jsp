@@ -1,12 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<!-- Member login authentication??	 -->
+<%
+	String id = request.getParameter("id");
+	pageContext.setAttribute("id", id);
+%>	
+
+<!-- MemberService -->
+<jsp:useBean id="memSvc" scope="page"
+	class="com.member.model.MemberService" />
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>里維阿卡曼兵長的個人檔案。Movieon -</title>
+	<title>${memSvc.getoneMember(id).username}的個人檔案。Movieon -</title>
 	
 	<!-- font-awesome script -->
 	<script src="https://use.fontawesome.com/b0a5afcff9.js"></script>
@@ -44,11 +55,11 @@
                 <div class = "profile_summary">
                     <div class = "profile-avatar">
                         <span class="avatar" id="avatar">
-                            <img src="https://static.wikia.nocookie.net/shingekinokyojin/images/b/b1/Levi_Ackermann_%28Anime%29_character_image.png" alt="里維阿卡曼兵長" width="100" height="100">
+                            <img src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${id}" alt="里維阿卡曼兵長" width="100" height="100">
                         </span>
                     </div>
                     <div class = "profile-name">
-                        <h1>里維阿卡曼兵長</h1>
+                        <h1>${memSvc.getoneMember(id).username}</h1>
                     </div>
                     <div class = "profile-info">
                         <div class = "profile-social">
@@ -63,14 +74,14 @@
                         </div>
                         <div class = "profile-stats">
                             <h4 class = "profile-statistic">
-                                <a href="films.jsp">
+                                <a href="films.jsp?id=${id}">
                                     <span class = "value">1234</span>
                                     <span class = "definition">看過</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
-                                <a href="films.jsp">
+                                <a href="films.jsp?id=${id}">
                                     <span class = "value">56</span>
                                     <span class = "definition">今年</span>
                                 </a>
@@ -84,14 +95,14 @@
         
                             </h4>
                             <h4 class = "profile-statistic">
-                                <a href="followers.jsp">
+                                <a href="followers.jsp?id=${id}">
                                     <span class = "value">9999</span>
                                     <span class = "definition">粉絲</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
-                                <a href="following.jsp">
+                                <a href="following.jsp?id=${id}">
                                     <span class = "value">9999</span>
                                     <span class = "definition">追蹤中</span>
                                 </a>
@@ -115,12 +126,12 @@
                 <nav class = "profile-navigation">
                     <ul class = "navlist">
                         <li class = "navitem">
-                            <a class = "navlink navuserid" href="userid.jsp">
+                            <a class = "navlink navuserid" href="userid.jsp?id=${id}">
                                 個人檔案
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="films.jsp">
+                            <a class = "navlink" href="films.jsp?id=${id}">
                                 我看過的
                             </a>
                         </li>
@@ -130,12 +141,12 @@
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="followers.jsp">
+                            <a class = "navlink" href="followers.jsp?id=${id}">
                                 粉絲
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="following.jsp">
+                            <a class = "navlink" href="following.jsp?id=${id}">
                                 追蹤中
                             </a>
                         </li>
@@ -206,9 +217,9 @@
     
             <section id = "recent" class = "section">
                 <h2 class = "section-h2">
-                    <a href="films.jsp">近期觀看</a>
+                    <a href="films.jsp?id=${id}">近期觀看</a>
                 </h2>
-                <a href="films.jsp" class = "all-link">全部</a>
+                <a href="films.jsp?id=${id}" class = "all-link">全部</a>
                 <ul class = "poster-list -horizontal">
                     <li class = "poster-container">
                         <div class = "poster">
