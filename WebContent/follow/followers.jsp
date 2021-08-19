@@ -128,6 +128,7 @@
 				</c:if>
 
 				<%-- Table Starts --%>
+<%@ include file="pages/page1.file" %> 
 				<table class="person-table">
 					<thead>
 						<tr>
@@ -139,7 +140,7 @@
 						</tr>
 					</thead>
 					<tbody> 
-						<c:forEach var="followVO" items="${list}">
+						<c:forEach var="followVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 							<tr>
 								<td class="table-person">
 									<div class="person-summary">
@@ -182,14 +183,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<div class="pagination">
-					<div class=paginate-nextprev>
-						<a class="previous" href="">往前</a>
-					</div>
-					<div class=paginate-nextprev>
-						<a class="next" href="">往後</a>
-					</div>
-				</div>
+<%@ include file="pages/page2.file" %> 
 			</section>
 
 

@@ -1,9 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-
 <%  int rowsPerPage = 8;  //每頁的筆數    
     int rowNumber=0;      //總筆數
     int pageNumber=0;     //總頁數      
-    int page=1;      //第幾頁
+    int pg=1;      //第幾頁
     int pageIndexArray[]=null;
     int pageIndex=0; 
 %>
@@ -20,16 +19,17 @@
 %>
 
 <%  try {
-       page = Integer.parseInt(request.getParameter("page"));
-       pageIndex=pageIndexArray[page-1];
+       pg = Integer.parseInt(request.getParameter("pg"));
+       pageIndex=pageIndexArray[pg-1];
     } catch (NumberFormatException e) { //第一次執行的時候
-       page=1;
+       pg=1;
        pageIndex=0;
     } catch (ArrayIndexOutOfBoundsException e) { //總頁數之外的錯誤頁數
          if (pageNumber>0){
-              page=pageNumber;
+              pg=pageNumber;
               pageIndex=pageIndexArray[pageNumber-1];
          }
     } 
 %>
+
 

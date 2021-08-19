@@ -48,6 +48,14 @@
 		<servlet-name>DBGifReaderFollow</servlet-name>
 		<url-pattern>/DBGifReaderFollow</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>ProfileServlet</servlet-name>
+		<servlet-class>com.profile.controller.ProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProfileServlet</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
   
 </web-app>
 

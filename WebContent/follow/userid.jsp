@@ -10,6 +10,8 @@
 <!-- MemberService -->
 <jsp:useBean id="memSvc" scope="page"
 	class="com.member.model.MemberService" />
+<jsp:useBean id="followService" scope="page"
+	class="com.follow.model.FollowService" />
 
 <!DOCTYPE html>
 <html>
@@ -96,14 +98,14 @@
                             </h4>
                             <h4 class = "profile-statistic">
                                 <a href="followers.jsp?id=${id}">
-                                    <span class = "value">9999</span>
+                                    <span class = "value">${followService.followerCount(id)}</span>
                                     <span class = "definition">粉絲</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
                                 <a href="following.jsp?id=${id}">
-                                    <span class = "value">9999</span>
+                                    <span class = "value">${followService.followingCount(id)}</span>
                                     <span class = "definition">追蹤中</span>
                                 </a>
         

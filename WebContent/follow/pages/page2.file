@@ -4,12 +4,12 @@
   				<div class="pagination">
  <%if(pageIndex>=rowsPerPage){%>   
 					<div class=paginate-nextprev>
-						<a class="previous" href="">往前</a>
+						<a class="previous" href="<%=request.getRequestURI()%>?id=${id}&pg=<%=pg-1%>">往前</a>
 					</div>
 <%}%>
 <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
 					<div class=paginate-nextprev>
-						<a class="next" href="">往後</a>
+						<a class="next" href="<%=request.getRequestURI()%>?id=${id}&pg=<%=pg+1%>">往後</a>
 					</div>
      
 <%}%>
