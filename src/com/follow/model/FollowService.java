@@ -58,4 +58,10 @@ public class FollowService {
 		return findFollowing(userID).size();
 	}
 	
+	//using a followID, this method returns the follow date,
+	//use substring() to cut out date section(yyyy-MM-dd) of complete updatedAt column data 
+	public String updatedDate(int followID) {
+		return (dao.findByID(followID).getUpdatedAt()).substring(0,10);
+	}
+	
 }

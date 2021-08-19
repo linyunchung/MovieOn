@@ -152,7 +152,7 @@
 											</a>
 										</h3>
 										<small class="metadata"> <a href="userid.jsp?id=${followVO.targetID}">followed since
-												${followVO.updatedAt}</a>
+												${followService.updatedDate(followVO.followID)}</a>
 										</small>
 									</div>
 								</td>
