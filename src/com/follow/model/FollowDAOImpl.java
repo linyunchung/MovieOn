@@ -10,15 +10,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.mysql.cj.xdevapi.PreparableStatement;
 
 public class FollowDAOImpl implements FollowDAO{
 
 // the DB login info
-	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
-	public static final String USER = "root";
-	public static final String PASSWORD = "Ab3345678";
+//	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//	public static final String URL = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
+//	public static final String USER = "root";
+//	public static final String PASSWORD = "Ab3345678";
 
 // the prepared statements
 	public static final String CREATE_STMT = "insert into FOLLOW values(default, ?, ?, ?)";
@@ -30,10 +35,12 @@ public class FollowDAOImpl implements FollowDAO{
 	public static final String FINDALL_STMT = "select * from FOLLOW";
 	
 // static block to hold	driver used by all
+	private static DataSource ds = null;
 	static {
 		try {
-			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/MOVIEON");
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
@@ -50,7 +57,7 @@ public class FollowDAOImpl implements FollowDAO{
 		String currentDateTime = formatter.format(date);
 		
 		try {
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection(); //改DataSource連線，可以不需要帳密和網址
 			pstmt = con.prepareStatement(CREATE_STMT);
 			
 //			pstmt.setInt(1, follow.getFollowID());
@@ -60,8 +67,8 @@ public class FollowDAOImpl implements FollowDAO{
 			
 			pstmt.executeUpdate();
 			
-		} catch (SQLException se) {
-			se.getMessage();//add runtime exception
+		} catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "+ se.getMessage());
 			
 		} finally {
 			if (pstmt!=null) {
@@ -92,7 +99,7 @@ public class FollowDAOImpl implements FollowDAO{
 		String currentDateTime = formatter.format(date);
 		
 		try {
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			pstmt.setInt(1, follow.getSourceID());
 			pstmt.setInt(2, follow.getTargetID());
@@ -101,8 +108,8 @@ public class FollowDAOImpl implements FollowDAO{
 			
 			pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		} finally {
 			if (pstmt!=null) {
 				try {
@@ -128,15 +135,15 @@ public class FollowDAOImpl implements FollowDAO{
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETEBYID_STMT);
 			
 			pstmt.setInt(1, followID);
 
 			pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		} finally {
 			if (pstmt!=null) {				
 				try {
@@ -165,7 +172,7 @@ public class FollowDAOImpl implements FollowDAO{
 		FollowVO follow = new FollowVO();
 		
 		try {
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(FINDBYID_STMT); 
 			
 			pstmt.setInt(1, followID);
@@ -178,9 +185,8 @@ public class FollowDAOImpl implements FollowDAO{
 				follow.setTargetID(rs.getInt("targetID"));
 				follow.setUpdatedAt(rs.getString("updatedAt"));				
 			}			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		} finally {
 			if (rs!=null) {
 				try {
@@ -219,7 +225,7 @@ public class FollowDAOImpl implements FollowDAO{
 		List<FollowVO> list = new ArrayList<FollowVO>();		
 		
 		try {
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(FINDALL_STMT);
 			
 			rs = pstmt.executeQuery();
@@ -233,9 +239,8 @@ public class FollowDAOImpl implements FollowDAO{
 				
 				list.add(follow);
 			}			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		} finally {
 			if (rs!=null) {
 				try {
@@ -274,7 +279,7 @@ public class FollowDAOImpl implements FollowDAO{
 		List<FollowVO> list = new ArrayList<FollowVO>();		
 		
 		try {
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(FINDBYSOURCE_STMT);
 			pstmt.setInt(1, userID);
 			
@@ -289,9 +294,8 @@ public class FollowDAOImpl implements FollowDAO{
 				
 				list.add(follow);
 			}			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		} finally {
 			if (rs!=null) {
 				try {
@@ -330,7 +334,7 @@ public class FollowDAOImpl implements FollowDAO{
 		List<FollowVO> list = new ArrayList<FollowVO>();		
 		
 		try {
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(FINDBYTARGET_STMT);
 			pstmt.setInt(1, userID);
 			
@@ -345,9 +349,8 @@ public class FollowDAOImpl implements FollowDAO{
 				
 				list.add(follow);
 			}			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		} finally {
 			if (rs!=null) {
 				try {
