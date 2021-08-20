@@ -21,6 +21,8 @@
 	class="com.member.model.MemberService" />
 <jsp:useBean id="followService" scope="page"
 	class="com.follow.model.FollowService" />
+<jsp:useBean id="rvwSvc" scope="page"
+	class="com.review.model.ReviewService" />
 
 <!DOCTYPE html>
 <html>

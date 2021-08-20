@@ -61,7 +61,7 @@ public class FollowDAOImpl implements FollowDAO{
 			pstmt.executeUpdate();
 			
 		} catch (SQLException se) {
-			se.getMessage();
+			se.getMessage();//add runtime exception
 			
 		} finally {
 			if (pstmt!=null) {

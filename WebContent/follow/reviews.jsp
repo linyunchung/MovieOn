@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%
 	String id = request.getParameter("id");
 	pageContext.setAttribute("id", id);
@@ -31,10 +31,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- CSS stylesheet -->
-    <link href="./css/films.css" rel="stylesheet" />
+    <link href="./css/reviews.css" rel="stylesheet" />
     
 </head>
-<body class = "films films-rated">
+<body class = "reviews films-reviewed">
     <header class="header">header</header>
 
     <div class = "site-body" id = "content">
@@ -98,10 +98,10 @@
                     <div id="content-nav" class = "tabbed">
                         <section class = "sub-nav-wrapper">
                             <ul class = sub-nav>
-                                <li class="selected">
+                                <li class="">
                                     <a href="films.jsp?id=${id}">我看過的</a>
                                 </li>
-                                <li class="">
+                                <li class="selected">
                                     <a href="reviews.jsp?id=${id}">影評</a>
                                 </li>
                                 <!-- <li class="">
@@ -115,7 +115,7 @@
                                 <strong class="smenu-label">排序:</strong>
                                 <div class = smenu>
                                     <label>
-                                        評分時間
+                                        留評時間
                                         <i class="fas fa-chevron-down"></i> 
                                     </label>
                                 </div>

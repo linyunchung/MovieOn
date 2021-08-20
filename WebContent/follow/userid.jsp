@@ -12,6 +12,8 @@
 	class="com.member.model.MemberService" />
 <jsp:useBean id="followService" scope="page"
 	class="com.follow.model.FollowService" />
+<jsp:useBean id="rvwSvc" scope="page"
+	class="com.review.model.ReviewService" />	
 
 <!DOCTYPE html>
 <html>
@@ -91,7 +93,7 @@
                             </h4>
                             <h4 class = "profile-statistic">
                                 <a href="">
-                                    <span class = "value">78</span>
+                                    <span class = "value">${rvwSvc.userReviewCount(id)}</span>
                                     <span class = "definition">影評</span>
                                 </a>
         
@@ -138,7 +140,7 @@
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="">
+                            <a class = "navlink" href="reviews.jsp?id=${id}">
                                 影評
                             </a>
                         </li>

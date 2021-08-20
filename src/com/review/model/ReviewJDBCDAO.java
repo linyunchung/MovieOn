@@ -265,4 +265,10 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 			System.out.println(review.getPostedAt());
 		}
 	}
+
+	@Override
+	public List<ReviewVO> getAllByUser(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

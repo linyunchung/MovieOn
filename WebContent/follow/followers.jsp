@@ -22,6 +22,8 @@
 	class="com.member.model.MemberService" />
 <jsp:useBean id="followService" scope="page"
 	class="com.follow.model.FollowService" />
+<jsp:useBean id="rvwSvc" scope="page"
+	class="com.review.model.ReviewService" />
 
 <!DOCTYPE html>
 <html>
@@ -158,7 +160,7 @@
 									</div>
 								</td>
 								<td class="table-stats"><a class="icon-watched" href="films.jsp?id=${followVO.sourceID}">
-										<span> <i class="fas fa-eye"></i> 123
+										<span> <i class="fas fa-eye"></i> ${rvwSvc.userReviewCount(followVO.sourceID)}
 									</span>
 								</a></td>
 								<td class="table-stats"><a class="icon-followers" href="followers.jsp?id=${followVO.sourceID}">

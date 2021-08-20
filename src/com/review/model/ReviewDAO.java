@@ -34,6 +34,8 @@ public class ReviewDAO implements ReviewDAO_interface{
 			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW where reviewId = ?";
 	public static final String GET_ALL_STMT=
 			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW";
+	public static final String GET_ALL_BY_USER_STMT=
+			"select * from MOVIEREVIEW where userID = ?";
 	
 	
 	@Override
@@ -187,6 +189,47 @@ public class ReviewDAO implements ReviewDAO_interface{
 			}
 		} catch(SQLException se) {
 			throw new RuntimeException("A database error occured. "+ se.getMessage());
+		}finally {
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	public List<ReviewVO> getAllByUser(Integer userId){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ReviewVO reviewVO=null;
+		List<ReviewVO> list=new ArrayList();
+		try {
+			con=ds.getConnection();	//Step2 建立連線
+			pstmt=con.prepareStatement(GET_ALL_BY_USER_STMT);
+			
+			pstmt.setInt(1, userId);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				reviewVO=new ReviewVO();
+				reviewVO.setReviewId(rs.getInt("reviewId"));
+				reviewVO.setUserId(rs.getInt("userId"));
+				reviewVO.setMovieId(rs.getInt("movieId"));
+				reviewVO.setReviewTitle(rs.getString("reviewTitle"));
+				reviewVO.setStarRate(rs.getDouble("starRate"));
+				reviewVO.setReview(rs.getString("review"));
+				reviewVO.setPostedAt(rs.getTimestamp("postedAt"));
+				list.add(reviewVO);
+			}
+		} catch(SQLException se) {
+			List<ReviewVO> list2=new ArrayList();
+			return list2;
+			
 		}finally {
 			if(con != null) {
 				try {

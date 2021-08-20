@@ -190,8 +190,8 @@ body.orders a.navorders::before {
   display: block;
   position: absolute;
   bottom: -1px;
-  left: 1.5384615rem;
-  right: 1.5384615rem;
+  left: 1.0384615rem;
+  right: 1.0384615rem;
   background-color: #ffbe0b;
   height: 3px;
   opacity: 1;
