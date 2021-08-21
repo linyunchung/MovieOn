@@ -45,11 +45,11 @@ public class ReviewService {
 		return reviewVO;
 	}
 	
-	public void deleteEmp(Integer reviewId) {
+	public void deleteReview(Integer reviewId) {
 		dao.delete(reviewId);
 	}
 	
-	public ReviewVO getOneEmp(Integer reviewId) {
+	public ReviewVO getOneReview(Integer reviewId) {
 		return dao.findByPrimaryKey(reviewId);
 	}
 	
