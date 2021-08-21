@@ -57,10 +57,14 @@ public class ReviewService {
 		return dao.getAll();
 	}
 	
+	public List<ReviewVO> getUserReview(Integer userId) {
+		return dao.getAllByUser(userId);
+	}
+	
 	public int userReviewCount(Integer userId) {
 		
 		int result = dao.getAllByUser(userId).size();
 		return result;
-
 	}
+	
 }

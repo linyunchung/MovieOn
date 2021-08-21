@@ -349,6 +349,171 @@ body.films-rated .col-main{
   padding: 5px 0;
 }
 
+.poster-list{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: -10px;
+}
+
+.poster-list.-grid>.poster, .poster-list.-grid>.poster-container{
+  display: block;
+  margin: 0 0 10px 10px;
+}
+
+.poster-list{
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+/* .poster-list .frame-title{
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1.375;
+  font-weight: 400;
+  white-space: nowrap;
+} */
+
+.poster div{
+  display: block;
+  position: relative;
+}
+
+.list-frame, .poster .frame{
+  display: block;
+  position:absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  /* width: 159.375px; */
+  white-space: nowrap;
+  text-indent: 110%;
+  overflow: hidden;
+  background-image: linear-gradient(90deg, hsla(0,0%,100%,0)0,hsla(0,0%,100%,.5)50%,hsla(0,0%,100%,0));
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  background-size: 100% 1px;
+  border-radius: 4px;
+}
+
+.poster-container, .poster{
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.poster .image{
+  display: block;
+  border-radius: 4px;
+}
+
+.frame:hover{
+  border:3px solid #ffbe0b;
+}
+
+.list-frame, .poster .frame{
+  display: block;
+  position:absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  /* width: 159.375px; */
+  white-space: nowrap;
+  text-indent: 110%;
+  overflow: hidden;
+  background-image: linear-gradient(90deg, hsla(0,0%,100%,0)0,hsla(0,0%,100%,.5)50%,hsla(0,0%,100%,0));
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  background-size: 100% 1px;
+  border-radius: 4px;
+}
+
+.poster-viewingdata{
+  font-size: 14px;
+  padding-top: 3px;
+  clear:both;
+  color: #567;
+  overflow: hidden;
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 16px;
+}
+
+.rating{
+  display: inline-block;
+  height: 16px;
+  /* text-indent: 110%; */
+  white-space: nowrap;
+  overflow: hidden;
+  float: left;
+/*   color: #ffbe0b; */
+}
+
+.poster-viewingdata time{
+  float: right;
+  display: block;
+  padding-bottom: 2px;
+}
+
+.poster-list.-grid:after{
+  content: "";
+  display: inline-block;
+  width: auto;
+  flex: 1 1 auto;
+}
+
+
+
+.pagination{
+  overflow: hidden;
+  position: relative;
+  border-top: 1 solid #345;
+  padding-top: 10px;
+}
+
+.paginate-nextprev{
+  font-size: 12px;
+}
+
+.pagination .paginate-nextprev a{
+  color: #9ab;
+  background: #283038;
+  white-space: nowrap;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 hsla(0deg 0% 100% / 5%);
+  display: block;
+  line-height: 1px;
+  padding: 9px 15px;
+}
+
+.pagination .paginate-nextprev a:hover{
+  color:rgb(221, 238, 255);
+  background: rgb(48, 56, 64);
+}
+.pagination .previous{
+  float: left;
+}
+
+.pagination .next{
+  float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
