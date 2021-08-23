@@ -19,9 +19,9 @@
 %>
 
 <%
-	MemberService memberService = new MemberService();
-	MemberVO memberVO = memberService.getoneMember(1);
-	session.setAttribute("loginMember", memberVO);
+// 	MemberService memberService = new MemberService();
+// 	MemberVO memberVO = memberService.getoneMember(1);
+// 	session.setAttribute("loginMember", memberVO);
 %>	
 
 <jsp:useBean id="memSvc" scope="page"

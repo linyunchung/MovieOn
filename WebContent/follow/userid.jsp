@@ -69,6 +69,45 @@
 </head>
 
 <body class = "userid">
+<script>
+function updateFollow(action){
+	console.log("updateFollow initiate");
+	
+    var actionText = "";
+    if (action == "addFollow"){
+    	actionText = "追蹤"
+    }
+    if (action == "removeFollow"){
+    	actionText = "取消追蹤"
+    }
+
+    $.ajax({
+        type: "post",
+        url: "${pageContext.request.contextPath}/profile",
+        dataType: "json",
+        data: {
+            "action": action,
+            "targetId": "${param.id}",
+        },
+        success: function(response){
+            if(true === response){
+                alert("已"+actionText)
+                location.reload();
+            } else if (false === response) {
+				alert(actionText + "失敗");
+			} else {
+				alert(response);
+			}
+        },
+        error: function(thrownerror){
+            alert("請登入會員")
+        }
+    })
+}
+</script>
+
+
+
     <header class="header">header</header>
 
     <div class = "site-body">
@@ -131,18 +170,22 @@
         
                             </h4>
                         </div>
+<!-- 這裡用JSTL的choose, when, otherwise -->
+<!-- 如果followVO有存入，表示已追蹤，則顯示取消追蹤 -->
+<!-- 如果followVO有存入，表示已追蹤，則顯示取消追蹤 -->
+<!-- 如沒有follow，且登入ID等於所在ID，表示位在自己的檔案 -->
                         <div class = "profile-button">
-                        	<c:choose>
-	                            <c:when test="${not empty followVO}">
-		                            <a class = "button" href="">取消追蹤</a>
+                        	<c:choose>	
+	                            <c:when test="${not empty followVO}">	
+		                            <a class = "button" onclick="updateFollow('removeFollow');return false;">取消追蹤</a>
 	                            </c:when>
 	                            <c:otherwise>
 		                        	<c:choose>
-			                        	<c:when test="${param.id==loginMemberId}">
+			                        	<c:when test="${param.id==loginMemberId}">	
 			                            	<a class="button">編輯個人檔案</a>
 			                            </c:when>
-	                		            <c:otherwise>
-			                            	<a class = "button nofollow" href="">追蹤</a>
+	                		            <c:otherwise>								
+			                            	<a class = "button nofollow" onclick="updateFollow('addFollow');return false;">追蹤</a>
 		                            	</c:otherwise>
 		                            </c:choose>
 	                            </c:otherwise>

@@ -34,7 +34,7 @@ public class FollowDAOImpl implements FollowDAO{
 	public static final String FINDBYTARGET_STMT = "select * from FOLLOW where targetID = ?";
 	public static final String FINDALL_STMT = "select * from FOLLOW";
 	public static final String FINDBYSNT_STMT = "select * from FOLLOW where sourceID = ? and targetID = ?";
-	public static final String DELETEBYSNT_STMT = "delete * from FOLLOW where sourceID = ? and targetID = ?";
+	public static final String DELETEBYSNT_STMT = "delete from FOLLOW where sourceID = ? and targetID = ?";
 // static block to hold	driver used by all
 	private static DataSource ds = null;
 	static {
