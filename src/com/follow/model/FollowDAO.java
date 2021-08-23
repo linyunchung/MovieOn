@@ -18,6 +18,10 @@ public interface FollowDAO {
 	
 	List<FollowVO>findByTarget(int userID);
 	
+	FollowVO findBySourceAndTarget(int sourceId, int targetId);
+	
+	void deleteBySrouceAndTarget(int sourceId, int targetId);
+	
 	
 
 }

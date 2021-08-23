@@ -56,7 +56,7 @@
 	rel="stylesheet">
 
 <!-- CSS stylesheet -->
-<link href="./css/following.followers.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/follow/css/following.followers.css" rel="stylesheet" />
 
 </head>
 
@@ -69,25 +69,25 @@
 
 				<nav class="profile-navigation">
 					<div class="profile-mini-person">
-						<a href="userid.jsp?id=${id}" class="avatar"> <img
+						<a href="${pageContext.request.contextPath}/profile?id=${id}" class="avatar"> <img
 							src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${id}"
 							alt="${memSvc.getoneMember(id).username}" width="24" height="24">
 						</a>
 						<h1 class="title-3">
-							<a href="userid.jsp?id=${id}">${memSvc.getoneMember(id).username}</a>
+							<a href="${pageContext.request.contextPath}/profile?id=${id}">${memSvc.getoneMember(id).username}</a>
 						</h1>
 					</div>
 					<ul class="navlist">
 						<li class="navitem"><a class="navlink navprofile"
-							href="userid.jsp?id=${id}"> 個人檔案 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}"> 個人檔案 </a></li>
 						<li class="navitem"><a class="navlink navfilms"
-							href="films.jsp?id=${id}"> 我看過的 </a></li>
-						<li class="navitem"><a class="navlink navreviews" href="">
-								影評 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=films"> 我看過的 </a></li>
+						<li class="navitem"><a class="navlink navreviews" 
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">影評 </a></li>
 						<li class="navitem"><a class="navlink navfollowers"
-							href="followers.jsp?id=${id}"> 粉絲 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=followers"> 粉絲 </a></li>
 						<li class="navitem"><a class="navlink navfollowing"
-							href="following.jsp?id=${id}"> 追蹤中 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=following"> 追蹤中 </a></li>
 						<li class="navitem"><a class="navlink navnetwork" href="">
 								動態牆 </a></li>
 						<li class="navitem -orders"><a class="navlink navorders"
@@ -145,21 +145,21 @@
 							<tr>
 								<td class="table-person">
 									<div class="person-summary">
-										<a class="avatar" href=""> <img
+										<a class="avatar" href="${pageContext.request.contextPath}/profile?id=${followVO.targetID}"> <img
 											src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${followVO.targetID}"
 											alt="">
 										</a>
 										<h3 class="title-3">
-											<a class="name" href="userid.jsp?id=${followVO.targetID}">${memSvc.getoneMember(followVO.targetID).username}
+											<a class="name" href="${pageContext.request.contextPath}/profile?id=${followVO.targetID}">${memSvc.getoneMember(followVO.targetID).username}
 											</a>
 										</h3>
 										<small class="metadata"> <a href="userid.jsp?id=${followVO.targetID}">followed since
-												${followService.updatedDate(followVO.followID)}</a>
+												${followService.updatedDate(followVO.updatedAt)}</a>
 										</small>
 									</div>
 								</td>
 								<td class="table-stats"><a class="icon-watched" href="films.jsp?id=${followVO.targetID}">
-										<span> <i class="fas fa-eye"></i> 123
+										<span> <i class="fas fa-eye"></i> ${rvwSvc.userReviewCount(followVO.targetID)}
 									</span>
 								</a></td>
 								<td class="table-stats"><a class="icon-followers" href="followers.jsp?id=${followVO.targetID}">

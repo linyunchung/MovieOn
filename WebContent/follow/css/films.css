@@ -450,13 +450,15 @@ body.films-rated .col-main{
   white-space: nowrap;
   overflow: hidden;
   float: left;
-/*   color: #ffbe0b; */
+  color: #ffbe0b;
 }
 
 .poster-viewingdata time{
   float: right;
   display: block;
   padding-bottom: 2px;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .poster-list.-grid:after{
@@ -487,7 +489,7 @@ body.films-rated .col-main{
   box-shadow: inset 0 1px 0 hsla(0deg 0% 100% / 5%);
   display: block;
   line-height: 1px;
-  padding: 9px 15px;
+  padding: 15px 17px;
 }
 
 .pagination .paginate-nextprev a:hover{

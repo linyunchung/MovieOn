@@ -1,13 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<!-- Member login authentication??	 -->
+<%@ page import="com.member.model.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- simulate member login	 -->
 <%
-	String id = request.getParameter("id");
+	MemberService memberService = new MemberService();
+	MemberVO memberVO = memberService.getoneMember(2);
+	session.setAttribute("memberVO", memberVO);
+%>
+	
+<!-- Get user id of current profile	 -->
+<%
+	Integer id = new Integer(request.getParameter("id"));
 	pageContext.setAttribute("id", id);
 %>	
 
-<!-- MemberService -->
+<!-- If login memberVO in session, get login user id, for matching current profile-->
+<%
+	if(session.getAttribute("memberVO")!=null){
+	MemberVO loginMember = (MemberVO) session.getAttribute("memberVO");
+	String loginMemberId = ""+loginMember.getUserid();
+	pageContext.setAttribute("loginMemberId", loginMemberId);
+	}
+%>
+
+<!-- Services -->
 <jsp:useBean id="memSvc" scope="page"
 	class="com.member.model.MemberService" />
 <jsp:useBean id="followService" scope="page"
@@ -43,11 +61,11 @@
 		rel="stylesheet">
 	
 	<!-- CSS stylesheet -->
-	<link href="./css/userid.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/follow/css/userid.css" rel="stylesheet" />
 	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="./js/userid.js"></script>
+	<script src="${pageContext.request.contextPath}/follow/js/userid.js"></script>
 </head>
 
 <body class = "userid">
@@ -114,13 +132,21 @@
                             </h4>
                         </div>
                         <div class = "profile-button">
-                            <a class="button">編輯個人檔案</a>
-                            <!-- <a class = "button nofollow" href="">
-                                追蹤
-                            </a>
-                            <a class = "button" href="">
-                                取消追蹤
-                            </a> -->
+                        	<c:choose>
+	                            <c:when test="${not empty followVO}">
+		                            <a class = "button" href="">取消追蹤</a>
+	                            </c:when>
+	                            <c:otherwise>
+		                        	<c:choose>
+			                        	<c:when test="${param.id==loginMemberId}">
+			                            	<a class="button">編輯個人檔案</a>
+			                            </c:when>
+	                		            <c:otherwise>
+			                            	<a class = "button nofollow" href="">追蹤</a>
+		                            	</c:otherwise>
+		                            </c:choose>
+	                            </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -130,32 +156,32 @@
                 <nav class = "profile-navigation">
                     <ul class = "navlist">
                         <li class = "navitem">
-                            <a class = "navlink navuserid" href="userid.jsp?id=${id}">
+                            <a class = "navlink navuserid" href="${pageContext.request.contextPath}/profile?id=${id}">
                                 個人檔案
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="films.jsp?id=${id}">
+                            <a class = "navlink" href="${pageContext.request.contextPath}/profile?id=${id}&action=films">
                                 我看過的
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="reviews.jsp?id=${id}">
+                            <a class = "navlink" href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">
                                 影評
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="followers.jsp?id=${id}">
+                            <a class = "navlink" href="${pageContext.request.contextPath}/profile?id=${id}&action=followers">
                                 粉絲
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="following.jsp?id=${id}">
+                            <a class = "navlink" href="${pageContext.request.contextPath}/profile?id=${id}&action=following">
                                 追蹤中
                             </a>
                         </li>
                         <li class = "navitem">
-                            <a class = "navlink" href="">
+                            <a class = "navlink" href="${pageContext.request.contextPath}/profile?id=${id}&action=network">
                                 動態牆
                             </a>
                         </li>

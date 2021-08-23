@@ -1,6 +1,8 @@
 package com.review.model;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -61,10 +63,16 @@ public class ReviewService {
 		return dao.getAllByUser(userId);
 	}
 	
-	public int userReviewCount(Integer userId) {
-		
+	public int userReviewCount(Integer userId) {		
 		int result = dao.getAllByUser(userId).size();
 		return result;
+	}
+	
+	public String getMonthDate(Timestamp timestamp) {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd");  
+		String monthDate = formatter.format(timestamp);
+		return monthDate;
 	}
 	
 }

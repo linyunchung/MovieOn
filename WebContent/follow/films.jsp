@@ -49,7 +49,11 @@
 	rel="stylesheet">
 
 <!-- CSS stylesheet -->
-<link href="./css/films.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/follow/css/films.css" rel="stylesheet" />
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/films.js"></script>
 
 </head>
 <body class="films films-rated">
@@ -61,7 +65,7 @@
 
 				<nav class="profile-navigation">
 					<div class="profile-mini-person">
-						<a href="" class="avatar"> <img
+						<a href="${pageContext.request.contextPath}/profile?id=${id}" class="avatar"> <img
 							src="https://static.wikia.nocookie.net/shingekinokyojin/images/b/b1/Levi_Ackermann_%28Anime%29_character_image.png"
 							alt="里維阿卡曼兵長" width="24" height="24">
 						</a>
@@ -71,15 +75,15 @@
 					</div>
 					<ul class="navlist">
 						<li class="navitem"><a class="navlink navprofile"
-							href="userid.jsp?id=${id}"> 個人檔案 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}"> 個人檔案 </a></li>
 						<li class="navitem"><a class="navlink navfilms"
-							href="films.jsp?id=${id}"> 我看過的 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=films"> 我看過的 </a></li>
 						<li class="navitem"><a class="navlink navreviews"
-							href="reviews.jsp?id=${id}"> 影評 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews"> 影評 </a></li>
 						<li class="navitem"><a class="navlink navfollowers"
-							href="followers.jsp?id=${id}"> 粉絲 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=followers"> 粉絲 </a></li>
 						<li class="navitem"><a class="navlink navfollowing"
-							href="following.jsp?id=${id}"> 追蹤中 </a></li>
+							href="${pageContext.request.contextPath}/profile?id=${id}&action=following"> 追蹤中 </a></li>
 						<li class="navitem"><a class="navlink navnetwork" href="">
 								動態牆 </a></li>
 						<li class="navitem -orders"><a class="navlink navorders"
@@ -149,7 +153,7 @@
 							</div>
 							<p class="poster-viewingdata">
 								<span class="rating rated-5">${reviewVO.starRate}</span>
-								<time datetime="">Aug 21</time>
+								<time datetime="">${rvwSvc.getMonthDate(reviewVO.postedAt)}</time>
 							</p>
 						</li>
 						</c:forEach>

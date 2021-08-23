@@ -5,6 +5,12 @@ import java.sql.Date;
 
 public class FollowVO implements Serializable{
 	
+	@Override
+	public String toString() {
+		return "FollowVO [followID=" + followID + ", sourceID=" + sourceID + ", targetID=" + targetID + ", updatedAt="
+				+ updatedAt + "]";
+	}
+
 	private Integer followID;
 	private Integer sourceID;
 	private Integer targetID;

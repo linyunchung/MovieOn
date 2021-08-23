@@ -60,8 +60,45 @@ public class FollowService {
 	
 	//using a followID, this method returns the follow date,
 	//use substring() to cut out date section(yyyy-MM-dd) of complete updatedAt column data 
-	public String updatedDate(int followID) {
-		return (dao.findByID(followID).getUpdatedAt()).substring(0,10);
+	public String updatedDate(String updatedAt) {
+		return (updatedAt).substring(0,10);
 	}
+	
+	//This method checks for single case follow relationship
+	public FollowVO findBySourceAndTarget(int sourceId, int targetId) {
+		try {
+				return dao.findBySourceAndTarget(sourceId, targetId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	//This method delete single case follow relationship
+	public boolean deleteBySourceAndTarget(int sourceId, int targetId) {
+		try {
+			dao.deleteBySrouceAndTarget(sourceId, targetId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
