@@ -31,7 +31,7 @@ public class ReviewServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs); // "errorMsgs"對應${errorMsgs}
-
+			
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				Integer userId = new Integer(req.getParameter("userId")); // 會員名稱
@@ -57,8 +57,23 @@ public class ReviewServlet extends HttpServlet {
 				String review = req.getParameter("review");
 				if (review == null || review.trim().length() == 0) {
 					errorMsgs.add("影評內文: 請勿空白");
+				}else {
+					if(review.trim().length() < 100) {
+						errorMsgs.add("影評內文: 要超過100個字!!!");
+					}
 				}
-
+				
+				StringBuffer text = new StringBuffer(req.getParameter("review"));
+				int loc= (new String(text).indexOf('\n'));
+				while(loc > 0) {
+					text.replace(loc, loc+1, "<br>");
+					loc = (new String(text)).indexOf('\n');
+				}
+				req.setAttribute("review", text);
+				RequestDispatcher rd = req.getRequestDispatcher("/review/addReview.jsp");
+				System.out.println(text); //StringBuffer型態
+				
+				
 				ReviewVO reviewVO = new ReviewVO();
 				reviewVO.setUserId(userId);
 				reviewVO.setMovieId(movieId);
@@ -128,7 +143,7 @@ public class ReviewServlet extends HttpServlet {
 
 		
 		if ("getOne_For_Update".equals(action)) { // 來自listAllReview_byDAO.java的請求 (影評清單)
-			List<String> errorMsgs = new LinkedList<String>();
+			List<String> errorMsgs = new LinkedList<>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
@@ -142,11 +157,11 @@ public class ReviewServlet extends HttpServlet {
 				/****** Step 3.查詢完成,準備引導到編輯影評的頁面 ***************/
 				req.setAttribute("reviewVO", reviewVO); //包了現有的資料, 為何可以這樣寫.....?
 				String url = "/review/update_review_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_review_input.jsp
 				successView.forward(req, res);
 			}catch(Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/review/listAllReview_byDAO.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/review/reviewCenter.jsp");
 				failureView.forward(req, res);
 			}
 		} // getOne_For_Update
@@ -154,7 +169,7 @@ public class ReviewServlet extends HttpServlet {
 		
 		//修改
 		if ("update".equals(action)) { // 來自update_review_input.jsp的請求
-			List<String> errorMsgs = new LinkedList<String>();
+			List<String> errorMsgs = new LinkedList<>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
@@ -181,6 +196,10 @@ public class ReviewServlet extends HttpServlet {
 				String review = req.getParameter("review");
 				if (review == null || review.trim().length() == 0) {
 					errorMsgs.add("影評內文: 請勿空白");
+				}else {
+					if(review.length() < 100) {
+						errorMsgs.add("影評內文: 要超過100個字!!!");
+					}
 				}
 				
 				ReviewVO reviewVO = new ReviewVO();
@@ -206,7 +225,7 @@ public class ReviewServlet extends HttpServlet {
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("reviewVO", reviewVO);
 				String url = "/review/listOneReview2.jsp"; //轉交給單一查詢
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneReview2.jsp
 				successView.forward(req, res);
 				
 				
@@ -216,6 +235,7 @@ public class ReviewServlet extends HttpServlet {
 						.getRequestDispatcher("/review/update_review_input.jsp");
 				failureView.forward(req, res);
 			}
+				
 		}//update
 		
 		
