@@ -16,23 +16,7 @@
 <jsp:useBean id="movieSvc" scope="page" class="com.movie.model.MovieService" />
 
 <%
-	// 	MemberVO memberNameVO = userName.getoneMember(2); //id先寫死, 2要改成變數
-	// 	String memberName = memberNameVO.getUsername();
-	MemberVO memberIdVO = userId.getoneMember(13); //會員id要自己改
-	Integer memberId = memberIdVO.getUserid();
-
 	ReviewVO reviewVO = (ReviewVO) request.getAttribute("reviewVO"); //裝你原先填的資料
-
-	//取日期時間
-	Locale locale = request.getLocale();
-	Calendar calendar = Calendar.getInstance(locale);
-	Date dateNow = new Date(calendar.getInstance().getTimeInMillis()); //拿到yyyy-mm-dd的日期格式 -> 2021-08-18
-
-	Timestamp timeNow_before = new Timestamp(dateNow.getTime()); //拿到2021-08-18 05:23:53.621 包含毫秒的格式
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	String strDateTime = dateFormat.format(timeNow_before); //拿到字串的格式-> 2021-08-18 05:23:53
-
-	//要將String轉成Timestamp -> Timestamp.valueOf(strDateTime); 才可存到mysql
 %>
 
 <!DOCTYPE html>
@@ -181,6 +165,9 @@ form.review>label {
 	font-size: 1.1em;
 }
 
+form.review select.movie-name-disabled{
+	background:white;
+}
 form.review input[type="text"] {
 	margin: 5px;
 	font-size: large;
@@ -276,10 +263,13 @@ div.button {
 	color: black;
 }
 
-#submit {
+input#submit {
 	background: black;
-	color: white;
-	border: 2px solid white;
+    color: white;
+    border: 2px solid white;
+    font-size: 1.1em;
+    padding: 5px 12px;
+    border-radius: 5px;
 }
 
 #submit:hover {
@@ -365,7 +355,7 @@ div.nav>div.nav-links>a {
 		style="background-color: #000000;">
 		<div class="container">
 			<a href="/MOVIEON/Home.jsp" class="navbar-brand"><img
-				src="/MOVIEON/images/logo.png" alt="" width="100" height="50"></a>
+				src="<c:url value='/images/logo.png'/>" alt="" width="100" height="50"></a>
 
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav ms-auto">
@@ -373,9 +363,10 @@ div.nav>div.nav-links>a {
 						id="navbarDropdown" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false"> 電影探索 </a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/MOVIEON/moviesHome/movies_home.jsp">電影推薦</a></li>
-							<li><a class="dropdown-item" href="/MOVIEON/moviesHome/movieGenre.jsp">查詢電影類型</a></li>
+							<li><a class="dropdown-item" href="MovieHome.html">電影推薦</a></li>
+							<li><a class="dropdown-item" href="MovieGenre.html">查詢電影類型</a></li>
 							<li><a class="dropdown-item" href="#">留下影評</a></li>
+							<!-- <li><hr class="dropdown-divider"></li> -->
 							<li><a class="dropdown-item" href="/MOVIEON/review/reviewCenter.jsp">影評中心</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a class="nav-link" href="#"
@@ -447,48 +438,46 @@ div.nav>div.nav-links>a {
 		<div class="row">
 			<div class="col">
 				<form method="POST" action="ReviewServlet" class="review" name="form1" autocomplete="off">
-					<h4>留下影評</h4>
+					<h4>編輯影評(update_review_input.jsp)</h4>
 					<label>會員編號</label> 
-					<input type="TEXT" name="userId" readonly value="<%=memberId%>"> <br>
+					<input type="TEXT" name="userId" readonly value="<%=reviewVO.getUserId()%>"><br>  
+					<%--在修改資料的情況下, 影評物件(reviewVO)不會是空值, 且XXX編號也是已經有值了, 可以直接透過reviewVO取得reviewId了!! --%>
 					<%-- <td>會員名稱:<%= memberName %></td> --%>
 					<%-- <td>${reviewVO.getUserId(2)}</td> 	//id先寫死, 2要改成變數 --%>
-					<label>標題<b>*</b></label> <input type="TEXT" name="reviewTitle"
-						value="<%=(reviewVO == null) ? "" : reviewVO.getReviewTitle()%>">
+					<label>標題<b>*</b></label>
+					<input type="TEXT" name="reviewTitle" value="<%=reviewVO.getReviewTitle()%>">
 					<br> 
-					<label>片名</label> 
-					<select size="1" name=movieId>
+					<label>片名</label> <select size="1" name=movieId class="movie-name-disabled" readonly>
 						<c:forEach var="movieVO" items="${movieSvc.all}">
-							<option value="${movieVO.movieId}"
-								${(reviewVO.movieId == movieVO.movieId)? 'selected' : '' }>${movieVO.movieName}
+							<option value="${movieVO.movieId}" ${(reviewVO.movieId == movieVO.movieId)? 'selected' : '' }>${movieVO.movieName}
 						</c:forEach>
-					</select> 
-					<br> 
+					</select> <br> 
 					<label>推薦程度<b>*</b></label>
 					<div class="rate">
-						<input type="radio" id="rating10" name="rating" value="5"><label
+						<input type="radio" id="rating10" name="rating" value="5" ${reviewVO.starRate == '5' ? 'checked' : '' }><label
 							class="full" for="rating10" title="5 分"></label> <input
-							type="radio" id="rating9" name="rating" value="4.5"><label
+							type="radio" id="rating9" name="rating" value="4.5" ${reviewVO.starRate == '4.5' ? 'checked' : '' }><label
 							class="half" for="rating9" title="4.5 分"></label> <input
-							type="radio" id="rating8" name="rating" value="4"><label
+							type="radio" id="rating8" name="rating" value="4" ${reviewVO.starRate == '4' ? 'checked' : '' }><label
 							class="full" for="rating8" title="4 分"></label> <input
-							type="radio" id="rating7" name="rating" value="3.5"><label
+							type="radio" id="rating7" name="rating" value="3.5" ${reviewVO.starRate == '3.5' ? 'checked' : '' }><label
 							class="half" for="rating7" title="3.5 分"></label> <input
-							type="radio" id="rating6" name="rating" value="3"><label
+							type="radio" id="rating6" name="rating" value="3" ${reviewVO.starRate == '3' ? 'checked' : '' }><label
 							class="full" for="rating6" title="3 分"></label> <input
-							type="radio" id="rating5" name="rating" value="2.5"><label
+							type="radio" id="rating5" name="rating" value="2.5" ${reviewVO.starRate == '2.5' ? 'checked' : '' }><label
 							class="half" for="rating5" title="2.5 分"></label> <input
-							type="radio" id="rating4" name="rating" value="2"><label
+							type="radio" id="rating4" name="rating" value="2" ${reviewVO.starRate == '2' ? 'checked' : '' }><label
 							class="full" for="rating4" title="2 分"></label> <input
-							type="radio" id="rating3" name="rating" value="1.5"><label
+							type="radio" id="rating3" name="rating" value="1.5" ${reviewVO.starRate == '1.5' ? 'checked' : '' }><label
 							class="half" for="rating3" title="1.5 分"></label> <input
-							type="radio" id="rating2" name="rating" value="1"><label
+							type="radio" id="rating2" name="rating" value="1" ${reviewVO.starRate == '1' ? 'checked' : '' }><label
 							class="full" for="rating2" title="1 分"></label> <input
-							type="radio" id="rating1" name="rating" value="0.5"><label
+							type="radio" id="rating1" name="rating" value="0.5" ${reviewVO.starRate == '0.5' ? 'checked' : '' }><label
 							class="half" for="rating1" title="0.5 分"></label>
 					</div>
 					<br> 
 					<label>發佈日期</label> 
-					<input type="TEXT" name="postedAt" readonly value="<%=strDateTime%>"> 
+					<input type="TEXT" name="postedAt" readonly value="<%=reviewVO.getPostedAt()%>"> 
 					<label>寫影評<b>*</b></label>
 					<textarea class="status-box" name="review" id="word_count" oninput="countWord()">${reviewVO.review}</textarea>
 					<p class="counter"></p>
@@ -498,8 +487,9 @@ div.nav>div.nav-links>a {
 							<button type="reset" id="reset">清空</button>
 						</div>
 						<div class="btn_submit">
-							<input type="hidden" name="action" value="insert">
-							<button type="submit" id="submit">送出</button>
+							<input type="hidden" name="action" value="update">	<%--???????送到if條件式action=update --%>
+							<input type="hidden" name="reviewId" value="<%=reviewVO.getReviewId() %>">
+							<input type="submit" id="submit" value="送出修改"></input>
 						</div>
 					</div>
 				</form>

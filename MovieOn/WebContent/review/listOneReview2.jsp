@@ -1,21 +1,27 @@
+<%@page import="com.movie.model.*"%>
 <%@page import="com.member.model.*"%>
 <%@page import="com.review.model.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <% ReviewVO reviewVO = (ReviewVO)request.getAttribute("reviewVO");%>
 
-<%-- 透過MemberService抓Username--%>
-<% MemberService memberSvc = new MemberService();
+<%-- 透過MemberService抓username--%>
+<%	MemberService memberSvc = new MemberService();
 	MemberVO memberVO = memberSvc.getoneMember(reviewVO.getUserId());
+%>
+<%-- 透過MovieService抓movieName--%>
+<%	MovieService movieSvc = new MovieService();
+	MovieVO movieVO=movieSvc.getOneMovie(reviewVO.getMovieId());
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="BIG5">
 <!-- Font Awesome CDN -->
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
 
@@ -104,7 +110,7 @@ ul.dropdown-menu>li a.dropdown-item {
 
 /* *********************************************文章************************************************* */
 div#page {
-	border: 1px dotted #404040;
+	border: 1px dotted #343A40;
 	margin: 0 auto;
 	padding: 0 30px;
 	max-width: 700px;
@@ -148,7 +154,11 @@ div.entry-meta button {
 	background: white;
 	font-size:.8em;
 }
-
+div.entry-meta button.revise{
+    background-color: black;
+	color:white;
+    border:2px solid white;
+}
 div.entry-meta button:hover {
 	color: black;
 	background: white;
@@ -165,153 +175,24 @@ div.entry-content {
 	margin-top: 60px;
 	font-size: 1em;
 	color: #AABBCC;
+	line-height:2.5em;
 }
 
-div.comments-area {
-	margin: 90px 0;
-	/* border:1px solid green; */
+input.revise{
+	color:black;
+	background: white;
+	padding:1px 10px;
+	border: 1px solid black;
+	font-size:.85em;
+	font-weight:600;
 }
 
-h2.comment-title {
-	color: white;
-	font-size: 1.4em;
-	font-weight: 400;
-	letter-spacing: 2px;
-	text-align: center;
+input.revise:hover{
+	color:white;
+	background: black;
+	border: 2px solid white;
 }
 
-h2.comment-title:after {
-	display: block;
-	content: '';
-	margin: 30px auto 60px;
-	max-width: 400px;
-	border-bottom: 1px solid #D6CCC7;
-}
-
-ul.comment-list {
-	margin: 0;
-	padding: 0;
-}
-
-ul.comment-list li {
-	margin-bottom: 50px;
-	list-style-type: none;
-}
-
-ul.comment-list li a {
-	display: inline-block;
-	padding-bottom: 0px;
-	margin-bottom: 5px;
-}
-
-.comment-author {
-	font-size: 1em;
-	font-weight: bold;
-	color: #AABBCC;
-}
-
-div.comment-meta {
-	font-size: .8em;
-	color: gray;
-}
-
-div.comment-meta>a {
-	color: #AABBCC;
-}
-
-.comment-content {
-	color: #EDF2F4;
-	font-size: 1em;
-}
-
-.comment-respond {
-	margin-top: 90px;
-	color: white;
-}
-
-.comment-reply-title, .comment-respond input[type="text"] {
-	display: block;
-	margin-bottom: 5px;
-}
-
-.comment-reply-title {
-	color: #006BB6;
-}
-
-.comment-respond > h2{
-	font-size:1.5em;
-}
-.comment-respond textarea {
-	width: 100%;
-	padding: 10px;
-	height: 100px;
-	background: #EDF2F4;
-	border-radius: 0.5em;
-}
-
-.comment-respond button {
-	margin-top: 20px;
-	padding: 10px 20px;
-	background: transparent;
-	border: 1px solid #EDF2F4;
-	border-radius: 0.5em;
-	font-size: 1em;
-	line-height: 1.5;
-	color: #EDF2F4;
-	cursor: pointer;
-}
-
-.comment-respond button:hover {
-	background: #EDF2F4;
-	color: black;
-	font-weight:900;
-}
-
-.nav-links {
-	margin-top: 150px;
-	font-size: 24px;
-	font-weight: bold;
-	letter-spacing: 1px;
-	overflow: auto;
-	zoom: 1;
-}
-
-.nav-links a {
-	padding-bottom: 10px;
-	color: #433F3F;
-	text-decoration: none;
-	border-bottom: none;
-}
-
-.nav-links a:hover {
-	color: white;
-}
-
-.previous-post, .next-post {
-	display: block;
-	width: 50%;
-}
-
-.previous-post {
-	float: left;
-	text-align: left;
-}
-
-.next-post {
-	float: right;
-	text-align: right;
-}
-
-@media screen and (max-width: 680px) {
-	#page {
-		margin: 60px auto 30px;
-	}
-	.previous-post, .next-post {
-		width: 100%;
-		float: none;
-		text-align: center;
-	}
-}
 
 /******************************************************* 頁尾***************************************************** */
 footer.footer {
@@ -382,7 +263,7 @@ div.nav>div.nav-links>a {
 	<!--------------------------------------------- 導覽列 navbar -------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #000000;">
         <div class="container">
-            <a href="Home.jsp" class="navbar-brand"><img src="images/logo.png" alt="" width="100" height="50"></a>
+            <a href="<%=request.getContextPath() %>/Home.jsp" class="navbar-brand"><img src="<%=request.getContextPath() %>/images/logo.png" alt="" width="100" height="50"></a>
 
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
@@ -392,10 +273,10 @@ div.nav>div.nav-links>a {
                             電影探索
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/MOVIEON/moviesHome/movies_home.jsp">電影推薦</a></li>
-                            <li><a class="dropdown-item" href="/MOVIEON/moviesHome/movieGenre.jsp">查詢電影類型</a></li>
-                            <li><a class="dropdown-item" href="/MOVIEON/review/addReview.jsp">留下影評</a></li>
-                            <li><a class="dropdown-item" href="/MOVIEON/review/reviewCenter.jsp">影評中心</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath() %>/moviesHome/movies_home.jsp">電影推薦</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath() %>/moviesHome/movieGenre.jsp">查詢電影類型</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath() %>/review/addReview.jsp">留下影評</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath() %>/review/reviewCenter.jsp">影評中心</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -462,38 +343,26 @@ div.nav>div.nav-links>a {
         <div class="content-area">
             <main class="site-main" role="main">
                 <article class="post">
-                    <h1 class="entry-title"><%=reviewVO.getReviewTitle() %></h1>
+                    <h1 class="entry-title">〔<%=movieVO.getMovieName()%>〕<%=reviewVO.getReviewTitle() %>
+                    </h1>
                     <div class="entry-meta">
-                        <a class="article-author"><%=memberVO.getUsername() %></a>
-                        <button type="button" class="btn btn-outline-dark btn-sm"><i class="fas fa-plus">追蹤</i></button>
-                        <span class="posted-on"><%=reviewVO.getPostedAt() %></span>
+                    	<form method="post" action="<%=request.getContextPath()%>/review/ReviewServlet">
+                        	<a class="article-author"><%=memberVO.getUsername() %></a>
+                        	<button type="button" class="btn btn-outline-dark btn-sm"><i class="fas fa-plus">追蹤</i></button>
+                        	
+                        	<input type="submit" class="btn revise" value="編輯">
+                        	<input type="hidden" name="reviewId"  value="${reviewVO.reviewId}">
+			     			<input type="hidden" name="action"	value="getOne_For_Update">
+                        	
+                        	<span class="posted-on"><fmt:formatDate value="${reviewVO.postedAt}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+                    	</form>
                     </div>
                     <div class="entry-content">
                         <p><%=reviewVO.getReview() %></p>
+<%--                         <p><c:out value="${review}"/></p> --%>
                     </div>
                 </article>
 
-                
-                <div class="comments-area">
-                    <h2 class="comment-title">留言</h2>
-                    <ul class="comment-list">
-                        <li class="comment">
-                            <div class="comment-author"><span>吳XX</span></div>
-                            <div class="comment-meta"><span>2021/08/01 at 10:33pm</span>
-                            </div>
-                            <div class="comment-content">
-                                <p>寫得很讚!!</p>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="comment-respond">
-                        <h2>Leave a Reply</h2>
-                        <label class="comment-reply-title" for="message">*要先登入才能發布留言</label>
-                        <textarea id="message"></textarea>
-                        <button>發佈留言</button>
-                    </div>
-                </div>
             </main>
         </div>
     </div>

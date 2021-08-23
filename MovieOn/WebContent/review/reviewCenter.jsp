@@ -4,11 +4,11 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.review.model.*"%>
 <%@page import="com.member.model.*"%>
 <%@page import="com.movie.model.*"%>
-<jsp:useBean id="movieSvc" scope="page"	class="com.movie.model.MovieService" />
 
 
 <%--	ReviewDAO dao = new ReviewDAO();
@@ -21,8 +21,13 @@
 	pageContext.setAttribute("list", list);
 	/*限制影評的文字數量*/
 %>
+<jsp:useBean id="movieSvc" scope="page" class="com.movie.model.MovieService" />
+<jsp:useBean id="memeberSvc" scope="page" class="com.member.model.MemberService" />
+<%--用useBean去setAttribute再用EL去getAttribute --%>
+<%--用MovieService去new object -> movieSvc  --%>
+<%--用MemberService去new object -> memeberSvc --%>
 
-<%-- 為什麼27行有錯????
+<%-- 有錯????
 ReviewVO reviewVO = (ReviewVO) request.getAttribute("reviewVO");
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 Timestamp postedAt = reviewVO.getPostedAt();
@@ -162,7 +167,7 @@ article.article-container {
 	/* border:1px solid red; */
 	border-bottom: 1px dotted gray;
 	margin-top: 2em;
-	margin-bottom: 3em;
+	margin-bottom: 4em;
 }
 
 div.article-info {
@@ -171,10 +176,12 @@ div.article-info {
 
 div.article-info h4.article-title {
 	font-size: 1.2em;
+	font-weight:600;
+	color:white;
 }
 
 a.article-author {
-	font-size: 1em;
+	font-size: .9em;
 	color: #006BB6;
 }
 
@@ -189,10 +196,12 @@ div.article-info>button.btn-sm {
 
 div.article-info>button.btn-sm:hover {
 	color: black;
-	font-size: 1em;
-	/* border:1px solid black; */
+	font-size: .91em;
+	border:1px solid #006BB6;
 }
-
+time.postedDate{
+	color: gray;
+}
 div#content {
 	/* border:1px solid blue; */
 	margin: 1em 0;
@@ -200,6 +209,7 @@ div#content {
 
 div#content p {
 	font-size: 1em;
+	line-height:2em;
 }
 
 div#read-more>a {
@@ -211,6 +221,7 @@ div#read-more>a {
 
 div#read-more>a:hover {
 	color: #EDF2F4;
+	font-weight:600;
 }
 
 a.page-link {
@@ -223,6 +234,39 @@ a.page-items {
 
 ul.pagination li a {
 	background: none;
+}
+
+/********************************* 頁碼 ****************************************/
+div.pagination {
+	margin:0 auto;
+	max-width:700px;
+	font-size: 1.1em;
+	font-weight: bold;
+	letter-spacing: 1px;
+	display:flex;
+	justify-content:space-between;
+}
+
+.pagination a {
+	color: #433F3F;
+	text-decoration: none;
+	border-bottom: none;
+}
+
+.pagination a:hover {
+	color: #FFBE0B;
+}
+
+.previous-post, .next-post {
+	width: 50%;
+}
+
+.previous-post {
+	text-align: left;
+}
+
+.next-post {
+	text-align: right;
 }
 
 /******************************************************* 頁尾***************************************************** */
@@ -295,9 +339,8 @@ div.nav>div.nav-links>a {
 	<nav class="navbar navbar-expand-lg  navbar-dark"
 		style="background-color: #000000;">
 		<div class="container">
-			<a href="/MOVIEON/Home.jsp" class="navbar-brand"><img
-				src="/MOVIEON/images/logo.png" alt="" width="100"
-				height="50"></a>
+			<a href="${pageContext.request.contextPath}/Home.jsp" class="navbar-brand"><img
+				src="<%=request.getContextPath() %>/images/logo.png" alt="" width="100" height="50"></a>
 
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav ms-auto">
@@ -305,12 +348,10 @@ div.nav>div.nav-links>a {
 						id="navbarDropdown" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false"> 電影探索 </a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/MOVIEON/moviesHome/movies_home.jsp">電影推薦</a></li>
-							<li><a class="dropdown-item" href="/MOVIEON/moviesHome/movieGenre.jsp">查詢電影類型</a></li>
-							<li><a class="dropdown-item"
-								href="/MOVIEON/review/addReview.jsp">留下影評</a></li>
-							<!-- <li><hr class="dropdown-divider"></li> -->
-							<li><a class="dropdown-item" href="#">影評中心</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath() %>/moviesHome/movies_home.jsp">電影推薦</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/moviesHome/movieGenre.jsp">查詢電影類型</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/review/addReview.jsp">留下影評</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/review/reviewCenter.jsp">影評中心</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a class="nav-link" href="#"
 						id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -367,19 +408,33 @@ div.nav>div.nav-links>a {
 	<!--------------------------------------------- 影評 -------------------------------------------------------------->
 	<div class="container-fluid article-page1">
 		<h4>影評中心</h4>
-		<c:set var="start" value="【"/>
-		<c:set var="end" value="】"/>
-		<c:forEach var="reviewVO" items="${list}">
+		<%@ include file="page1.file"%>
+		<c:forEach var="reviewVO" items="${list}" begin="<%=pageIndex%>"
+			end="<%=pageIndex+rowsPerPage-1%>">
 			<article class="article-container">
 				<div class="article-info">
-					<h4 class="article-title">${start}影評${end}${reviewVO.reviewTitle}</h4>
-						<a class="article-author">${userVO.username}</a>
-					<button type="button" class="btn btn-outline-dark btn-sm"><i class="fas fa-plus">追蹤</i></button>
-					<time class="postedDate">${reviewVO.postedAt}</time>
+					<h4 class="article-title">
+						<c:forEach var="movieVO" items="${movieSvc.all}">
+							<c:if test="${reviewVO.movieId==movieVO.movieId}">
+	                    		〔${movieVO.movieName}〕${reviewVO.reviewTitle}
+                    		</c:if>
+						</c:forEach>
+					</h4>
+					<a class="article-author">
+						<c:forEach var="memberVO" items="${memeberSvc.all}">
+							<c:if test="${reviewVO.userId==memberVO.userid}">
+	                    		${memberVO.username}
+                    		</c:if>
+						</c:forEach>
+					</a>
+					<button type="button" class="btn btn-outline-dark btn-sm">
+						<i class="fas fa-plus">追蹤</i>
+					</button>
+					<time class="postedDate"><fmt:formatDate value="${reviewVO.postedAt}" pattern="yyyy-MM-dd HH:mm:ss"/></time>
 				</div>
-				
+
 				<div id="content">
-					<p>${reviewVO.review.substring(0, 1)}.....</p>
+					<p>${reviewVO.review.substring(0, 100)}&hellip;&hellip;&hellip;</p>
 				</div>
 				<div id="read-more">
 					<a href="/MOVIEON/Links_Controller?reviewId=${reviewVO.reviewId}&action=getOne_From_Home">閱讀更多</a>
@@ -387,19 +442,46 @@ div.nav>div.nav-links>a {
 			</article>
 		</c:forEach>
 	</div>
+	
+	
+	<div class="nav-links pagination">
+		<div class="previous">
+	  		<%if (rowsPerPage<rowNumber) {%>
+    			<%if(pageIndex>=rowsPerPage){%>
+        			<a href="<%=request.getRequestURI()%>?whichPage=1">至第一頁</a>&nbsp;
+        			<a class="previous-post" href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>" class="previous-post">&laquo;上一頁 </a>&nbsp;
+    		<%}%>
+  		</div>
+  
+  		<div class="next">
+    	<%if(pageIndex<pageIndexArray[pageNumber-1]){%>
+        	<a href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>" class="next-post">下一頁 &raquo;</a>&nbsp;
+        	<a href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>">至最後一頁</a>&nbsp;
+    	<%}%>
+    	</div>
+  	<%}%>  
+	</div>
+	
+	
+<br><br>
 
+  
+	
 
 	<!--------------------------------------------- 分頁-------------------------------------------------------------->
-	<nav aria-label="Page navigation example" class="pageNav">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled"><a class="page-link" href="#"
-				tabindex="-1" aria-disabled="true">Previous</a></li>
-			<li class="page-item link1"><a class="page-link" href="#">1</a></li>
-			<li class="page-item link2"><a class="page-link" href="#">2</a></li>
-			<li class="page-item link3"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
-		</ul>
-	</nav>
+	<!-- 	<nav aria-label="Page navigation example" class="pageNav"> -->
+	<!-- 		<ul class="pagination justify-content-center"> -->
+	<!-- 			<li class="page-item disabled"><a class="page-link" href="#" -->
+	<!-- 				tabindex="-1" aria-disabled="true">&laquo;</a></li> -->
+	<!-- 			<li class="page-item link1"><a class="page-link" href="#">1</a></li> -->
+	<!-- 			<li class="page-item link2"><a class="page-link" href="#">2</a></li> -->
+	<!-- 			<li class="page-item link3"><a class="page-link" href="#">3</a></li> -->
+	<!-- 			<li class="page-item link4"><a class="page-link" href="#">4</a></li> -->
+	<!-- 			<li class="page-item link5"><a class="page-link" href="#">5</a></li> -->
+	<!--             <li class="page-item link6"><a class="page-link" href="#">6</a></li> -->
+	<!-- 			<li class="page-item"><a class="page-link" href="#">&raquo;</a></li> -->
+	<!-- 		</ul> -->
+	<!-- 	</nav> -->
 
 
 
@@ -419,16 +501,7 @@ div.nav>div.nav-links>a {
 	</footer>
 
 
-	<script>
-		$(".link2").on("click", function() {
-			alert("HELLO");
-			$(".article-page1").attr("style", "display:none");
-			$(".article-page2").attr("style", "display:block");
-		})
-	</script>
-
-
-
+	
 
 
 	<!-- Bootstrap 的 JS 官方CDN路徑 -->
