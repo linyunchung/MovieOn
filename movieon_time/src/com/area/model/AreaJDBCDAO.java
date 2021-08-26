@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.mysql.cj.protocol.Resultset;
 
 
@@ -15,10 +20,23 @@ import com.mysql.cj.protocol.Resultset;
 
 public class AreaJDBCDAO implements AreaDAO_interface {
 	
-	public static final String driver = "com.mysql.cj.jdbc.Driver";
-	public static final String url = "jdbc:mysql://localhost:3306/MovieTime?serverTimezone=Asia/Taipei";
-	public static final String userid = "root";
-	public static final String passwd = "password";
+//	public static final String driver = "com.mysql.cj.jdbc.Driver";
+//	public static final String url = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
+//	public static final String userid = "root";
+//	public static final String passwd = "Ab3345678";
+	
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/movieOn");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	private static final String INSERT_STMT = "INSERT INTO Area (city) VALUES (?)";
 	private static final String UPDATE = "UPDATE Area SET city=? WHERE areaNum=?";
@@ -26,13 +44,13 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT areaNum, city FROM Area WHERE areaNum=?";
 	private static final String GET_ALL_STMT = "SELECT areaNum, city FROM Area";
 	
-	static {
-		try {
-			Class.forName(driver);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+//	static {
+//		try {
+//			Class.forName(driver);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	@Override
 	public void insert(AreaVO area) {
@@ -41,14 +59,15 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setString(1, area.getCity());
 			pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		}finally {
 			if(pstmt != null) {
 				try {
@@ -75,15 +94,16 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
 			pstmt.setString(1, area.getCity());
 			pstmt.setInt(2, area.getAreaNum());
 			pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if(pstmt != null) {
 				try {
@@ -111,14 +131,15 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setInt(1, areaNum);
 			pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if(pstmt != null) {
 				try {
@@ -146,7 +167,7 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 		AreaVO areaVO = null;
 		
 		try {
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			
 			pstmt.setInt(1, areaNum);
@@ -160,8 +181,9 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 			}
 			
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (rs != null) {
 				try {
@@ -198,7 +220,7 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			
@@ -210,8 +232,9 @@ public class AreaJDBCDAO implements AreaDAO_interface {
 				list.add(areaVO);
 			}
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (rs != null) {
 				try {

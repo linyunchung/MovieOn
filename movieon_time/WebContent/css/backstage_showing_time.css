@@ -1,0 +1,394 @@
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+html, body{
+ background: #262626;
+}
+body {
+  line-height: 1.5;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #fff;
+  
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+#header {
+  background: #000000;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+#header:after {
+  content: "";
+  clear: both;
+  display: block;
+  
+}
+.search {
+  width: 350px;
+  margin: 10px;
+}
+
+.signin {
+  width: 80px;
+  height: 30px;
+  background-color: #FFBE0B;
+  border-radius: 5px;
+  border-color: #FFBE0B;
+  margin: 20px;
+}
+.signin a {
+  color: #000000;
+  font-size: 14px;
+}
+input {
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  width: 350px;
+}
+.logo {  
+  /* padding: 0 0 0 20px; */
+  position: relative;
+  /* width: 10%; */
+  left: 3%;
+  display: inline-block;
+}
+img {
+  width: auto;
+  height: 70px;
+  position: relative;
+  display: block;
+}
+nav {
+  
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  
+}
+nav > ul {  
+  position: relative;
+}
+nav li {
+  list-style: none;
+  float: left;
+}
+nav .dropdown {
+  position: relative;
+}
+nav li a {
+  float: left;
+  padding: 35px 20px;;
+}
+nav li a:hover {
+  background: #2c3e50;
+}
+nav li ul {
+  display: none;
+}
+nav li:hover ul {
+  display: inline;
+}
+nav li li {
+  float: none;
+}
+nav .dropdown ul {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #fff;
+  padding: 25px 0;
+  border-bottom: 3px solid #34495e;
+}
+nav .dropdown li {
+  white-space: nowrap;
+}
+nav .dropdown li a {
+  padding: 10px 35px;
+  font-size: 13px;
+  min-width: 200px;
+}
+
+nav li li a {
+  float: none;
+  color: #333;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+nav li li a:hover {
+  background: #bdc3c7;
+  background: #fafbfb;
+}
+
+
+#menu-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -12px;
+  margin-right: 30px;
+  display: none;
+}
+#menu-icon span {
+  border: 2px solid #fff;
+  width: 30px;
+  margin-bottom: 5px;
+  display: block;
+  -webkit-transition: all 0.2s;
+  transition: all 0.1s;
+}
+
+
+
+
+/* 側邊欄 */
+.aside {
+  width: 200px;
+  height: 1050px;
+  position: absolute;
+  z-index: 0;
+  /* top: 80px; */
+  left: 0;
+  background: #2D2D2D;
+  box-shadow: 3px 20px 20px rgba(27, 27, 27, 0.7);
+ 
+}
+.aside_search {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+  top: 5%;
+} 
+
+
+.aside_btn:after {
+  content:'';
+  width: 0%;
+  height: 2px;
+  background: #f8bd7f;
+  display: block;
+  transition: all 0.3s;
+  
+}
+
+.aside_btn:hover:after {
+  width: 100%;
+}
+
+
+
+.content {
+  width: 100%;
+/*   height: 1500px; */
+  /* padding-bottom: 250px; */
+
+  min-height: 100%; 
+/*   margin-bottom: -250px; */
+  overflow:auto;
+}
+
+
+/* 主要區塊 */
+.main {
+  width: calc(100% - 200px);
+  position: absolute;
+  right: 0%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+
+/*   padding-bottom: 250px; */
+  padding-top: 100px;
+
+}
+
+.main > form > table{
+  margin: 20px;
+  /* width: 450px; */
+  height: 380px;
+}
+
+.main > form > table > tbody > tr > td{
+  width: 100px;
+} 
+
+#showing_time_btn{
+  width: 100px;
+  position: relative;
+  right: -70%;
+  cursor: pointer;
+  background-color: #006BB6;
+  color: #fff;
+  transition: all 0.3s; 
+}
+
+#showing_time_btn:hover{
+	background-color:#FFBE0B;
+}
+
+select{
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+}
+input{
+  width: 250px;
+}
+
+/* 已上架管理 */
+.view_show {
+  width: 100%;
+  height: 550px;
+  position: relative;
+  top: -15%;
+  /* border: 1px solid white; */
+}
+.view_show_main{
+	position: relative;
+  	top: 5%;
+	
+}
+
+.view_show_main > p{
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.show_view_main {
+  width: 80%;
+  height: 650px;
+  position: relative;
+  margin-top: 30px;
+  /* border: 1px solid white; */
+  display: flex;
+  margin-top: 90px;
+
+
+}
+
+.view {
+  width: 100%;
+  line-height: 15px;
+  font-size: 16px;
+  border-collapse: collapse;
+  empty-cells:show;
+}
+
+.view tr{
+	height:100px;
+}
+
+
+.view td{
+ text-align: center;
+ height: 20px;
+}
+
+.view tr:nth-child(odd) {
+  background-color: #2D2D2D;
+}
+
+.view thead tr:nth-child(1) {
+  height: 50px;
+  background-color: whitesmoke;
+  color: #4e4e4e;
+}
+td .fa-trash-alt, .fa-pencil-alt {
+  cursor: pointer;
+  width: 30px;
+  color:#ffffff;
+  transition: all 0.3s;
+  font-size: 18px;
+  
+}
+
+.fa-trash-alt,.fa-pencil-alt{
+  color: #3379ac;
+}
+
+td .fa-trash-alt:hover,.fa-pencil-alt:hover{
+  color:#f8cc51;
+  
+}
+.fa-trash-alt::before,.fa-pencil-alt::before{
+  font-family: "Font Awesome 5 Pro";
+}
+
+.view > tbody > tr > td > form > button{
+	background: none;
+    border-style: hidden;
+}
+
+.view_show > p > a:hover{
+	color:#FFBE0B;
+}
+
+
+/* 搜尋欄 */
+.select_search {
+  
+  height: 100px;
+  background-color: #262626;
+  /* box-shadow: 0px 10px 25px rgba(51, 51, 51, 0.7); */
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  border-radius: 8px;
+  position: relative;
+  
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: -45px;
+  margin-bottom: 25px;
+  padding: 10px;
+}
+
+.select_search form{
+	width:100%;
+	display: contents;
+}
+
+.select_search select{
+  width: 20%;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.search_btn {
+  width: 60px;
+  height: 30px;
+  background-color:#006BB6;
+  border-radius: 5px;
+  border-color: #006BB6;
+  /* margin: 20px; */
+  transition: all 0.3s; 
+  color:white;
+  cursor: pointer;
+}
+
+.search_btn:hover {
+  background-color: #FFBE0B;
+  border-color: #FFBE0B;
+}
