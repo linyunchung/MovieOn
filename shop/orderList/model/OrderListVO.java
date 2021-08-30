@@ -1,10 +1,11 @@
 package com.orderList.model;
 
+import java.sql.Blob;
+
 public class OrderListVO implements java.io.Serializable {
 	private Integer orderListId;       //訂單明細編號
 	private Integer price;             //商品單價
 	private Integer itemQty;           //商品數量
-	private String orderRemark;        //商品備註
 	private Integer orderId;           //訂單編號
 	private Integer itemId;            //商品編號
 	
@@ -26,12 +27,6 @@ public class OrderListVO implements java.io.Serializable {
 	public void setItemQty(Integer itemQty) {
 		this.itemQty = itemQty;
 	}
-	public String getOrderRemark() {
-		return orderRemark;
-	}
-	public void setOrderRemark(String orderRemark) {
-		this.orderRemark = orderRemark;
-	}
 	public Integer getOrderId() {
 		return orderId;
 	}
@@ -44,5 +39,5 @@ public class OrderListVO implements java.io.Serializable {
 	public void setItemId(Integer itemId) {
 		this.itemId = itemId;
 	}
-	
+
 }
