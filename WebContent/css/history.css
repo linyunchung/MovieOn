@@ -1,0 +1,82 @@
+.aside_hist {
+  color: #FFBE0B;
+}
+
+
+.history_show {
+  width: 100%;
+  height: 550px;
+  position: relative;
+  /* border: 1px solid white; */
+}
+.history_show > p{
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.history_main {
+  width: 80%;
+  height: 650px;
+  position: relative;
+  margin-top: 30px;
+  /* border: 1px solid white; */
+  display: flex;
+  margin-top: 90px;
+
+
+}
+
+.time {
+  width: 100%;
+/*   height: 450px; */
+  line-height: 15px;
+  font-size: 16px;
+  border-collapse: collapse;
+  empty-cells:show;
+}
+
+.history_search_btn > button{
+	background: none;
+    border-style: hidden;
+}
+
+
+td{
+ text-align: center;
+ height: 100px;
+}
+
+tr:nth-child(odd) {
+  background-color: #2D2D2D;
+}
+
+thead tr:nth-child(1) {
+  height: 50px;
+  background-color: whitesmoke;
+  color: #4e4e4e;
+}
+td .fa-search, .fa-trash-alt {
+  cursor: pointer;
+  width: 30px;
+  color:#ffffff;
+  transition: all 0.3s;
+  font-size: 17px;
+}
+
+.fa-trash-alt{
+  color: #3379ac;
+}
+
+td .fa-search:hover, .fa-trash-alt:hover{
+  color:#f8cc51;
+ 
+}
+
+.none_his{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    display:none;
+}
