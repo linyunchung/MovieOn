@@ -1,26 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-<<<<<<< .merge_file_a19632
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.movie.model.*"%>
-<%@ page import="com.MovieTag.model.*"%>
-
-<%
-	MovieVO movieVO = (MovieVO) request.getAttribute("movieVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
-%>
-<%
-	MovieTagVO movieTagVO = (MovieTagVO) request.getAttribute("movieTagVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
-=======
 <%@ page import="com.movie.model.*"%>
 
 <%
   MovieVO movieVO = (MovieVO) request.getAttribute("movieVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
->>>>>>> .merge_file_a05860
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< .merge_file_a19632
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -243,7 +231,7 @@
 
     </div>
     
-    <jsp:useBean id="movieTagSvc" scope="page" class="com.MovieTag.model.MovieTagService" />
+
 
     <div class="main">
         <h1 class="title">電影資料管理</h1>

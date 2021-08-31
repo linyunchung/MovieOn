@@ -66,9 +66,6 @@ public class MovieService {
 		return dao.getAll();
 	}
 	
-	public List<MovieVO> getAllByMovieName(String movieName){
-		return dao.getAllByMovieName(movieName);
-	}
 	/*
 	public List<MovieVO> getAllByMovieName(String movieName) {
 		return dao.getAllByMovieName(movieName);

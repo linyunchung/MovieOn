@@ -6,22 +6,7 @@ import java.sql.*;
 
 public class MemberJDBCDAO implements MemberDAO_interface {
 	String DRIVER = "com.mysql.cj.jdbc.Driver";
-<<<<<<< HEAD
-	String URL = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
-	String USER = "root";
-	String PASSWORD = "Ab3345678";
-	
-	private static final String INSERT_STMT = 
-		"INSERT INTO MEMBER VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT =
-		"SELECT userid, username, email, password, address, mobile, joindate, profilepic, name, gender, birthday, education, occupation, ig, fb, twt, admin FROM MEMBER order by userid";
-	private static final String GET_ONE_STMT =
-		"SELECT userid, username, email, password, address, mobile, joindate, profilepic, name, gender, birthday, education, occupation, ig, fb, twt, admin FROM MEMBER where userid = ?";
-	private static final String DELETE = 
-		"DELETE FROM MEMBER where userid = ?";
-	private static final String UPDATE = 
-		"UPDATE MEMBER set userid=?, username=?, email=?, password=?, address=?, mobile=?, joindate=?, profilepic=?, name=?, gender=?, birthday=?, education=?, occupation=?, ig=?, fb=?, twt=?, admin=? where userid = ? ";
-=======
+
 	String URL = "jdbc:mysql://35.201.252.250/MOVIEON?serverTimezone=Asia/Taipei";
 	String USER = "root";
 	String PASSWORD = "4579616593";
@@ -36,7 +21,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		"DELETE FROM MOVIEON.MEMBER where userid = ?";
 	private static final String UPDATE = 
 		"UPDATE MOVIEON.MEMBER set userid=?, username=?, email=?, password=?, address=?, mobile=?, joindate=?, profilepic=?, name=?, gender=?, birthday=?, education=?, occupation=?, ig=?, fb=?, twt=?, admin=? where userid = ? ";
->>>>>>> movieongit/Delaney
+
 	
 	@Override
 	public void insert(MemberVO memberVO) {
