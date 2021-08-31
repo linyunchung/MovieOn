@@ -38,7 +38,7 @@ public class MovieJDBCDAO implements MovieDAO_interface {
 			pstmt.setString(1, movieVO.getMovieName());
 			pstmt.setString(2, movieVO.getMovieEName());
 			pstmt.setDate(3, movieVO.getReleaseDate());
-			pstmt.setTime(4, movieVO.getMins());
+			pstmt.setInt(4, movieVO.getMins());
 			pstmt.setString(5, movieVO.getStudio());
 			pstmt.setString(6, movieVO.getPlot());
 			pstmt.setBlob(7, movieVO.getPoster());
@@ -90,7 +90,7 @@ public class MovieJDBCDAO implements MovieDAO_interface {
 			pstmt.setString(1, movieVO.getMovieName());
 			pstmt.setString(2, movieVO.getMovieEName());
 			pstmt.setDate(3, movieVO.getReleaseDate());
-			pstmt.setTime(4, movieVO.getMins());
+			pstmt.setInt(4, movieVO.getMins());
 			pstmt.setString(5, movieVO.getStudio());
 			pstmt.setString(6, movieVO.getPlot());
 			pstmt.setBlob(7, movieVO.getPoster());
@@ -198,7 +198,7 @@ public class MovieJDBCDAO implements MovieDAO_interface {
 				movieVO.setMovieName(rs.getString("movieName"));
 				movieVO.setMovieEName(rs.getString("movieEName"));
 				movieVO.setReleaseDate(rs.getDate("releaseDate"));
-				movieVO.setMins(rs.getTime("mins"));
+				movieVO.setMins(rs.getInt("mins"));
 				movieVO.setStudio(rs.getString("studio"));
 				movieVO.setPlot(rs.getString("plot"));
 				movieVO.setPoster(rs.getBlob("poster"));
@@ -263,7 +263,7 @@ public class MovieJDBCDAO implements MovieDAO_interface {
 				movieVO.setMovieName(rs.getString("movieName"));
 				movieVO.setMovieEName(rs.getString("movieEName"));
 				movieVO.setReleaseDate(rs.getDate("releaseDate"));
-				movieVO.setMins(rs.getTime("mins"));
+				movieVO.setMins(rs.getInt("mins"));
 				movieVO.setStudio(rs.getString("studio"));
 				movieVO.setPlot(rs.getString("plot"));
 				movieVO.setPoster(rs.getBlob("poster"));

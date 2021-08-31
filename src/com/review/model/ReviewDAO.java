@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -35,7 +37,11 @@ public class ReviewDAO implements ReviewDAO_interface{
 	public static final String GET_ALL_STMT=
 			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW";
 	public static final String GET_ALL_BY_USER_STMT=
-			"select * from MOVIEREVIEW where userID = ?";
+			"select * from MOVIEREVIEW where userID = ? order by postedAt desc";
+	public static final String GET_FRIEND_ACTIVITY_STMT=
+			"SELECT * FROM MOVIEREVIEW where userid in ( "
+					+ "	SELECT targetID FROM FOLLOW where sourceID = ? "
+			+ ") order by postedAt desc;";
 	
 	
 	@Override
@@ -239,6 +245,52 @@ public class ReviewDAO implements ReviewDAO_interface{
 				}
 			}
 		}
+		return list;
+	}
+
+	@Override
+	public List<ReviewVO> getFriendsActivity(Integer userId) {
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ReviewVO reviewVO=null;
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		try {
+			con=ds.getConnection();	//Step2 建立連線
+			pstmt=con.prepareStatement(GET_FRIEND_ACTIVITY_STMT);
+			
+			pstmt.setInt(1, userId);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				reviewVO=new ReviewVO();
+				reviewVO.setReviewId(rs.getInt("reviewId"));
+				reviewVO.setUserId(rs.getInt("userId"));
+				reviewVO.setMovieId(rs.getInt("movieId"));
+				reviewVO.setReviewTitle(rs.getString("reviewTitle"));
+				reviewVO.setStarRate(rs.getDouble("starRate"));
+				reviewVO.setReview(rs.getString("review"));
+				reviewVO.setPostedAt(rs.getTimestamp("postedAt"));
+				
+				list.add(reviewVO);
+				
+			}
+		} catch(SQLException se) {
+			List<ReviewVO> emptylist = new ArrayList<ReviewVO>();
+			return emptylist;
+			
+		}finally {
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
 		return list;
 	}
 

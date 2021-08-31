@@ -1,6 +1,7 @@
 package com.review.model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ReviewDAO_interface { 
 	public void insert(ReviewVO reviewVO);
@@ -9,4 +10,5 @@ public interface ReviewDAO_interface {
 	public ReviewVO findByPrimaryKey(Integer reviewId); //傳回指定的ReviewVO物件
 	public List<ReviewVO> getAll();
 	public List<ReviewVO> getAllByUser(Integer userId);
+	public List<ReviewVO> getFriendsActivity(Integer userId);
 }

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.member.model.*"%>
+<%@ page import="com.review.model.*"%>
+<%@ page import="java.util.*"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- simulate member login	 -->
@@ -25,13 +28,22 @@
 	}
 %>
 
+<!-- get list of reviews by this user -->
+<%
+	ReviewService reviewService = new ReviewService();
+	List<ReviewVO> revList = reviewService.getUserReview(id);
+	pageContext.setAttribute("revList", revList);
+%>
+
 <!-- Services -->
 <jsp:useBean id="memSvc" scope="page"
 	class="com.member.model.MemberService" />
 <jsp:useBean id="followService" scope="page"
 	class="com.follow.model.FollowService" />
 <jsp:useBean id="rvwSvc" scope="page"
-	class="com.review.model.ReviewService" />	
+	class="com.review.model.ReviewService" />
+<jsp:useBean id="movieSvc" scope="page"
+	class="com.movie.model.MovieService" />		
 
 <!DOCTYPE html>
 <html>
@@ -63,9 +75,8 @@
 	<!-- CSS stylesheet -->
 	<link href="${pageContext.request.contextPath}/follow/css/userid.css" rel="stylesheet" />
 	
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/follow/js/userid.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
 </head>
 
 <body class = "userid">
@@ -126,7 +137,7 @@ function updateFollow(action){
                         <div class = "profile-social">
                             <a class = "account" href="">
                                 <i class="fa fa-instagram"></i>
-                                <span>CptLevi666</span>
+                                <span>${memSvc.getoneMember(id).getIg()}</span>
                             </a>
                             <a class = "account" href="">
                                 <i class="fa fa-facebook"></i>
@@ -136,14 +147,14 @@ function updateFollow(action){
                         <div class = "profile-stats">
                             <h4 class = "profile-statistic">
                                 <a href="films.jsp?id=${id}">
-                                    <span class = "value">1234</span>
+                                    <span class = "value">${rvwSvc.userReviewCount(id)}</span>
                                     <span class = "definition">看過</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
                                 <a href="films.jsp?id=${id}">
-                                    <span class = "value">56</span>
+                                    <span class = "value">${rvwSvc.userReviewCountThisYear(id)}</span>
                                     <span class = "definition">今年</span>
                                 </a>
         
@@ -228,11 +239,13 @@ function updateFollow(action){
                                 動態牆
                             </a>
                         </li>
+                        <c:if test="${param.id==loginMemberId}">
                         <li class = "navitem">
                             <a class = "navlink" href="">
-                                購買清單<i class="fa fa-clipboard-list"></i>
+                                我的訂單<i class="fa fa-clipboard-list"></i>
                             </a>
                         </li>
+                        </c:if>
                     </ul>
                 </nav>
             </div>
@@ -294,50 +307,19 @@ function updateFollow(action){
                 </h2>
                 <a href="films.jsp?id=${id}" class = "all-link">全部</a>
                 <ul class = "poster-list -horizontal">
-                    <li class = "poster-container">
-                        <div class = "poster">
-                            <div>
-                                <img class = "image" src="https://movies.yahoo.com.tw/public/index.php/y/r/w420/vu/movies/fp/mpost/57/83/5783.jpg" width="150" height="225" alt="I Kill Giants">
-                                <a class = "frame" href="">
-                                    <span class = "frame-title">進擊的巨人(2015)</span>
-                                    <span class = "overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class = "poster-container">
-                        <div class = "poster">
-                            <div>
-                                <img class = "image" src="https://movies.yahoo.com.tw/public/index.php/y/r/w420/vu/movies/fp/mpost/59/13/5913.jpg" width="150" height="225" alt="I Kill Giants">
-                                <a class = "frame" href="">
-                                    <span class = "frame-title">進擊的巨人2：世界終結(2015)</span>
-                                    <span class = "overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class = "poster-container">
-                        <div class = "poster">
-                            <div>
-                                <img class = "image" src="https://movies.yahoo.com.tw/public/index.php/y/r/w420/vu/movies/fp/mpost/56/23/5623.jpg" width="150" height="225" alt="I Kill Giants">
-                                <a class = "frame" href="">
-                                    <span class = "frame-title">進擊的巨人劇場版—前編《紅蓮的弓矢》(2015)</span>
-                                    <span class = "overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class = "poster-container">
-                        <div class = "poster">
-                            <div>
-                                <img class = "image" src="https://movies.yahoo.com.tw/public/index.php/y/r/w420/vu/movies/fp/mpost/58/60/5860.jpg" width="150" height="225" alt="I Kill Giants">
-                                <a class = "frame" href="">
-                                    <span class = "frame-title">進擊的巨人劇場版—後編《自由之翼》(2015)</span>
-                                    <span class = "overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
+                    <c:forEach var = "reviewVO" items="${revList}" begin="0" end="3">
+	                    <li class = "poster-container">
+	                        <div class = "poster">
+	                            <div>
+	                                <img class = "image" src="${pageContext.request.contextPath}/DBGifReaderProfile?movieId=${reviewVO.movieId}" width="150" height="225" alt="${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}">
+	                                <a class = "frame" href="">
+	                                    <span class = "frame-title">${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}</span>
+	                                    <span class = "overlay"></span>
+	                                </a>
+	                            </div>
+	                        </div>
+	                    </li>
+                    </c:forEach>
                 </ul>
             </section>
     
@@ -347,96 +329,54 @@ function updateFollow(action){
                 </h2>
                 <a href="" class = "all-link">更多</a>
                 <ul class = "film-details-list poster-list">
-                    <li class = "film-detail film-watched">
-                        <div class = "poster film-poster poster-container">
-                            <div>
-                                <img class = "image" src="https://movies.yahoo.com.tw/i/o/production/movies/June2021/WK6XHAWkYYNqsEi1gKiH-767x1080.jpg" width="70" height="105" alt="I Kill Giants">
-                                <a class = "frame" href="">
-                                    <span class = "frame-title">黑寡婦 (2021)</span>
-                                    <span class = "overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class = "film-detail-content">
-                            <h2 class = "headline-2">
-                                <a href="">黑寡婦</a>
-                                <small class = "metadata">
-                                    <a href="">2021</a>
-                                </small>
-                            </h2>
-                            <div class = "attribution-block">
-                                <p class = attribution>
-                                    <span class = "rating -blue rated-9">★★★★½</span>
-                                    <span class = "content-metadata">
-                                        <span class = "date">
-                                            <a class = "context" href="">
-                                                Watched by
-                                                <strong class = "name">里維阿卡曼兵長</strong>
-                                            </a>
-                                            <span class = "_nobr">2021-07-09</span>
-                                        </span>
-                                    </span>
-                                </p>
-                            </div>
-                            <div class = "body-text">
-                                <p>沒有巨人先100分。建議黑寡婦操作立體機動裝置。</p>
-                            </div>
-                            <p class = "like-link-target">
-                                <span class = "like-link">
-                                    <a href="">
-                                        <i class="fa fa-heart"></i>
-                                        <span>還沒有人按讚</span>
-                                    </a>
-                                </span>
-                            </p>
-                        </div>
-
-                    </li>
-                    <li class = "film-detail film-watched">
-
-                        <div class = "poster film-poster poster-container">
-                            <div>
-                                <img class = "image" src="https://movies.yahoo.com.tw/x/r/w420/i/o/production/movies/April2021/ioMQiF4y2C06xWh1DUM2-1024x1516.jpg" width="70" height="105" alt="I Kill Giants">
-                                <a class = "frame" href="">
-                                    <span class = "frame-title">尚氣與十環傳奇 (2021)</span>
-                                    <span class = "overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class = "film-detail-content">
-                            <h2 class = "headline-2">
-                                <a href="">尚氣與十環傳奇</a>
-                                <small class = "metadata">
-                                    <a href="">2021</a>
-                                </small>
-                            </h2>
-                            <div class = "attribution-block">
-                                <p class = attribution>
-                                    <span class = "rating -blue rated-9">★★★★½</span>
-                                    <span class = "content-metadata">
-                                        <span class = "date">
-                                            <a class = "context" href="">
-                                                Watched by
-                                                <strong class = "name">里維阿卡曼兵長</strong>
-                                            </a>
-                                            <span class = "_nobr">2021-07-09</span>
-                                        </span>
-                                    </span>
-                                </p>
-                            </div>
-                            <div class = "body-text">
-                                <p>建議尚氣也來操作立體機動裝置。</p>
-                            </div>
-                            <p class = "like-link-target">
-                                <span class = "like-link">
-                                    <a href="">
-                                        <i class="fa fa-heart"></i>
-                                        <span>還沒有人按讚</span>
-                                    </a>
-                                </span>
-                            </p>
-                        </div>  
-                    </li>
+					<c:forEach var = "reviewVO" items="${revList}" begin="0" end="1">
+	                    <li class = "film-detail film-watched">
+	                        <div class = "poster film-poster poster-container">
+	                            <div>
+	                                <img class = "image" src="${pageContext.request.contextPath}/DBGifReaderProfile?movieId=${reviewVO.movieId}" width="70" height="105" alt="I Kill Giants">
+	                                <a class = "frame" href="">
+	                                    <span class = "frame-title">黑寡婦 (2021)</span>
+	                                    <span class = "overlay"></span>
+	                                </a>
+	                            </div>
+	                        </div>
+	                        <div class = "film-detail-content">
+	                            <h2 class = "headline-2">
+	                                <a href="">${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}</a>
+	                                <small class = "metadata">
+	                                    <a href="">${rvwSvc.getReleaseYear(reviewVO)}</a>
+	                                </small>
+	                            </h2>
+	                            <div class = "attribution-block">
+	                                <p class = attribution>
+	                                    <span class = "rating -blue rated-5">${reviewVO.starRate}</span>
+	                                    <span class = "content-metadata">
+	                                        <span class = "date">
+	                                            <a class = "context" href="">
+	                                                Watched by
+	                                                <strong class = "name">${memSvc.getoneMember(reviewVO.userId).getUsername()}</strong>
+	                                            </a>
+	                                            <span class = "_nobr">${rvwSvc.getYearMonthDate(reviewVO.postedAt)}</span>
+	                                        </span>
+	                                    </span>
+	                                </p>
+	                            </div>
+	                            <div class = "body-text">
+	                                <p>${reviewVO.review}</p>
+	                            </div>
+	                            <p class = "like-link-target">
+	                                <span class = "like-link">
+	                                    <a href="">
+	                                        <i class="fa fa-heart"></i>
+	                                        <span>還沒有人按讚</span>
+	                                    </a>
+	                                </span>
+	                            </p>
+	                        </div>
+	
+	                    </li>
+	                </c:forEach>
+                    
                 </ul>
             </section>
     

@@ -8,7 +8,7 @@ public class MovieVO implements java.io.Serializable{
 	private String movieName;
 	private String movieEName;
 	private Date releaseDate;
-	private Time mins;
+	private Integer mins;
 	private String studio;
 	private String plot;
 	private Blob poster;
@@ -39,10 +39,10 @@ public class MovieVO implements java.io.Serializable{
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public Time getMins() {
+	public Integer getMins() {
 		return mins;
 	}
-	public void setMins(Time time) {
+	public void setMins(Integer time) {
 		this.mins = time;
 	}
 	public String getStudio() {

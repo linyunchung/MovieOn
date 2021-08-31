@@ -12,7 +12,7 @@
 
 <%
 	ReviewService reviewSvc = new ReviewService();
-	List<ReviewVO> list = reviewSvc.getUserReview(id);
+	List<ReviewVO> list = reviewSvc.getFriendsActivity(id);
 	pageContext.setAttribute("list", list);
 %>
 
@@ -61,7 +61,7 @@
     <script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
     
 </head>
-<body class = "reviews films-reviewed">
+<body class = "network">
     <header class="header">header</header>
 
     <div class = "site-body" id = "content">
@@ -127,11 +127,11 @@
                         <section class = "sub-nav-wrapper">
                             <ul class = sub-nav>
                                 <li class="">
-                                    <a href="${pageContext.request.contextPath}/profile?id=${id}&action=films">我看過的</a>
+                                    <a href="#">來自朋友</a>
                                 </li>
-                                <li class="selected">
-                                    <a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">影評</a>
-                                </li>
+<!--                                 <li class="selected"> -->
+<%--                                     <a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">影評</a> --%>
+<!--                                 </li> -->
                                 <!-- <li class="">
                                     <a href="">評分</a>
                                 </li> -->

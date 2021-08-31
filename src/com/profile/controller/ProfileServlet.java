@@ -42,7 +42,7 @@ public class ProfileServlet extends HttpServlet {
 				MemberVO loginMember = (MemberVO) session.getAttribute("memberVO");
 				int loginMemberId = loginMember.getUserid();
 				followVO = followService.findBySourceAndTarget(loginMemberId, profileid);
-
+				
 				if (profileid == loginMemberId) {
 					myProfile = true;
 				}
@@ -63,28 +63,39 @@ public class ProfileServlet extends HttpServlet {
 			String url = "/follow/followers.jsp";
 			RequestDispatcher sucessView = req.getRequestDispatcher(url);
 			sucessView.forward(req, res);
-			// parameter內的id會被一起forward
 		}
 
 		if ("following".equals(action)) {
 			String url = "/follow/following.jsp";
 			RequestDispatcher sucessView = req.getRequestDispatcher(url);
 			sucessView.forward(req, res);
-			// parameter內的id會被一起forward吧?嗎?
 		}
 
 		if ("films".equals(action)) {
 			String url = "/follow/films.jsp";
 			RequestDispatcher sucessView = req.getRequestDispatcher(url);
 			sucessView.forward(req, res);
-			// parameter內的id會被一起forward吧?嗎?
 		}
-
+		
+		if ("reviews".equals(action)) {
+			String url = "/follow/reviews.jsp";
+			RequestDispatcher sucessView = req.getRequestDispatcher(url);
+			sucessView.forward(req, res);
+		}
+		
+		if ("network".equals(action)) {
+			String url = "/follow/network.jsp";
+			RequestDispatcher sucessView = req.getRequestDispatcher(url);
+			sucessView.forward(req, res);
+		}
 	}
 
+	
+	//回給Ajax的response要set content type and set header;
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
 		req.setCharacterEncoding("UTF-8");
+		res.addHeader("Access-Control-Allow-Origin", "*");
 		String action = req.getParameter("action");
 
 		if ("addFollow".equals(action)) {
@@ -97,7 +108,7 @@ public class ProfileServlet extends HttpServlet {
 					followService.newFollow(loginMember.getUserid(), targetId);
 					res.getWriter().write("true");
 				} else {
-					res.getWriter().write("false");
+					res.getWriter().write("請登入會員");
 				}
 
 			} catch (Exception e) {
@@ -117,7 +128,7 @@ public class ProfileServlet extends HttpServlet {
 					followService.deleteBySourceAndTarget(loginMember.getUserid(), targetId);
 					res.getWriter().write("true");
 				} else {
-					res.getWriter().write("false");
+					res.getWriter().write("請登入會員");
 				}
 
 			} catch (Exception e) {

@@ -14,7 +14,7 @@ public class MovieService {
 	}
 
 	public MovieVO addMovie(String movieName, String movieEName, java.sql.Date releaseDate,
-			java.sql.Time mins, String studio, String plot, Blob poster, String actor, String director) {
+			int mins, String studio, String plot, Blob poster, String actor, String director) {
 
 		MovieVO movieVO = new MovieVO();
 
@@ -33,7 +33,7 @@ public class MovieService {
 	}
 
 	public MovieVO updateMovie(Integer movieId, String movieName, String movieEName, java.sql.Date releaseDate,
-			java.sql.Time mins, String studio, String plot, Blob poster, String actor, String director) {
+			int mins, String studio, String plot, Blob poster, String actor, String director) {
 
 		MovieVO movieVO = new MovieVO();
 

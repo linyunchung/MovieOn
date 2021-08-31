@@ -21,9 +21,9 @@ public class FollowDAOImpl implements FollowDAO{
 
 // the DB login info
 	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
+	public static final String URL = "jdbc:mysql://35.201.252.250:3306/MOVIEON?serverTimezone=Asia/Taipei";
 	public static final String USER = "root";
-	public static final String PASSWORD = "Ab3345678";
+	public static final String PASSWORD = "4579616593";
 
 // the prepared statements
 	public static final String CREATE_STMT = "insert into FOLLOW values(default, ?, ?, ?)";
@@ -36,7 +36,7 @@ public class FollowDAOImpl implements FollowDAO{
 	public static final String FINDBYSNT_STMT = "select * from FOLLOW where sourceID = ? and targetID = ?";
 	public static final String DELETEBYSNT_STMT = "delete from FOLLOW where sourceID = ? and targetID = ?";
 // static block to hold	driver used by all
-	private static DataSource ds = null;
+//	private static DataSource ds = null;
 	static {
 		try {
 //			Context ctx = new InitialContext();

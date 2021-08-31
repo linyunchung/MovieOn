@@ -96,6 +96,9 @@ footer.footer span {
   max-width: 950px;
   margin: 0 auto;
 }
+
+
+
 /* =============================Profile*/
 
 section.profile_header{
@@ -224,8 +227,11 @@ section.section{
   padding-bottom: 30px;
   }
 
-body.films-rated .col-main{
+body.films-reviewed .col-main, body.network .col-main{
   margin-top: -10px;
+  width:670px;
+  /* float:left; */
+  /* float後，因為沒有aside，所以footer會浮上來*/
 }
 
 .section:first-child{
@@ -350,10 +356,201 @@ body.films-rated .col-main{
 }
 
 
+/* poster stuff */
+.poster-list.-horizontal{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* margin-left: -10px; */
+}
 
+.poster-list{
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
 
+/* .poster-list .frame-title{
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1.375;
+  font-weight: 400;
+  white-space: nowrap;
+} */
 
+.poster div{
+  display: block;
+  position: relative;
+}
 
+.list-frame, .poster .frame{
+  display: block;
+  position:absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  /* width: 159.375px; */
+  white-space: nowrap;
+  text-indent: 110%;
+  overflow: hidden;
+  background-image: linear-gradient(90deg, hsla(0,0%,100%,0)0,hsla(0,0%,100%,.5)50%,hsla(0,0%,100%,0));
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  background-size: 100% 1px;
+  border-radius: 4px;
+}
+
+.poster-container, .poster{
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.poster .image{
+  display: block;
+  border-radius: 4px;
+}
+
+.film-detail{
+  display: list-item;
+  border-bottom: 1px solid #456;
+  overflow: hidden;
+  padding: 15px 0 18px;
+}
+
+.film-details-list li:last-child{
+  border-bottom: none;
+}
+
+.film-watched .poster{
+  display: inline-block;
+  margin-right: 16px;
+}
+
+.film-detail-content{
+  width: 570px;
+  /* border: 1px solid tomato; */
+  display: block;
+  float: right;
+}
+
+.headline-2{
+  /* font-family: 'Noto Serif TC', serif; */
+  font-weight: 600;
+  font-size: 1.49230769rem;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.film-detail-content .headline-2>a{
+  margin-right: 5px;
+  color: #fff;
+}
+
+.headline-2>.metadata{
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.film-detail-content .headline-2 small a{
+  color:#AABBCC;
+}
+
+.film-detail-content .attribution-block{
+  margin-bottom: 10px;
+  color: #678;
+  font-display: flex;
+  position: relative;
+  /* font-size: 0; */
+}
+
+.attribution-block>.attribution{
+  margin: 0;
+  vertical-align: middle;
+  max-width: 100%;
+  display: inline-block;
+  flex-grow: 1;
+  font-size: 0.8125rem;
+  line-height: 24px;
+}
+
+.attribution-block>.attribution .rating{
+  margin-right: 7px;
+  position: relative;
+  /* top: -1px; */
+  display: inline-block;
+  font-size: 1.2rem;
+  /* vertical-align: inherit; */
+}
+
+.attribution-block .content-metadata{
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.content-metadata>.date{
+  margin-right: 7px;
+  display: inline-block;
+}
+
+.attribution-block>.attribution .context{
+  color: #678;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.attribution-block>.attribution .context .name{
+  color:#AABBCC;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.rating.-blue{
+  color: #00e054;
+}
+
+.body-text{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height:1.5em;
+}
+
+.body-text p{
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #9ab;
+}
+
+.film-detail-content .like-link-target{
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.like-link-target>.like-link a{
+  display: inline-block;
+  font-size: 0.8125rem;
+  color:#789;
+  line-height: 18px;
+}
+
+.like-link-target>.like-link a span{
+  padding-left: 3px;
+}
+
+.frame:hover{
+  border:3px solid #ffbe0b;
+}
+
+.poster-list a:hover{
+  color: #40bcf4;
+}
+
+.like-link-target>.like-link a:hover{
+  color:#AABBCC
+}
 
 
 

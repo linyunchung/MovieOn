@@ -383,10 +383,7 @@ td, th {
   color:#ffbe0b;
 }
 
-.icon-text{
-  font-size: 30px;
-  padding-left: 12px;
-}
+
 
 .pagination{
   overflow: hidden;
@@ -407,7 +404,7 @@ td, th {
   box-shadow: inset 0 1px 0 hsla(0deg 0% 100% / 5%);
   display: block;
   line-height: 1px;
-  padding: 15px 17px;
+  padding: 9px 15px;
 }
 
 .pagination .paginate-nextprev a:hover{
@@ -421,6 +418,113 @@ td, th {
 .pagination .next{
   float: right;
 }
+
+.person-table .table-follow-status{
+    width: 50px;
+    padding: 10px 11px 10px 0;
+    vertical-align: middle;
+}
+
+.table-follow-status .follow-button-wrapper{
+  float:right;
+  height: 30px;
+  width: 30px;
+}
+
+.button.-compact{
+display: inline-block;
+padding: 0 0 0 30px;
+height: 30px !important;
+border-radius: 15px;
+position: relative;
+background: #00b020;
+text-indent: -999em;
+overflow: hidden;
+white-space: nowrap;
+/* border:0; */
+}
+
+.button.-compact .icon{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-image: url(https://s.ltrbxd.com/static/img/sprite.c475d153.svg);
+  background-size: initial;
+  background-repeat: no-repeat;
+  display: block;
+  position:absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.button.-compact.-following .icon{
+  background-position: -300px -230px;   
+}
+
+.button.-compact.-following .icon:hover{
+  background-position: -390px -230px;     
+  background-color: #ff8000;
+}
+
+.button.-compact.-following.-notfollowing .icon{
+  background-position: -330px -230px;     
+  background-color:rgb(85, 102, 119);
+}
+
+.button.-compact.-following.-notfollowing .icon:hover{
+  background-position: -330px -230px;     
+  background-color:rgb(102, 119, 136);
+}
+
+
+/* The alert message box */
+.alert{
+  display: none;
+  padding: 10px;
+  background-color: #00b020; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  opacity: 1;
+  position: absolute;
+  right: 0px;
+  top: 160px;
+  border-left: 3px solid whitesmoke;
+  width: 300px;
+}
+
+.alertmsg{
+  padding-left: 20px;
+}
+
+.alert.active {
+  display: block;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 30px;
+  line-height: 23px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+
+
+
+
+
+
+
 
 
 

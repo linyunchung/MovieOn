@@ -2,8 +2,14 @@ package com.review.model;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Year;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.movie.model.MovieService;
 
 
 
@@ -68,6 +74,21 @@ public class ReviewService {
 		return result;
 	}
 	
+	public int userReviewCountThisYear(Integer userId) {
+		
+		String currentyear = Year.now().toString();
+		int result = 0;
+		
+		List<ReviewVO> allbyuser = dao.getAllByUser(userId);
+		for(ReviewVO review : allbyuser) {
+			if(currentyear.equals(review.getPostedAt().toString().substring(0,4))){
+				result+=1;
+			}
+		}
+		return result;
+		
+	}
+	
 	public String getMonthDate(Timestamp timestamp) {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd");  
@@ -75,4 +96,22 @@ public class ReviewService {
 		return monthDate;
 	}
 	
+	public String getYearMonthDate(Timestamp timestamp) {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MMM-dd");  
+		String yearMonthDate = formatter.format(timestamp);
+		return yearMonthDate;
+	}
+	
+	public String getReleaseYear(ReviewVO reviewVO) {
+		MovieService movieSvc = new MovieService();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy");  
+		return formatter.format((movieSvc.getOneMovie(reviewVO.getMovieId()).getReleaseDate()));
+	}
+	
+	public List<ReviewVO> getFriendsActivity(int sourceId) {
+		
+		return dao.getFriendsActivity(sourceId);
+	}
+
 }

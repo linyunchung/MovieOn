@@ -1,3 +1,4 @@
+<%@page import="com.member.model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -15,8 +16,18 @@
 	pageContext.setAttribute("list", list);
 %>
 
+<%
+	if(session.getAttribute("memberVO")!=null){
+	MemberVO loginMember = (MemberVO) session.getAttribute("memberVO");
+	String loginMemberId = ""+loginMember.getUserid();
+	pageContext.setAttribute("loginMemberId", loginMemberId);
+	}
+%>
+
 <jsp:useBean id="rvwSvc" scope="page"
 	class="com.review.model.ReviewService" />
+<jsp:useBean id="memSvc" scope="page"
+	class="com.member.model.MemberService" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +35,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>里維阿卡曼兵長的電影。Movieon -</title>
+<title>${memSvc.getoneMember(id).username}的電影。Movieon -</title>
 
 <!-- font-awesome script -->
 <script src="https://use.fontawesome.com/b0a5afcff9.js"></script>
@@ -53,7 +64,7 @@
 
 <!-- jQuery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/follow/js/films.js"></script>
+<script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
 
 </head>
 <body class="films films-rated">
@@ -66,11 +77,11 @@
 				<nav class="profile-navigation">
 					<div class="profile-mini-person">
 						<a href="${pageContext.request.contextPath}/profile?id=${id}" class="avatar"> <img
-							src="https://static.wikia.nocookie.net/shingekinokyojin/images/b/b1/Levi_Ackermann_%28Anime%29_character_image.png"
-							alt="里維阿卡曼兵長" width="24" height="24">
+							src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${id}"
+							alt="${memSvc.getoneMember(id).username}" width="24" height="24">
 						</a>
 						<h1 class="title-3">
-							<a href="">里維阿卡曼兵長</a>
+							<a href="${pageContext.request.contextPath}/profile?id=${id}">${memSvc.getoneMember(id).username}</a>
 						</h1>
 					</div>
 					<ul class="navlist">
@@ -86,9 +97,13 @@
 							href="${pageContext.request.contextPath}/profile?id=${id}&action=following"> 追蹤中 </a></li>
 						<li class="navitem"><a class="navlink navnetwork" href="">
 								動態牆 </a></li>
-						<li class="navitem -orders"><a class="navlink navorders"
-							href=""> 購買清單 <i class="fa fa-clipboard-list"></i>
-						</a></li>
+                      <c:if test="${param.id==loginMemberId}">
+                        <li class = "navitem">
+                            <a class = "navlink" href="">
+                                我的訂單<i class="fa fa-clipboard-list"></i>
+                            </a>
+                        </li>
+                        </c:if>
 					</ul>
 				</nav>
 
@@ -100,9 +115,9 @@
 					<div id="content-nav" class="tabbed">
 						<section class="sub-nav-wrapper">
 							<ul class=sub-nav>
-								<li class="selected"><a href="films.jsp?id=${id}">我看過的</a>
+								<li class="selected"><a href="${pageContext.request.contextPath}/profile?id=${id}&action=films">我看過的</a>
 								</li>
-								<li class=""><a href="reviews.jsp?id=${id}">影評</a></li>
+								<li class=""><a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">影評</a></li>
 								<!-- <li class="">
                                     <a href="">評分</a>
                                 </li> -->

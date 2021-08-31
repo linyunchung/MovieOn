@@ -19,10 +19,12 @@
 %>
 
 <%
-// 	MemberService memberService = new MemberService();
-// 	MemberVO memberVO = memberService.getoneMember(1);
-// 	session.setAttribute("loginMember", memberVO);
-%>	
+	if(session.getAttribute("memberVO")!=null){
+	MemberVO loginMember = (MemberVO) session.getAttribute("memberVO");
+	String loginMemberId = ""+loginMember.getUserid();
+	pageContext.setAttribute("loginMemberId", loginMemberId);
+	}
+%>
 
 <jsp:useBean id="memSvc" scope="page"
 	class="com.member.model.MemberService" />
@@ -64,10 +66,13 @@
 
 <!-- CSS stylesheet -->
 <link href="${pageContext.request.contextPath}/follow/css/following.followers.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
 
 </head>
 
 <body class="followers">
+
 	<header class="header">header</header>
 
 	<div class="site-body" id="content">
@@ -95,11 +100,15 @@
 							href="${pageContext.request.contextPath}/profile?id=${id}&action=followers"> 粉絲 </a></li>
 						<li class="navitem"><a class="navlink navfollowing"
 							href="${pageContext.request.contextPath}/profile?id=${id}&action=following"> 追蹤中 </a></li>
-						<li class="navitem"><a class="navlink navnetwork" href="">
-								動態牆 </a></li>
-						<li class="navitem -orders"><a class="navlink navorders"
-							href=""> 購買清單 <i class="fa fa-clipboard-list"></i>
-						</a></li>
+						<li class="navitem"><a class="navlink navnetwork" 
+						href="${pageContext.request.contextPath}/profile?id=${id}&action=network"> 動態牆 </a></li>
+                      <c:if test="${param.id==loginMemberId}">
+                        <li class = "navitem">
+                            <a class = "navlink" href="">
+                                我的訂單<i class="fa fa-clipboard-list"></i>
+                            </a>
+                        </li>
+                        </c:if>
 					</ul>
 				</nav>
 
@@ -144,12 +153,14 @@
 							<th>看過</th>
 							<th>粉絲</th>
 							<th>追蹤中</th>
-							<th>狀態</th>
+							<c:if test="${param.id==loginMemberId}">							
+								<th>狀態</th>
+							</c:if>
 						</tr>
 					</thead>
 					<tbody> 
 						<c:forEach var="followVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-							<tr>
+							<tr data-id="${followVO.sourceID}">
 								<td class="table-person">
 									<div class="person-summary">
 										<a class="avatar" href="${pageContext.request.contextPath}/profile?id=${followVO.sourceID}"> <img
@@ -178,15 +189,28 @@
 										<span> <i class="fas fa-user-friends"></i>
 											${followService.followingCount(followVO.sourceID)}
 									</span>
-								</a></td>
-								<td class="table-follow-status">
-									<div class="follow-button-wrapper">
-										<a class="-following" href=""> <span class="icon-text">
-												<i class="fas fa-check-circle"></i>
-										</span>
-										</a>
-									</div>
+								</a>
 								</td>
+								
+								<c:if test="${param.id==loginMemberId}">
+	                            <td class="table-follow-status">
+	                                <div class="follow-button-wrapper">
+	                                <c:choose>
+	                                <c:when test="${ not empty followService.findBySourceAndTarget(loginMemberId,followVO.sourceID)}">
+	                                    <a class="button -compact -following " href="#">
+	                                        <span class="icon"></span>
+	                                    </a>
+	                                </c:when>
+	                                <c:otherwise>
+	                                	<a class="button -compact -following -notfollowing" href="#">
+	                                        <span class="icon"></span>
+	                                    </a>
+	                                </c:otherwise>
+	                                </c:choose>
+	                                </div>
+	                            </td>
+                            	</c:if>
+                            
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -198,7 +222,10 @@
 
 		</div>
 	</div>
-
+	<div class="alert ">
+		<span class="closebtn">&times;</span>
+		<span class="alertmsg">xxx</span>
+	</div>
 
 	<footer class="footer">
 

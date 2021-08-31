@@ -3,6 +3,7 @@ package com.review.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewJDBCDAO implements ReviewDAO_interface{
 	public static final String DRIVER="com.mysql.cj.jdbc.Driver";
@@ -271,4 +272,12 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<ReviewVO> getFriendsActivity(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
