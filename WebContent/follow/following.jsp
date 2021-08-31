@@ -40,7 +40,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${memSvc.getoneMember(id).username}的追蹤中。Movieon-</title>
+<title>${memSvc.getOneMember(id).username}的追蹤中。Movieon-</title>
 
 <!-- font-awesome script -->
 <script src="https://use.fontawesome.com/b0a5afcff9.js"></script>
@@ -91,10 +91,10 @@
 						<a href="${pageContext.request.contextPath}/profile?id=${id}"
 							class="avatar"> <img
 							src="${pageContext.request.contextPath}/DBGifReaderFollow?userid=${id}"
-							alt="${memSvc.getoneMember(id).username}" width="24" height="24">
+							alt="${memSvc.getOneMember(id).username}" width="24" height="24">
 						</a>
 						<h1 class="title-3">
-							<a href="${pageContext.request.contextPath}/profile?id=${id}">${memSvc.getoneMember(id).username}</a>
+							<a href="${pageContext.request.contextPath}/profile?id=${id}">${memSvc.getOneMember(id).username}</a>
 						</h1>
 					</div>
 					<ul class="navlist">
@@ -184,7 +184,7 @@
 										</a>
 										<h3 class="title-3">
 											<a class="name"
-												href="${pageContext.request.contextPath}/profile?id=${followVO.targetID}">${memSvc.getoneMember(followVO.targetID).username}
+												href="${pageContext.request.contextPath}/profile?id=${followVO.targetID}">${memSvc.getOneMember(followVO.targetID).username}
 											</a>
 										</h3>
 										<small class="metadata"> <a

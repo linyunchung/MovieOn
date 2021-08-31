@@ -1,5 +1,8 @@
 package com.member.model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class MemberVO implements java.io.Serializable {
 	private Integer userid;
 	private String username;
@@ -7,17 +10,18 @@ public class MemberVO implements java.io.Serializable {
 	private String password;
 	private String address;
 	private String mobile;
-	private String joindate;
-	private String profilepic;
+	private Timestamp joindate;
+	private byte[] profilepic;
 	private String name;
 	private String gender;
-	private String birthday;
+	private Date birthday;
 	private String education;
 	private String occupation;
 	private String ig;
 	private String fb;
 	private String twt;
-	private Integer admin;
+	private Byte admin;
+	
 	
 	public Integer getUserid() {
 		return userid;
@@ -55,16 +59,16 @@ public class MemberVO implements java.io.Serializable {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public String getJoindate() {
+	public Timestamp getJoindate() {
 		return joindate;
 	}
-	public void setJoindate(String joindate) {
+	public void setJoindate(Timestamp joindate) {
 		this.joindate = joindate;
 	}
-	public String getProfilepic() {
+	public byte[] getProfilepic() {
 		return profilepic;
 	}
-	public void setProfilepic(String profilepic) {
+	public void setProfilepic(byte[] profilepic) {
 		this.profilepic = profilepic;
 	}
 	public String getName() {
@@ -79,10 +83,10 @@ public class MemberVO implements java.io.Serializable {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 	public String getEducation() {
@@ -115,10 +119,15 @@ public class MemberVO implements java.io.Serializable {
 	public void setTwt(String twt) {
 		this.twt = twt;
 	}
-	public Integer getAdmin() {
+	public Byte getAdmin() {
 		return admin;
 	}
-	public void setAdmin(Integer admin) {
+	public void setAdmin(Byte admin) {
 		this.admin = admin;
 	}
+
+	
+	
+	
+	
 }

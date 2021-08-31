@@ -43,9 +43,9 @@ public class ProfileServlet extends HttpServlet {
 				int loginMemberId = loginMember.getUserid();
 				followVO = followService.findBySourceAndTarget(loginMemberId, profileid);
 				
-				if (profileid == loginMemberId) {
-					myProfile = true;
-				}
+//				if (profileid == loginMemberId) {
+//					myProfile = true;
+//				}
 
 			}
 

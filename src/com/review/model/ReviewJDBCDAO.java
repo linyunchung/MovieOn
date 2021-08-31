@@ -3,13 +3,12 @@ package com.review.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ReviewJDBCDAO implements ReviewDAO_interface{
 	public static final String DRIVER="com.mysql.cj.jdbc.Driver";
-	public static final String URL="jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
+	public static final String URL="jdbc:mysql://35.201.252.250/MOVIEON?serverTimezone=Asia/Taipei";
 	public static final String USERID="root";
-	public static final String PWD="Ab3345678";
+	public static final String PWD="4579616593";
 	
 	public static final String INSERT_STMT=
 			"insert into MOVIEREVIEW (userId, movieId, reviewTitle, starRate, review, postedAt) values (?, ?, ?, ?, ?, ?)";
@@ -278,6 +277,4 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 }

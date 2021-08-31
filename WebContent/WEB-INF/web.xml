@@ -18,14 +18,13 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-	
 	<servlet>
 		<servlet-name>MovieServlet</servlet-name>
 		<servlet-class>com.movie.controller.MovieServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MovieServlet</servlet-name>
-		<url-pattern>/Backstage/emp.do</url-pattern>
+		<url-pattern>/Backstage/movie.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -36,7 +35,6 @@
 		<servlet-name>DBGifReaderMovie</servlet-name>
 		<url-pattern>/DBGifReaderMovie</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
 		<servlet-name>FollowServlet</servlet-name>
 		<servlet-class>com.follow.controller.FollowServlet</servlet-class>
@@ -45,7 +43,14 @@
 		<servlet-name>FollowServlet</servlet-name>
 		<url-pattern>/follow/follow.do</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>MemberServlet</servlet-name>
+		<servlet-class>com.member.controller.MemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberServlet</servlet-name>
+		<url-pattern>/member/member.do</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>DBGifReaderFollow</servlet-name>
 		<servlet-class>com.follow.model.DBGifReaderFollow</servlet-class>
@@ -54,7 +59,6 @@
 		<servlet-name>DBGifReaderFollow</servlet-name>
 		<url-pattern>/DBGifReaderFollow</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
 		<servlet-name>DBGifReaderProfile</servlet-name>
 		<servlet-class>com.profile.model.DBGifReaderProfile</servlet-class>
@@ -63,7 +67,6 @@
 		<servlet-name>DBGifReaderProfile</servlet-name>
 		<url-pattern>/DBGifReaderProfile</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
 		<servlet-name>ProfileServlet</servlet-name>
 		<servlet-class>com.profile.controller.ProfileServlet</servlet-class>
@@ -72,15 +75,161 @@
 		<servlet-name>ProfileServlet</servlet-name>
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
-		<servlet-name>SeatingServlet</servlet-name>
-		<servlet-class>com.seating.controller.SeatingServlet</servlet-class>
+		<servlet-name>OrderInfoServlet</servlet-name>
+		<servlet-class>com.orderInfo.controller.OrderInfoServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>SeatingServlet</servlet-name>
-		<url-pattern>/seating</url-pattern>
-	</servlet-mapping>	
+		<servlet-name>OrderInfoServlet</servlet-name>
+		<url-pattern>/shop/orderInfo.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ItemPic</servlet-name>
+		<servlet-class>com.item.model.ItemPic</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemPic</servlet-name>
+		<url-pattern>/shop/ItemPic</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ItemPic1</servlet-name>
+		<servlet-class>com.item.model.ItemPic1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemPic1</servlet-name>
+		<url-pattern>/shop/ItemPic1</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ItemPic2</servlet-name>
+		<servlet-class>com.item.model.ItemPic2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemPic2</servlet-name>
+		<url-pattern>/shop/ItemPic2</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ItemPic3</servlet-name>
+		<servlet-class>com.item.model.ItemPic3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemPic3</servlet-name>
+		<url-pattern>/shop/ItemPic3</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AreaServlet</servlet-name>
+		<servlet-class>com.area.controller.AreaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AreaServlet</servlet-name>
+		<url-pattern>/area/area.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowingServlet</servlet-name>
+		<servlet-class>com.showing.controller.ShowingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowingServlet</servlet-name>
+		<url-pattern>/showing/showing.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowingSelectServlet</servlet-name>
+		<servlet-class>com.showing.controller.ShowingSelectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowingSelectServlet</servlet-name>
+		<url-pattern>/showing/showingselect.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowingViewServlet</servlet-name>
+		<servlet-class>com.showing.controller.ShowingViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowingViewServlet</servlet-name>
+		<url-pattern>/showing/showingview.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HistoryServlet</servlet-name>
+		<servlet-class>com.history.controller.HistoryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HistoryServlet</servlet-name>
+		<url-pattern>/history/history.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HistoryViewServlet</servlet-name>
+		<servlet-class>com.history.controller.HistoryViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HistoryViewServlet</servlet-name>
+		<url-pattern>/history/historyview.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DBGifReaderMember</servlet-name>
+		<servlet-class>com.member.model.DBGifReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReaderMember</servlet-name>
+		<url-pattern>/DBGifReader</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.member.controller.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SignupServlet</servlet-name>
+		<servlet-class>com.member.controller.SignupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SignupServlet</servlet-name>
+		<url-pattern>/SignupServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>changePasswordServlet</servlet-name>
+		<servlet-class>com.member.controller.changePasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changePasswordServlet</servlet-name>
+		<url-pattern>/changePasswordServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ResetPwdServlet</servlet-name>
+		<servlet-class>com.member.controller.ResetPwdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResetPwdServlet</servlet-name>
+		<url-pattern>/ResetPwdServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ItemServlet</servlet-name>
+		<servlet-class>com.item.controller.ItemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemServlet</servlet-name>
+		<url-pattern>/Backstage/item.do</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>DBGifReader_home</servlet-name>
+		<servlet-class>com.home.controller.DBGifReader_home</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader_home</servlet-name>
+		<url-pattern>/DBGifReader_home</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>ReviewServlet</servlet-name>
+		<servlet-class>com.review.controller.ReviewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReviewServlet</servlet-name>
+		<url-pattern>/review/ReviewServlet</url-pattern>
+	</servlet-mapping>
 
 </web-app>
 

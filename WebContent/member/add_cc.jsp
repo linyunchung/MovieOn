@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
 	pageEncoding="BIG5"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link href="css/add_cc.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/add_cc.css" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -129,15 +132,16 @@
 	});
 </script>
 </head>
-<body>
+<body onload="init();">
+<div class="header"><jsp:include page="index.jsp" /></div>
 	<div class="body">
 		<div class="p">
 			<p>帳戶設定</p>
 			<div class="nav">
 				<ul id="menu">
-					<li><a href="acct_info.jsp">帳號資訊</a></li>
-					<li><a href="change_password.jsp">更換密碼</a></li>
-					<li><a href="profile.jsp">個人資料</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/acct_info.jsp">帳號資訊</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/change_password.jsp">更換密碼</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/profile.jsp">個人資料</a></li>
 					<li><a>帳戶設定</a></li>
 				</ul>
 			</div>
@@ -156,10 +160,16 @@
 				</div>
 				<div class="task">
 					<ul class="task_list">
+<!-- 						<li class="task2"><div id="number"><a>尾號是</a><a id="cc_number">1234</a></div><div id="exp"><a id="expd">2021-07</a></div><button type="button" class="btn_delete">移除</button></li> -->
 						<hr id="hr2">
 						<button type="button" id="create-user">新增信用卡</button>
+						
+<%-- 					<c:set var="" scope="session" value="${}"/>
+					<c:out value="${}"/>
+						 --%>
 					</ul>
 				</div>
+				
 			</form>
 
 		</div>
@@ -192,6 +202,44 @@
 			</fieldset>
 		</form>
 	</div>
+	
 
 </body>
+<script>
+		function init() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/member/member.do",
+				type: "POST",
+				data: {"userId": ${memberVO.userid}, "action":"getCreditCard"},
+				dataType: "json",
+				success: function(data) {
+					if (data === "") {
+						return;
+					} else {
+						
+							let list_html = "";
+							list_html += '<li class="task2">'
+							list_html += '<div id="number">';
+							list_html += '<a>尾號是</a>';
+							list_html += '<a id="cc_number">' + data.creditno.substring(12, 16) + '</a>';
+							list_html += '</div>';
+							list_html += '<div id="exp">';
+							list_html += '<a id="expd">' + data.creditexp.substring(0, 7) + '</a>';
+							list_html += '</div>';
+							list_html += '<input type="hidden" name="userid" value="${memberVO.userid}">';
+							list_html += '<button type="submit" class="btn_delete" value="delete">移除</button>';
+							list_html += '</li>'
+
+							$("ul.task_list").prepend(list_html);
+							$("input.task.task_name").val("");
+						
+					}
+					
+				},
+				error: function(xhr, textStatus, errorThrown) {
+					console.log("error");
+				}
+			});
+		}
+</script>
 </html>

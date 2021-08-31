@@ -6,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -35,14 +33,13 @@ public class ReviewDAO implements ReviewDAO_interface{
 	public static final String GET_ONE_STMT=
 			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW where reviewId = ?";
 	public static final String GET_ALL_STMT=
-			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW";
+			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW ORDER BY postedAt DESC";
 	public static final String GET_ALL_BY_USER_STMT=
 			"select * from MOVIEREVIEW where userID = ? order by postedAt desc";
 	public static final String GET_FRIEND_ACTIVITY_STMT=
 			"SELECT * FROM MOVIEREVIEW where userid in ( "
 					+ "	SELECT targetID FROM FOLLOW where sourceID = ? "
 			+ ") order by postedAt desc;";
-	
 	
 	@Override
 	public void insert(ReviewVO reviewVO) {
@@ -206,7 +203,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 		}
 		return list;
 	}
-	
+
 	@Override
 	public List<ReviewVO> getAllByUser(Integer userId){
 		Connection con=null;
@@ -293,5 +290,5 @@ public class ReviewDAO implements ReviewDAO_interface{
 		
 		return list;
 	}
-
+	
 }

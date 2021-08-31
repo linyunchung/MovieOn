@@ -16,63 +16,56 @@
 
 
 <body>
-<div id="header">
-    <a href="" class="logo">
-      <img src="img/logo.png" alt="">
-    </a>
-    <nav>
+ <div id="header">
+        <a href="backstage.html" class="logo">
+            <img src="img/logo.png" alt="">
+        </a>
+        <nav>
 
-      <ul>
+            <ul>
 
-        <li class="dropdown">
-          <a href="">會員資料管理</a>
-        </li>
+                <li class="dropdown">
+                    <a href="">會員管理</a>
+                    	<ul>
+	                        <li><a href="#">會員資料查詢</a></li>
+	                    </ul>
+                </li>
 
-        <li class="dropdown">
-          <a href="">商城報表</a>
-        </li>
+                
 
-        <li class="dropdown">
-          <a href="">電影管理</a>
-          <ul>
-            <li><a href="#">已上架電影管理</a></li>
-            <li><a href="#">上架新電影</a></li>
-          </ul>
-        </li>
+                <li class="dropdown">
+                    <a href="">電影管理</a>
+                    <ul>
+                        <li><a href="movieDataSearch.jsp">已上架電影管理</a></li>
+                        <li><a href="movieDataInsert.jsp">上架新電影</a></li>
+                    </ul>
+                </li>
 
-        <li class="dropdown">
-          <a href="">商品管理</a>
-          <ul>
-            <li><a href="#">已上架商品管理</a></li>
-            <li><a href="#">上架新商品</a></li>
-          </ul>
-        </li>
+                <li class="dropdown">
+                    <a href="">商品管理</a>
+                    <ul>
+                        <li><a href="itemSearch.jsp">已上架商品管理</a></li>
+                        <li><a href="itemInsert.jsp">上架新商品</a></li>
+                    </ul>
+                </li>
 
-        <li class="dropdown">
-          <a href="">電影時刻表</a>
-          <ul>
-            <li><a href="#">已上架電影時刻表管理</a></li>
-            <li><a href="#">上架新電影時刻表</a></li>
-          </ul>
-        </li>
+                <li class="dropdown">
+                    <a href="">電影時刻表</a>
+                    <ul>
+                        <li><a href="#">上架新電影時刻表</a></li>
+                    </ul>
+                </li>
 
-        <li class="dropdown">
-          <a href="">客服回覆</a>
-        </li>
 
-        <li class="dropdown">
-          <a href="">訂單管理</a>
-        </li>
+            </ul>
 
-      </ul>
+            <button class="signin">
+                <a href="backstage.html">回到首頁</a>
+            </button>
 
-      <button class="signin">
-        <a href="">回到首頁</a>
-      </button>
+        </nav>
 
-    </nav>
-
-  </div>
+    </div>
 
   <div class="main">
     <h1 class="title">會員資料管理</h1>

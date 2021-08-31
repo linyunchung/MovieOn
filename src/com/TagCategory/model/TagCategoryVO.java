@@ -4,6 +4,10 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class TagCategoryVO implements java.io.Serializable{
+	@Override
+	public String toString() {
+		return "TagCategoryVO [genreId=" + genreId + ", genreTag=" + genreTag + "]";
+	}
 	private Integer genreId;
 	private String genreTag
 	;

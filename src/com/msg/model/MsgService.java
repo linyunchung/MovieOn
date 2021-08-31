@@ -18,7 +18,7 @@ public class MsgService {
 		msgVO.setMsgTime(msgTime);
 		msgVO.setMsgContext(msgContext);
 
-		dao.insert(msgVO);
+		dao.update(msgVO);
 		return msgVO;
 	}
 

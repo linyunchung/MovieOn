@@ -176,13 +176,18 @@ public class MovieTagJDBCDAO implements MovieTagDAO_interface {
 			pstmt.setInt(1, movieId);
 
 			rs = pstmt.executeQuery();
+			
+			int i = 0;
 
 			while (rs.next()) {
+				System.out.println(i++);
 				
 				movieTagVO = new MovieTagVO();
 				movieTagVO.setTagId(rs.getInt("tagId"));
 				movieTagVO.setMovieId(rs.getInt("movieId"));
 				movieTagVO.setGenreId(rs.getInt("genreId"));
+				
+				System.out.println(movieTagVO);
 			}
 
 			// Handle any driver errors

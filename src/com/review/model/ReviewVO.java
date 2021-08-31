@@ -3,7 +3,13 @@ package com.review.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ReviewVO implements Serializable{ //規定用包裝型別的原因是若資料庫規格定義not null, 只是適用於物件型態
+public class ReviewVO implements Serializable{ //規定用包裝型別的原因是若資料庫規格定義not null, 只適用於物件型態
+	@Override
+	public String toString() {
+		return "ReviewVO [reviewId=" + reviewId + ", userId=" + userId + ", movieId=" + movieId + ", reviewTitle="
+				+ reviewTitle + ", starRate=" + starRate + ", review=" + review + ", postedAt=" + postedAt + "]";
+	}
+
 	private Integer reviewId;
 	private Integer userId;
 	private Integer movieId;

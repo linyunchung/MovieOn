@@ -5,9 +5,10 @@
 <head>
 <meta charset="BIG5">
 <title>Insert title here</title>
-<link href="css/reset_pwd2.css" type="text/css" rel="stylesheet" >
+<link href="../css/reset_pwd2.css" type="text/css" rel="stylesheet" >
 </head>
 <body>
+<div class="header"><jsp:include page="index.jsp" /></div>
 	<div class="body">
 		<div class="p">
 			<p>重置密碼</p>

@@ -27,6 +27,12 @@ public class MovieTagVO implements java.io.Serializable{
 	public void setGenreId(Integer genreId) {
 		this.genreId = genreId;
 	}
+	@Override
+	public String toString() {
+		return "MovieTagVO [tagId=" + tagId + ", movieId=" + movieId + ", genreId=" + genreId + "]";
+	}
+	
+	
 
 	
 

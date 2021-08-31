@@ -9,7 +9,7 @@
 <!-- simulate member login	 -->
 <%
 	MemberService memberService = new MemberService();
-	MemberVO memberVO = memberService.getoneMember(2);
+	MemberVO memberVO = memberService.getOneMember(2);
 	session.setAttribute("memberVO", memberVO);
 %>
 	
@@ -31,7 +31,7 @@
 <!-- get list of reviews by this user -->
 <%
 	ReviewService reviewService = new ReviewService();
-	List<ReviewVO> revList = reviewService.getUserReview(id);
+	List<ReviewVO> revList = reviewService.getUserReview(id); 
 	pageContext.setAttribute("revList", revList);
 %>
 
@@ -51,7 +51,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>${memSvc.getoneMember(id).username}的個人檔案。Movieon -</title>
+	<title>${memSvc.getOneMember(id).username}的個人檔案。Movieon -</title>
 	
 	<!-- font-awesome script -->
 	<script src="https://use.fontawesome.com/b0a5afcff9.js"></script>
@@ -131,13 +131,13 @@ function updateFollow(action){
                         </span>
                     </div>
                     <div class = "profile-name">
-                        <h1>${memSvc.getoneMember(id).username}</h1>
+                        <h1>${memSvc.getOneMember(id).username}</h1>
                     </div>
                     <div class = "profile-info">
                         <div class = "profile-social">
                             <a class = "account" href="">
                                 <i class="fa fa-instagram"></i>
-                                <span>${memSvc.getoneMember(id).getIg()}</span>
+                                <span>${memSvc.getOneMember(id).getIg()}</span>
                             </a>
                             <a class = "account" href="">
                                 <i class="fa fa-facebook"></i>
@@ -354,7 +354,7 @@ function updateFollow(action){
 	                                        <span class = "date">
 	                                            <a class = "context" href="">
 	                                                Watched by
-	                                                <strong class = "name">${memSvc.getoneMember(reviewVO.userId).getUsername()}</strong>
+	                                                <strong class = "name">${memSvc.getOneMember(reviewVO.userId).getUsername()}</strong>
 	                                            </a>
 	                                            <span class = "_nobr">${rvwSvc.getYearMonthDate(reviewVO.postedAt)}</span>
 	                                        </span>
