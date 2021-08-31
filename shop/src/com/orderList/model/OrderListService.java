@@ -1,6 +1,5 @@
 package com.orderList.model;
 
-import java.sql.Blob;
 import java.util.List;
 
 import com.orderInfo.model.OrderInfoVO;

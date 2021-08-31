@@ -305,41 +305,41 @@ public class OrderInfoServlet extends HttpServlet {
 		
 		
 		// 檢視訂單明細(shopSearch.jsp請求)
-		if ("getOne_For_Display".equals(action)) {
-
-			try {
-				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-
-				// 取得登入的會員編號
-				// HttpSession session = req.getSession();
-				// MemberVO memberVO = (MemberVO) session.getAttribute("mem");
-				// session.setAttribute("memberVO", memberVO);
-
-				Integer orderId = new Integer(req.getParameter("orderId"));
-
-
-				/*************************** 2.開始查詢資料 *****************************************/
-
-//				OrderInfoVO oneOrderInfo = new OrderInfoService().getOneOrderInfo(orderId);
-
-				// 查多筆OrderListVO
-				OrderListService OrderListSvc = new OrderListService();
-				List<OrderListVO> orderListVOList = OrderListSvc.getAllByOrderId(orderId);
-
-				
-				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-//				req.setAttribute("oneOrderInfo", oneOrderInfo); // 資料庫取出的orderInfoVO物件,存入req
-				req.setAttribute("orderListVOList", orderListVOList); // 資料庫取出的orderInfoVO物件,存入req
-				String url = "/shop/shopSearch.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-				/*************************** 其他可能的錯誤處理 *************************************/
-			} catch (Exception e) {
-//				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/shop/shopSearch.jsp");
-				failureView.forward(req, res);
-			}
-		}
+//		if ("getOne_For_Display".equals(action)) {
+//
+//			try {
+//				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+//
+//				// 取得登入的會員編號
+//				// HttpSession session = req.getSession();
+//				// MemberVO memberVO = (MemberVO) session.getAttribute("mem");
+//				// session.setAttribute("memberVO", memberVO);
+//
+//				Integer orderId = new Integer(req.getParameter("orderId"));
+//
+//
+//				/*************************** 2.開始查詢資料 *****************************************/
+//
+////				OrderInfoVO oneOrderInfo = new OrderInfoService().getOneOrderInfo(orderId);
+//
+//				// 查多筆OrderListVO
+//				OrderListService OrderListSvc = new OrderListService();
+//				List<OrderListVO> orderListVOList = OrderListSvc.getAllByOrderId(orderId);
+//
+//				
+//				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+////				req.setAttribute("oneOrderInfo", oneOrderInfo); // 資料庫取出的orderInfoVO物件,存入req
+//				req.setAttribute("orderListVOList", orderListVOList); // 資料庫取出的orderInfoVO物件,存入req
+//				String url = "/shop/shopSearch.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, res);
+//				/*************************** 其他可能的錯誤處理 *************************************/
+//			} catch (Exception e) {
+////				errorMsgs.add("無法取得資料:" + e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/shop/shopSearch.jsp");
+//				failureView.forward(req, res);
+//			}
+//		}
 	}
 
 	

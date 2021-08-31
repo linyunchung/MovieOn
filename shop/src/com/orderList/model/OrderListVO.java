@@ -1,6 +1,5 @@
 package com.orderList.model;
 
-import java.sql.Blob;
 
 public class OrderListVO implements java.io.Serializable {
 	private Integer orderListId;       //­q³æ©ú²Ó½s¸¹

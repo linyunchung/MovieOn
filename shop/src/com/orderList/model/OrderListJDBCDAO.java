@@ -1,7 +1,6 @@
 package com.orderList.model;
 
 import java.util.*;
-
 import java.sql.*;
 
 public class OrderListJDBCDAO implements OrderListDAO_interface {
