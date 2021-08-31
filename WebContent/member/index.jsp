@@ -31,7 +31,7 @@
         <div class="navbar">
             <i class='bx bx-menu'></i>
             <div class="logo">
-				<img src="img/logo.png">
+				<img src="<%=request.getContextPath() %>/images/logo.png">
 			</div>
             <div class="nav-links">
                 <div class="sidebar-logo">
@@ -99,9 +99,17 @@
             <div class="search-box">
                 <i class='bx bx-search'></i>
                 <div class="input-box">
-                    <input type="text" placeholder="Search...">
+                <form method="post" action="<%=request.getContextPath() %>/HomeServlet">
+                    <input type="text" name="search" placeholder="Search...">
+                    <input type="hidden" name="action" value="getSearchResult">
                 </div>
+                </form>
             </div>
+            
+            
+            
+            
+            
         </div>
     </nav>
 

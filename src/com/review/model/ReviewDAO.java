@@ -33,7 +33,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 	public static final String GET_ONE_STMT=
 			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW where reviewId = ?";
 	public static final String GET_ALL_STMT=
-			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW";
+			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW ORDER BY postedAt DESC";
 	
 	
 	@Override

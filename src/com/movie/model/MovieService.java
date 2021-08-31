@@ -14,7 +14,7 @@ public class MovieService {
 	}
 
 	public MovieVO addMovie(String movieName, String movieEName, java.sql.Date releaseDate,
-			java.sql.Time mins, String studio, String plot, Blob poster, String actor, String director) {
+			Integer mins, String studio, String plot, byte[] poster, String actor, String director, String movieTag) {
 
 		MovieVO movieVO = new MovieVO();
 
@@ -27,13 +27,14 @@ public class MovieService {
 		movieVO.setPoster(poster);
 		movieVO.setActor(actor);
 		movieVO.setDirector(director);
+		movieVO.setMovieTag(movieTag);
 		dao.insert(movieVO);
 
 		return movieVO;
 	}
 
 	public MovieVO updateMovie(Integer movieId, String movieName, String movieEName, java.sql.Date releaseDate,
-			java.sql.Time mins, String studio, String plot, Blob poster, String actor, String director) {
+			Integer mins, String studio, String plot, byte[] poster, String actor, String director, String movieTag) {
 
 		MovieVO movieVO = new MovieVO();
 
@@ -47,6 +48,7 @@ public class MovieService {
 		movieVO.setPoster(poster);
 		movieVO.setActor(actor);
 		movieVO.setDirector(director);
+		movieVO.setMovieTag(movieTag);
 		dao.update(movieVO);
 
 		return movieVO;
@@ -63,4 +65,13 @@ public class MovieService {
 	public List<MovieVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public List<MovieVO> getAllByMovieName(String movieName){
+		return dao.getAllByMovieName(movieName);
+	}
+	/*
+	public List<MovieVO> getAllByMovieName(String movieName) {
+		return dao.getAllByMovieName(movieName);
+	}
+	*/
 }
