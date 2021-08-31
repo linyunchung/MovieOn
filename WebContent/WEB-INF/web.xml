@@ -25,6 +25,15 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>ItemServlet</servlet-name>
+    <servlet-class>com.item.controller.ItemServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ItemServlet</servlet-name>
+    <url-pattern>/Backstage/item.do</url-pattern>
+  </servlet-mapping>
+  
+  	<servlet>
 		<servlet-name>DBGifReaderMovie</servlet-name>
 		<servlet-class>com.movie.model.DBGifReaderMovie</servlet-class>
 	</servlet>
@@ -40,14 +49,46 @@
 		<servlet-name>FollowServlet</servlet-name>
 		<url-pattern>/follow/follow.do</url-pattern>
 	</servlet-mapping>
-    <servlet>
-		<servlet-name>MemberServlet</servlet-name>
-		<servlet-class>com.member.controller.MemberServlet</servlet-class>
+	
+	<servlet>
+		<servlet-name>ItemPic</servlet-name>
+		<servlet-class>com.item.model.ItemPic</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MemberServlet</servlet-name>
-		<url-pattern>/member/member.do</url-pattern>
-	</servlet-mapping>	
+		<servlet-name>ItemPic</servlet-name>
+		<url-pattern>/ItemPic</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ItemPic1</servlet-name>
+		<servlet-class>com.item.model.ItemPic1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemPic1</servlet-name>
+		<url-pattern>/ItemPic1</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ItemPic2</servlet-name>
+		<servlet-class>com.item.model.ItemPic2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemPic2</servlet-name>
+		<url-pattern>/ItemPic2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ItemPic3</servlet-name>
+		<servlet-class>com.item.model.ItemPic3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemPic3</servlet-name>
+		<url-pattern>/ItemPic3</url-pattern>
+	</servlet-mapping>
+	
+
+	
+	
   
 </web-app>
 

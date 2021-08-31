@@ -26,48 +26,56 @@
 	rel="stylesheet">
 </head>
 <body>
-	<div id="header">
-		<a href="" class="logo"> <img src="img/logo.png" alt="">
-		</a>
-		<nav>
+	 <div id="header">
+        <a href="backstage.html" class="logo">
+            <img src="img/logo.png" alt="">
+        </a>
+        <nav>
 
-			<ul>
+            <ul>
 
-				<li class="dropdown"><a href="">會員資料管理</a></li>
+                <li class="dropdown">
+                    <a href="">會員管理</a>
+                    	<ul>
+	                        <li><a href="#">會員資料查詢</a></li>
+	                    </ul>
+                </li>
 
-				<li class="dropdown"><a href="">商城報表</a></li>
+                
 
-				<li class="dropdown"><a href="">電影管理</a>
-					<ul>
-						<li><a href="#">已上架電影管理</a></li>
-						<li><a href="#">上架新電影</a></li>
-					</ul></li>
+                <li class="dropdown">
+                    <a href="">電影管理</a>
+                    <ul>
+                        <li><a href="movieDataSearch.jsp">已上架電影管理</a></li>
+                        <li><a href="movieDataInsert.jsp">上架新電影</a></li>
+                    </ul>
+                </li>
 
-				<li class="dropdown"><a href="">商品管理</a>
-					<ul>
-						<li><a href="#">已上架商品管理</a></li>
-						<li><a href="#">上架新商品</a></li>
-					</ul></li>
+                <li class="dropdown">
+                    <a href="">商品管理</a>
+                    <ul>
+                        <li><a href="itemSearch.jsp">已上架商品管理</a></li>
+                        <li><a href="itemInsert.jsp">上架新商品</a></li>
+                    </ul>
+                </li>
 
-				<li class="dropdown"><a href="">電影時刻表</a>
-					<ul>
-						<li><a href="#">已上架電影時刻表管理</a></li>
-						<li><a href="#">上架新電影時刻表</a></li>
-					</ul></li>
+                <li class="dropdown">
+                    <a href="">電影時刻表</a>
+                    <ul>
+                        <li><a href="#">上架新電影時刻表</a></li>
+                    </ul>
+                </li>
 
-				<li class="dropdown"><a href="">客服回覆</a></li>
 
-				<li class="dropdown"><a href="">訂單管理</a></li>
+            </ul>
 
-			</ul>
+            <button class="signin">
+                <a href="backstage.html">回到首頁</a>
+            </button>
 
-			<button class="signin">
-				<a href="">回到首頁</a>
-			</button>
+        </nav>
 
-		</nav>
-
-	</div>
+    </div>
 
 	<jsp:useBean id="movieTagSvc" scope="page"
 		class="com.MovieTag.model.MovieTagService" />
@@ -80,65 +88,53 @@
 
 		<table class="table">
 			<tr>
-				<th>電影編號：<%=movieVO.getMovieId()%></th>
+				<th>電影編號：${movieVO.movieId}</th>
 			</tr>
 			<tr>
-				<th>電影名稱：<%=movieVO.getMovieName()%></th>
+				<th>電影名稱：${movieVO.movieName}</th>
 			</tr>
 			<tr>
-				<th>英文名稱：<%=movieVO.getMovieEName()%></th>
+				<th>英文名稱：${movieVO.movieEName}</th>
 			</tr>
 			<tr>
-				<th>上映日期：<%=movieVO.getReleaseDate()%></th>
+				<th>上映日期：${movieVO.releaseDate}</th>
 			</tr>
 			<tr>
-				<th>片長：<%=movieVO.getMins()%> 分鐘
+				<th>片長：${movieVO.mins} 分鐘
 				</th>
 			</tr>
 			<tr>
-				<th>發行公司：<%=movieVO.getStudio()%></th>
+				<th>發行公司：${movieVO.studio}</th>
 			</tr>
 			<tr>
-				<th>導演：<%=movieVO.getDirector()%></th>
+				<th>導演：${movieVO.director}</th>
 			</tr>
 			<tr>
 				<th>主演：</th>
 			</tr>
 			<tr>
-				<td><div class="Actor_div"><%=movieVO.getActor()%></div></td>
+				<td><div class="Actor_div">${movieVO.actor}</div></td>
 			</tr>
 			<tr>
 				<th>電影介紹：</th>
 			</tr>
 			<tr>
-				<td><div class="Plot_div"><%=movieVO.getPlot()%></div></td>
+				<td><div class="Plot_div">${movieVO.plot}</div></td>
 			</tr>
 			<tr>
-				<th>標籤類別： <br>
+				<th>標籤類別： ${movieVO.movieTag}<br>
 				
-
-
-				
-				
-
-				<c:set var="b"
-						value="${movieTagSvc.getOneMovieTag(movieVO.movieId).movieId}" />
-					<c:forEach var="movieTagVO" items="${movieTagSvc.getAll() }">
-						<c:if test="${b == movieTagVO.movieId }">
-						
-						<c:set var="c" value="${movieTagVO.genreId }" />
-						
-						
-						<c:forEach var="TagCategoryVO" items="${TagCategorySvc.getAll()}">
-							<c:if test="${c == TagCategoryVO.genreId }">
-									${TagCategoryVO.genreTag }
-							
-							</c:if>
-						</c:forEach>
-               		 
-               		
-                		</c:if>
-					</c:forEach>
+<%--   				<c:set var="b"  value="${movieTagSvc.getOneMovieTag(movieVO.movieId).movieId}" />   --%>
+<%--   				<c:forEach var="movieTagVO" items="${movieTagSvc.getAll() }">   --%>
+<%--   					<c:if test="${b == movieTagVO.movieId }">   --%>
+<%--   						<c:set var="c" value="${movieTagVO.genreId }" />   --%>
+<%--   						<c:forEach var="TagCategoryVO" items="${TagCategorySvc.getAll()}">   --%>
+<%--   							<c:if test="${c == TagCategoryVO.genreId }">   --%>
+<%--   								${TagCategoryVO.genreTag }   --%>
+<%--   							</c:if>   --%>
+<%--   						</c:forEach>   --%>
+<%--                   	</c:if>   --%>
+<%--   				</c:forEach>  </th> --%>
 		</table>
 
 		<div class="pic">
@@ -152,7 +148,7 @@
 			     <input type="hidden" name="movieId"  value="${movieVO.movieId}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 		
-		<button class="back">回到上一頁</button>
+		<button class="back" onclick="window.location.href='movieDataSearch.jsp'">回到上一頁</button>
 
 	</div>
 

@@ -25,7 +25,7 @@ public class MovieTagService {
 		return movieTagVO;
 	}
 
-	public MovieTagVO updateMovie(Integer tagId, Integer movieId, Integer genreId) {
+	public MovieTagVO updateMovieTag(Integer tagId, Integer movieId, Integer genreId) {
 
 		MovieTagVO movieTagVO = new MovieTagVO();
 

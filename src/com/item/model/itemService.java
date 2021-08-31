@@ -13,8 +13,8 @@ public class itemService {
 		dao = new itemJDBCDAO();
 	}
 
-	public itemVO addMovie(String itemName, Integer price, String introduction,
-			String productSpecifications, Integer inventory, Integer salesVolume, Date shelfDate, Blob itemPic) {
+	public itemVO addItem(String itemName, Integer price, String introduction,
+			String productSpecifications, Integer inventory, Date shelfDate, byte[] itemPic, String itemTag, byte[] pic1, byte[] pic2, byte[] pic3 ) {
 
 		itemVO itemVO = new itemVO();
 
@@ -23,16 +23,19 @@ public class itemService {
 		itemVO.setIntroduction(introduction);
 		itemVO.setProductSpecifications(productSpecifications);
 		itemVO.setInventory(inventory);
-		itemVO.setSalesVolume(salesVolume);
 		itemVO.setShelfDate(shelfDate);
 		itemVO.setItemPic(itemPic);
+		itemVO.setItemTag(itemTag);
+		itemVO.setPic1(pic1);
+		itemVO.setPic2(pic2);
+		itemVO.setPic3(pic3);
 		dao.insert(itemVO);
 
 		return itemVO;
 	}
 
 	public itemVO updateItem(Integer itemId, String itemName, Integer price, String introduction,
-			String productSpecifications, Integer inventory, Integer salesVolume, Date shelfDate, Blob itemPic) {
+			String productSpecifications, Integer inventory, byte[] itemPic, String itemTag, byte[] pic1, byte[] pic2, byte[] pic3) {
 
 		itemVO itemVO = new itemVO();
 
@@ -42,9 +45,11 @@ public class itemService {
 		itemVO.setIntroduction(introduction);
 		itemVO.setProductSpecifications(productSpecifications);
 		itemVO.setInventory(inventory);
-		itemVO.setSalesVolume(salesVolume);
-		itemVO.setShelfDate(shelfDate);
 		itemVO.setItemPic(itemPic);
+		itemVO.setItemTag(itemTag);
+		itemVO.setPic1(pic1);
+		itemVO.setPic2(pic2);
+		itemVO.setPic3(pic3);
 		dao.update(itemVO);
 
 		return itemVO;

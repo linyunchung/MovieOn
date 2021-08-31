@@ -1,16 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
 <%@ page import="com.movie.model.*"%>
-<%@ page import="com.MovieTag.model.*"%>
 
 <%
-	MovieVO movieVO = (MovieVO) request.getAttribute("movieVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	MovieVO movieVO = (MovieVO) request.getAttribute("empVO");
 %>
-<%
-	MovieTagVO movieTagVO = (MovieTagVO) request.getAttribute("movieTagVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
-%>
-
 
 <head>
 <meta charset="UTF-8">
@@ -18,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>後台管理員</title>
 <link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/movieDataUpdata.css">
+<link rel="stylesheet" href="css/movieDataInsert.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -78,117 +72,121 @@
         </nav>
 
     </div>
+
+
 	<jsp:useBean id="movieTagSvc" scope="page"
 		class="com.MovieTag.model.MovieTagService" />
 	<jsp:useBean id="TagCategorySvc" scope="page"
 		class="com.TagCategory.model.TagCategoryService" />
 
+
 	<div class="main">
 		<h1 class="title">電影資料管理</h1>
-		<h2 class="title2">電影資料修改</h2>
-
-		<li class="li1">
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Backstage/movie.do" enctype="multipart/form-data">
-				<table class="table">
-					<tr>
-						<th>電影編號：${movieVO.movieId }</th>
-
-					</tr>
-					<tr>
-						<th>電影名稱：<input class="text" type="TEXT" name="movieName"
-							size="45" value="${movieVO.movieName } " /></th>
-					</tr>
-					<tr>
-						<th>英文名稱：<input class="text" type="TEXT" name="movieEName"
-							size="45" value="${movieVO.movieEName }" /></th>
-					</tr>
-					<tr>
-						<th>上映日期：<input id="f_date1" class="text" type="TEXT"
-							name="releaseDate" size="45" value="${movieVO.releaseDate }" /></th>
-					</tr>
-					<tr>
-						<th>片長：<input class="text" type="TEXT" name="mins" size="45"
-							style="left: 31px;" value="${movieVO.mins }" /></th>
-					</tr>
-					<tr>
-						<th>發行公司：<input class="text" type="TEXT" name="studio"
-							size="45" value="${movieVO.studio}" /></th>
-					</tr>
-					<tr>
-						<th>導演：</th>
-						<br>
-
-					</tr>
-					<tr>
-						<td><textarea name="director" class="director_text" cols="30"
-								rows="10">${movieVO.director} </textarea></td>
-					</tr>
-					<tr>
-						<th>主演：</th>
-						<br>
-
-					</tr>
-					<tr>
-						<td><textarea name="actor" class="actor_text" cols="30"
-								rows="10">${movieVO.actor}</textarea></td>
-					</tr>
-					<tr>
-						<th>電影介紹：</th>
-						<br>
-					</tr>
-					<tr>
-						<td><textarea name="plot" class="plot_text" cols="30"
-								rows="10">${movieVO.plot} </textarea></td>
-					</tr>
-					<tr>
-						<th>標籤類別： ${movieVO.movieTag}<br>
-							<input type="radio" id="tag1" name="movieTag" class="tag" value="動作片" 
-								<c:if test="${movieVO.movieTag== '動作片'}">checked</c:if>><label for="tag1">動作片</label> 
-								
-							<input type="radio" id="tag2" name="movieTag" class="tag" value="喜劇片" 
-								<c:if test="${movieVO.movieTag == '喜劇片'}">checked</c:if>><label for="tag2">喜劇片</label> 
-								
-							<input type="radio" id="tag3" name="movieTag" class="tag" value="愛情片" 
-								<c:if test="${movieVO.movieTag == '愛情片'}">checked</c:if>><label for="tag3">愛情片</label><br>
-								
-							<input type="radio" id="tag4" name="movieTag" class="tag" value="科幻片" 
-								<c:if test="${movieVO.movieTag == '科幻片'}">checked</c:if>><label for="tag4">科幻片</label> 
-								
-							<input type="radio" id="tag5" name="movieTag" class="tag" value="恐怖片" 
-								<c:if test="${movieVO.movieTag == '恐怖片'}">checked</c:if>><label for="tag5">恐怖片</label> 
-								
-							<input type="radio" id="tag6" name="movieTag" class="tag" value="劇情片"
-								<c:if test="${movieVO.movieTag == '劇情片'}">checked</c:if>><label for="tag6">劇情片</label><br>
-								
-							<input type="radio" id="tag7" name="movieTag" class="tag" value="戰爭片"
-								<c:if test="${movieVO.movieTag == '戰爭片'}">checked</c:if>><label for="tag7">戰爭片</label> 
-								
-							<input type="radio" id="tag8" name="movieTag" class="tag" value="動畫片"
-								<c:if test="${movieVO.movieTag == '動畫片'}">checked</c:if>><label for="tag8">動畫片</label> 
-								
-							<input type="radio" id="tag9" name="movieTag" class="tag" value="歷史片"
-								<c:if test="${movieVO.movieTag == '歷史片'}">checked</c:if>><label for="tag9">歷史片</label>
-						</th>
-
-					</tr>
+		<h2 class="title2">新增電影資料</h2>
+		
+		
 
 
-				</table>
+	<li class="li1">
+		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Backstage/movie.do" enctype="multipart/form-data">
+		<table class="table">
 
-				<div class="pic" id="preview">
-					<img src="/MovieOn/DBGifReaderMovie?movieId= ${movieVO.movieId }"">
+			<tr>
+				<th>電影名稱：<input class="text" type="TEXT" name="movieName"
+					size="45" value="<%= (movieVO==null)? "" : movieVO.getMovieName()%>"  
+					autofocus placeholder='請輸入電影名稱' /></th>
+			</tr>
+			<tr>
+				<th>英文名稱：<input class="text" type="TEXT" name="movieEName"
+					size="45"  value="<%= (movieVO==null)? "" : movieVO.getMovieEName()%>"  
+					autofocus placeholder='請輸入英文名稱' /></th>
+			</tr>
+			<tr>
+				<th>上映日期：<input class="text"  id="f_date1"  type="TEXT" name="releaseDate"
+					size="45"  style="color:grey" value="<%= (movieVO==null)? "選擇入上映日期" : movieVO.getMovieEName()%>"/></th>
+			</tr>
+			<tr>
+				<th>片長：<input class="text" type="TEXT" name="mins" size="45"
+					style="left: 31px;" value="<%= (movieVO==null)? "" : movieVO.getMins()%>"  
+					autofocus placeholder='請輸入片長' /></th>
+			</tr>
+			<tr>
+				<th>發行公司：<input class="text" type="TEXT" name="studio"
+					size="45"  value="<%= (movieVO==null)? "" : movieVO.getStudio()%>"  
+					autofocus placeholder='請輸入片長' /></th>
+			</tr>
+			<tr>
+				<th>導演：</th>
+				<br>
 
-				</div>
-				<label class="buttem">選擇檔案 
-					<input type="file" id="p_file" name="poster" size="50" /> 
-				</label>
-				
-				
-				<input type="hidden" name="action" value="update"> 
-				<input type="hidden" name="movieId" value="${movieVO.movieId }">
-				<button class="confirm" type="submit">修改完成</button>
-			</FORM>
+			</tr>
+			<tr>
+				<td><textarea name="director" class="director_text" cols="30"
+						rows="10" autofocus placeholder='請輸入導演' ><%= (movieVO==null)? "" : movieVO.getDirector()%></textarea></td>
+			</tr>
+			<tr>
+				<th>主演：</th>
+				<br>
 
+			</tr>
+			<tr>
+				<td><textarea name="actor" class="actor_text" cols="30"
+						rows="10" autofocus placeholder='請輸入主演' ><%= (movieVO==null)? "" : movieVO.getActor()%></textarea></td>
+			</tr>
+			<tr>
+				<th>電影介紹：</th>
+				<br>
+			</tr>
+			<tr>
+				<td><textarea name="plot" class="plot_text" cols="30" rows="10" 
+						autofocus placeholder='請輸入電影介紹' ><%= (movieVO==null)? "" : movieVO.getPlot()%></textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>標籤類別：<br> 
+					<input type="radio" id="tag1" name="movieTag" class="tag" value="動作片"><label for="tag1">動作片</label> 
+					<input type="radio" id="tag2" name="movieTag" class="tag" value="喜劇片"><label for="tag2">喜劇片</label> 
+					<input type="radio" id="tag3" name="movieTag" class="tag" value="愛情片"><label for="tag3">愛情片</label><br>
+					<input type="radio" id="tag4" name="movieTag" class="tag" value="科幻片"><label for="tag4">科幻片</label> 
+					<input type="radio" id="tag5" name="movieTag" class="tag" value="恐怖片"><label for="tag5">恐怖片</label> 
+					<input type="radio" id="tag6" name="movieTag" class="tag" value="劇情片"><label for="tag6">劇情片</label><br>
+					<input type="radio" id="tag7" name="movieTag" class="tag" value="戰爭片"><label for="tag7">戰爭片</label> 
+					<input type="radio" id="tag8" name="movieTag" class="tag" value="動畫片"><label for="tag8">動畫片</label> 
+					<input type="radio" id="tag9" name="movieTag" class="tag" value="歷史片"><label for="tag9">歷史片</label>
+				</th>
+
+			</tr>
+
+
+		</table>
+
+		<div class="pic"  id="preview">
+			<p>上傳電影海報</p>
+		</div>
+		<label class="buttem">選擇檔案 
+			<input type="file" id="p_file"name="poster" size="50" />
+		</label>
+
+
+
+			<input type="hidden" name="action" value="insert"> 
+			<button class="confirm" type="submit">確定新增</button>
+			
+			<div class="error">
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty errorMsgs}">
+					<font style="color: #ACA9A9">新增資料失敗:
+						<c:forEach var="message" items="${errorMsgs}">
+						<pstyle="color: #ACA9A9">${message}</p>	</c:forEach>
+					</font>
+				</c:if>
+			</div>
+			
+			
+
+		</FORM>
+			
+			
 		</li>
 
 	</div>
@@ -221,8 +219,6 @@
 </style>
 
 <script>
-
-	
 	var preview_el = document.getElementById("preview");
 	var p_file_el = document.getElementById("p_file");
 	var preview_img = function(file) {

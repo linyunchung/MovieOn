@@ -17,15 +17,15 @@ public class itemJDBCDAO implements itemDAO_interface {
 	String passwd = "Ab3345678";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO item (itemName, price, introduction, productSpecifications, inventory, salesVolume, shelfDate, itemPic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO item (itemName, price, introduction, productSpecifications, inventory, shelfDate, itemPic, itemTag, pic1, pic2, pic3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT itemId,itemName,price,introduction,productSpecifications,inventory,salesVolume,shelfDate,itemPic FROM item order by itemId";
+		"SELECT itemId,itemName,price,introduction,productSpecifications,inventory,salesVolume,shelfDate,itemPic,itemTag,pic1,pic2,pic3 FROM item order by itemId";
 	private static final String GET_ONE_STMT = 
-		"SELECT itemId,itemName,price,introduction,productSpecifications,inventory,salesVolume,shelfDate,itemPic FROM item where itemId = ?";
+		"SELECT itemId,itemName,price,introduction,productSpecifications,inventory,salesVolume,shelfDate,itemPic,itemTag,pic1,pic2,pic3 FROM item where itemId = ?";
 	private static final String DELETE = 
 			"DELETE FROM item where itemId = ?";
 	private static final String UPDATE = 
-		"UPDATE item set itemName=?, price=?, introduction=?, productSpecifications=?, inventory=?, salesVolume=?, shelfDate=?, itemPic=? where itemId=?";
+		"UPDATE item set itemName=?, price=?, introduction=?, productSpecifications=?, inventory=?, itemPic=?, itemTag=?, pic1=?, pic2=?, pic3=? where itemId=?";
 
 	@Override
 	public void insert(itemVO itemVO) {
@@ -37,6 +37,9 @@ public class itemJDBCDAO implements itemDAO_interface {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
+			
+			
+			
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, itemVO.getItemName());
@@ -44,14 +47,18 @@ public class itemJDBCDAO implements itemDAO_interface {
 			pstmt.setString(3, itemVO.getIntroduction());
 			pstmt.setString(4,  itemVO.getProductSpecifications());
 			pstmt.setInt(5, itemVO.getInventory());
-			pstmt.setInt(6, itemVO.getSalesVolume());
-			pstmt.setDate(7, itemVO.getShelfDate());
-			pstmt.setBlob(8,  itemVO.getItemPic());
-
+			pstmt.setDate(6, itemVO.getShelfDate());
+			pstmt.setBytes(7,  itemVO.getItemPic());
+			pstmt.setString(8, itemVO.getItemTag());
+			pstmt.setBytes(9, itemVO.getPic1());
+			pstmt.setBytes(10, itemVO.getPic2());
+			pstmt.setBytes(11, itemVO.getPic3());
 			
 			
+		
 			pstmt.executeUpdate();
-
+			
+			
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
@@ -98,10 +105,12 @@ public class itemJDBCDAO implements itemDAO_interface {
 			pstmt.setString(3, itemVO.getIntroduction());
 			pstmt.setString(4, itemVO.getProductSpecifications());
 			pstmt.setInt(5, itemVO.getInventory());
-			pstmt.setInt(6, itemVO.getSalesVolume());
-			pstmt.setDate(7, itemVO.getShelfDate());
-			pstmt.setInt(8, itemVO.getItemId());
-			pstmt.setBlob(9, itemVO.getItemPic());
+			pstmt.setBytes(6, itemVO.getItemPic());
+			pstmt.setString(7, itemVO.getItemTag());
+			pstmt.setBytes(8, itemVO.getPic1());
+			pstmt.setBytes(9, itemVO.getPic2());
+			pstmt.setBytes(10, itemVO.getPic3());
+			pstmt.setInt(11, itemVO.getItemId());
 			
 			pstmt.executeUpdate();
 
@@ -207,7 +216,11 @@ public class itemJDBCDAO implements itemDAO_interface {
 				itemVO.setInventory(rs.getInt("inventory"));
 				itemVO.setSalesVolume(rs.getInt("salesVolume"));
 				itemVO.setShelfDate(rs.getDate("shelfDate"));
-				itemVO.setItemPic(rs.getBlob("itemPic"));
+				itemVO.setItemPic(rs.getBytes("itemPic"));
+				itemVO.setItemTag(rs.getString("itemTag"));
+				itemVO.setPic1(rs.getBytes("pic1"));
+				itemVO.setPic2(rs.getBytes("pic2"));
+				itemVO.setPic3(rs.getBytes("pic3"));
 				
 			}
 
@@ -273,7 +286,8 @@ public class itemJDBCDAO implements itemDAO_interface {
 				itemVO.setInventory(rs.getInt("inventory"));
 				itemVO.setSalesVolume(rs.getInt("salesVolume"));
 				itemVO.setShelfDate(rs.getDate("shelfDate"));
-				itemVO.setItemPic(rs.getBlob("itemPic"));
+				itemVO.setItemPic(rs.getBytes("itemPic"));
+				itemVO.setItemTag(rs.getString("itemTag"));
 				list.add(itemVO); // Store the row in the list
 			}
 
@@ -330,17 +344,20 @@ public class itemJDBCDAO implements itemDAO_interface {
 //		
 
 //		// 修改
-//		itemVO itemVO2 = new itemVO();
-//		itemVO2.setItemId(3001);
-//		itemVO2.setItemName("星際大戰黑武士保冷箱");
-//		itemVO2.setPrice(18000);
-//		itemVO2.setIntroduction("掀開時播放隨機音效呼吸聲，可保冷啤酒/罐裝飲料");
-//		itemVO2.setProductSpecifications("ABS樹酯");
-//		itemVO2.setInventory(90);
-//		itemVO2.setSalesVolume(400);
-//		itemVO2.setShelfDate(java.sql.Date.valueOf("2021-07-20"));
-//		
-//		dao.update(itemVO2);
+		itemVO itemVO2 = new itemVO();
+		itemVO2.setItemId(3034);
+		itemVO2.setItemName("2323");
+		itemVO2.setPrice(18000);
+		itemVO2.setIntroduction("掀開時播放隨機音效呼吸聲，可保冷啤酒/罐裝飲料");
+		itemVO2.setProductSpecifications("ABS樹酯");
+		itemVO2.setInventory(90);
+		itemVO2.setItemTag("DVD影集");
+		itemVO2.setItemPic(null);
+		itemVO2.setPic1(null);
+		itemVO2.setPic2(null);
+		itemVO2.setPic3(null);
+		
+		dao.update(itemVO2);
 		
 		// 刪除
 //				dao.delete(3004);
@@ -355,21 +372,22 @@ public class itemJDBCDAO implements itemDAO_interface {
 //		System.out.print(itemVO3.getInventory() + ",");
 //		System.out.print(itemVO3.getSalesVolume() + ",");
 //		System.out.println(itemVO3.getShelfDate());
-//		
+////		
 //		System.out.println("---------------------");
 
 //		// 查詢
-		List<itemVO> list = dao.getAll();
-		for (itemVO aItemVO : list) {
-			System.out.print(aItemVO.getItemId() + ",");
-			System.out.print(aItemVO.getItemName() + ",");
-			System.out.print(aItemVO.getPrice() + ",");
-			System.out.print(aItemVO.getIntroduction() + ",");
-			System.out.print(aItemVO.getProductSpecifications() + ",");
-			System.out.print(aItemVO.getInventory() + ",");
-			System.out.print(aItemVO.getSalesVolume() + ",");
-			System.out.println(aItemVO.getShelfDate());
-			System.out.println("-----------------------");
-		}
+//		List<itemVO> list = dao.getAll();
+//		for (itemVO aItemVO : list) {
+//			System.out.print(aItemVO.getItemId() + ",");
+//			System.out.print(aItemVO.getItemName() + ",");
+//			System.out.print(aItemVO.getPrice() + ",");
+//			System.out.print(aItemVO.getIntroduction() + ",");
+//			System.out.print(aItemVO.getProductSpecifications() + ",");
+//			System.out.print(aItemVO.getInventory() + ",");
+//			System.out.print(aItemVO.getSalesVolume() + ",");
+//			System.out.println(aItemVO.getShelfDate());
+//			System.out.println(aItemVO.getItemTag());
+//			System.out.println("-----------------------");
+//		}
 	}
 }

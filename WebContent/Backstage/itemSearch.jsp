@@ -70,8 +70,8 @@
 	<div class="main">
 
 
-		<h1 class="title">電影管理</h1>
-		<h4 class="title2">已上架電影管理</h4>
+		<h1 class="title">商品管理</h1>
+		<h4 class="title2">已上架商品管理</h4>
 
 		<div class="error">
 				<%-- 錯誤表列 --%>
@@ -84,23 +84,14 @@
 		</div>
 
 		<li class="li1">
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Backstage/movie.do">
-				<input id="Search" class="input" autofocus placeholder='電影編號搜尋'  type='text' name="movieId"> 
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Backstage/item.do">
+				<input id="Search" class="input" autofocus placeholder='商品編號搜尋'  type='text' name="itemId"> 
 				<input type="hidden" name="action" value="getOne_For_Display">
 				<button class="send" type="submit">送出</button>
 			</FORM><br>
 			
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Backstage/movie.do">
-				<input id="Search" class="input" autofocus placeholder='電影名稱關鍵字搜尋'  type='text' name="movieName"> 
-				<input type="hidden" name="action" value="getAll_By_Name">
-				<button class="send" type="submit">送出</button>
-			</FORM><br>
-			
-			
-				<span>查詢所有電影資訊</span>
-				<button class="send1" onclick="window.location.href='movieDataGetAll.jsp'">查詢</button>
-			
-			
+			<span>查詢所有電影資訊</span>
+				<button class="send1" onclick="window.location.href='itemGetAll.jsp'">查詢</button>
 		</li>
 
 	

@@ -1,0 +1,101 @@
+.member{
+    display: inline-block;
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    /* border:3px solid #ACA9A9; */
+    border-radius: 10px;
+    background-color: #3a3a3a;
+    width: 200px;
+    height: 150px;
+}
+
+.member h1{
+    position: relative;
+    left: 17%;
+}
+.member a{
+    position: relative;
+    left: 24.9%;
+    top: 10%;
+    color: #ACA9A9;
+    transition:0.2s;
+}
+
+.movie{
+    display: inline-block;
+    position: absolute;
+    top: 40%;
+    left: 32%;
+    /* border:3px solid #ACA9A9; */
+    border-radius: 10px;
+    background-color: #3a3a3a;
+    width: 200px;
+    height: 150px;
+}
+
+.movie h1{
+    position: relative;
+    left: 17%;
+}
+.movie a{
+    position: relative;
+    left: 24.9%;
+    top: 10%;
+    color: #ACA9A9;
+    transition:0.2s;
+}
+
+.item{
+    display: inline-block;
+    position: absolute;
+    top: 40%;
+    left: 52%;
+    /* border:3px solid #ACA9A9; */
+    border-radius: 10px;
+    background-color: #3a3a3a;
+    width: 200px;
+    height: 150px;
+}
+
+.item h1{
+    position: relative;
+    left: 17%;
+}
+.item a{
+    position: relative;
+    left: 24.9%;
+    top: 10%;
+    color: #ACA9A9;
+    transition:0.2s;
+}
+
+.theater{
+    display: inline-block;
+    position: absolute;
+    top: 40%;
+    left: 72%;
+    /* border:3px solid #ACA9A9; */
+    border-radius: 10px;
+    background-color: #3a3a3a;
+    width: 200px;
+    height: 150px;
+}
+
+.theater h1{
+    position: relative;
+    left: 10%;
+}
+.theater a{
+    position: relative;
+    left: 22%;
+    top: 10%;
+    color: #ACA9A9;
+    transition:0.2s;
+    
+}
+div .a:hover{
+    color: #FFBE0B;
+    font-size:17px;
+}
+

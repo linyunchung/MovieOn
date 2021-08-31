@@ -1,5 +1,7 @@
 .main{
     height: 1300px;
+    
+    
 }
 
 .title{
@@ -51,6 +53,16 @@ li{
     border-color: #006BB6;
     color: #EDF2F4;
 }
+.send1{
+    position: relative;
+    top: 12%;
+    left:2.8%;
+    border-radius: 5px;
+    width: 50px;
+    background-color: #006BB6;
+    border-color: #006BB6;
+    color: #EDF2F4;
+}
 
 
 
@@ -76,4 +88,10 @@ li{
 	position: relative;
 	top: 12%;
 	right:4.5%;
+}
+
+span{
+	position: relative;
+	right:3.6%;
+	color:#ACA9A9;
 }

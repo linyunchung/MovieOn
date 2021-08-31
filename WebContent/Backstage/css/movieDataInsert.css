@@ -23,7 +23,7 @@
 .table{
     position: relative;
     text-align: left;
-    top: 40%;
+    top: 12%;
     left: 16.4%;
     color: #ACA9A9;
 }
@@ -130,7 +130,6 @@
 .tag{
     width: 15px;
 }
-
 .li1{
 	
     position: relative;
@@ -142,4 +141,10 @@
     width: 100%;
     height: 100%;
     object-fit:cover;
+}
+.error{
+	display: inline-block;
+	position: absolute;
+	bottom: -10%;
+	right:69%;
 }

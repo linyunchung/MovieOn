@@ -42,9 +42,9 @@
     border-radius: 5px;
     width: 150px;
     height: 200px;
-    position: relative;
+    position: absolute ;
     left: 70%;
-    bottom: 34%;
+    bottom: 1%;
 
 }
 
@@ -59,9 +59,9 @@
 .modification{
     position: relative;
     top: 17%;
-    left: 30%;
+    left: 150%;
     border-radius: 5px;
-    width: 150px;
+    width: 140px;
     background-color: #006BB6;
     border-color: #006BB6;
     color: #EDF2F4;
@@ -72,7 +72,7 @@
 .back{
     position: relative;
     top: 17%;
-    left: 4%;
+    left: 18%;
     border-radius: 5px;
     width: 150px;
     background-color: #006BB6;
