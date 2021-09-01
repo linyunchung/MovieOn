@@ -39,7 +39,7 @@
 </head>
 <body>
 <!-- header³¡¤Àinclude -->
-	<%@ include file="backstage_header.file"%>
+	<%@ include file="header.file"%>
 	
 	 <div class="content">
 

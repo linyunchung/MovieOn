@@ -112,7 +112,7 @@ nav .dropdown ul {
   position: absolute;
   left: 0;
   top: 100%;
-  background: #fff;
+  background: #757575;
   padding: 25px 0;
   border-bottom: 3px solid #34495e;
 }
@@ -127,7 +127,7 @@ nav .dropdown li a {
 
 nav li li a {
   float: none;
-  color: #333;
+  color: white;
   display: block;
   padding: 8px 10px;
   border-radius: 3px;
@@ -136,6 +136,7 @@ nav li li a {
 nav li li a:hover {
   background: #bdc3c7;
   background: #fafbfb;
+  color: #333;
 }
 
 
