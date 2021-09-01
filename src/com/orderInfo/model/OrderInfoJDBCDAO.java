@@ -14,15 +14,15 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface {
 	String passwd = "4579616593";
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO orderInfo(orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO MOVIEON.orderInfo(orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String GET_ALL_STMT = 
-			"SELECT orderId,orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus FROM orderInfo order by orderId";
+			"SELECT orderId,orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus FROM MOVIEON.orderInfo order by orderId";
 	private static final String GET_ONE_STMT = 
-			"SELECT orderId,orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus FROM orderInfo where orderId = ?";
+			"SELECT orderId,orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus FROM MOVIEON.orderInfo where orderId = ?";
 	private static final String UPDATE = 
-			"UPDATE orderInfo set orderStatus=?, orderDate=?, paymentMethodId=?, deliveryMethodId=?, consignee=?, mobile=?, address=?, invoiceId=?, userId=?, orderTotal=?, payStatus=? where orderId = ?";
+			"UPDATE MOVIEON.orderInfo set orderStatus=?, orderDate=?, paymentMethodId=?, deliveryMethodId=?, consignee=?, mobile=?, address=?, invoiceId=?, userId=?, orderTotal=?, payStatus=? where orderId = ?";
 	private static final String GET_MYORDERINFO_STMT = 
-			"SELECT orderId,orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus FROM orderInfo where userId = ?";
+			"SELECT orderId,orderStatus,orderDate,paymentMethodId,deliveryMethodId,consignee,mobile,address,invoiceId,userId,orderTotal,payStatus FROM MOVIEON.orderInfo where userId = ?";
 
 	public Integer insert(OrderInfoVO orderInfoVO, List<OrderListVO> orderListVOList) {
 		Connection con = null;

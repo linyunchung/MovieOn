@@ -66,11 +66,11 @@
 
 <!-- CSS stylesheet -->
 <link
-	href="${pageContext.request.contextPath}/follow/css/following.followers.css"
+	href="${pageContext.request.contextPath}/css/following.followers.css"
 	rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
+<script src="${pageContext.request.contextPath}/js/profile.js"></script>
 
 </head>
 
@@ -117,7 +117,7 @@
 								動態牆 </a></li>
                       <c:if test="${param.id==loginMemberId}">
                         <li class = "navitem">
-                            <a class = "navlink" href="">
+                            <a class = "navlink" href="<%=request.getContextPath()%>/shop/shopSearch.jsp">
                                 我的訂單<i class="fa fa-clipboard-list"></i>
                             </a>
                         </li>

@@ -451,7 +451,7 @@ div.nav>div.nav-links>a {
 }
 </style>
 
-<title>片單基本資料</title>
+<title><%=movieVO.getMovieName()%>基本資料。MovieOn</title>
 </head>
 <body>
 	<!--------------------------------------------- 導覽列 navbar -------------------------------------------------------------->

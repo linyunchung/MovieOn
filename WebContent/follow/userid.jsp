@@ -73,10 +73,10 @@
 		rel="stylesheet">
 	
 	<!-- CSS stylesheet -->
-	<link href="${pageContext.request.contextPath}/follow/css/userid.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/css/userid.css" rel="stylesheet" />
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
+	<script src="${pageContext.request.contextPath}/js/profile.js"></script>
 </head>
 
 <body class = "userid">
@@ -146,35 +146,35 @@ function updateFollow(action){
                         </div>
                         <div class = "profile-stats">
                             <h4 class = "profile-statistic">
-                                <a href="films.jsp?id=${id}">
+                                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=films">
                                     <span class = "value">${rvwSvc.userReviewCount(id)}</span>
                                     <span class = "definition">看過</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
-                                <a href="films.jsp?id=${id}">
+                                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=films">
                                     <span class = "value">${rvwSvc.userReviewCountThisYear(id)}</span>
                                     <span class = "definition">今年</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
-                                <a href="">
+                                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">
                                     <span class = "value">${rvwSvc.userReviewCount(id)}</span>
                                     <span class = "definition">影評</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
-                                <a href="followers.jsp?id=${id}">
+                                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=followers">
                                     <span class = "value">${followService.followerCount(id)}</span>
                                     <span class = "definition">粉絲</span>
                                 </a>
         
                             </h4>
                             <h4 class = "profile-statistic">
-                                <a href="following.jsp?id=${id}">
+                                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=following">
                                     <span class = "value">${followService.followingCount(id)}</span>
                                     <span class = "definition">追蹤中</span>
                                 </a>
@@ -193,7 +193,7 @@ function updateFollow(action){
 	                            <c:otherwise>
 		                        	<c:choose>
 			                        	<c:when test="${param.id==loginMemberId}">	
-			                            	<a class="button">編輯個人檔案</a>
+			                            	<a class="button" href="${pageContext.request.contextPath}/member/profile.jsp">編輯個人檔案</a>
 			                            </c:when>
 	                		            <c:otherwise>								
 			                            	<a class = "button nofollow" onclick="updateFollow('addFollow');return false;">追蹤</a>
@@ -241,7 +241,7 @@ function updateFollow(action){
                         </li>
                         <c:if test="${param.id==loginMemberId}">
                         <li class = "navitem">
-                            <a class = "navlink" href="">
+                            <a class = "navlink" href="<%=request.getContextPath()%>/shop/shopSearch.jsp">
                                 我的訂單<i class="fa fa-clipboard-list"></i>
                             </a>
                         </li>
@@ -305,14 +305,14 @@ function updateFollow(action){
                 <h2 class = "section-h2">
                     <a href="films.jsp?id=${id}">近期觀看</a>
                 </h2>
-                <a href="films.jsp?id=${id}" class = "all-link">全部</a>
+                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=films" class = "all-link">全部</a>
                 <ul class = "poster-list -horizontal">
                     <c:forEach var = "reviewVO" items="${revList}" begin="0" end="3">
 	                    <li class = "poster-container">
 	                        <div class = "poster">
 	                            <div>
 	                                <img class = "image" src="${pageContext.request.contextPath}/DBGifReaderProfile?movieId=${reviewVO.movieId}" width="150" height="225" alt="${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}">
-	                                <a class = "frame" href="">
+	                                <a class = "frame" href="Links_Controller?movieId=${reviewVO.movieId}&action=getOneMovie_From_Home">
 	                                    <span class = "frame-title">${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}</span>
 	                                    <span class = "overlay"></span>
 	                                </a>
@@ -325,16 +325,16 @@ function updateFollow(action){
     
             <section class = "section">
                 <h2 class = "section-h2">
-                    <a href="">最新影評</a>
+                    <a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">最新影評</a>
                 </h2>
-                <a href="" class = "all-link">更多</a>
+                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews" class = "all-link">更多</a>
                 <ul class = "film-details-list poster-list">
 					<c:forEach var = "reviewVO" items="${revList}" begin="0" end="1">
 	                    <li class = "film-detail film-watched">
 	                        <div class = "poster film-poster poster-container">
 	                            <div>
 	                                <img class = "image" src="${pageContext.request.contextPath}/DBGifReaderProfile?movieId=${reviewVO.movieId}" width="70" height="105" alt="I Kill Giants">
-	                                <a class = "frame" href="">
+	                                <a class = "frame" href="Links_Controller?movieId=${reviewVO.movieId}&action=getOneMovie_From_Home">
 	                                    <span class = "frame-title">黑寡婦 (2021)</span>
 	                                    <span class = "overlay"></span>
 	                                </a>
@@ -342,7 +342,7 @@ function updateFollow(action){
 	                        </div>
 	                        <div class = "film-detail-content">
 	                            <h2 class = "headline-2">
-	                                <a href="">${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}</a>
+	                                <a href="Links_Controller?movieId=${reviewVO.movieId}&action=getOneMovie_From_Home">${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}</a>
 	                                <small class = "metadata">
 	                                    <a href="">${rvwSvc.getReleaseYear(reviewVO)}</a>
 	                                </small>
@@ -382,9 +382,9 @@ function updateFollow(action){
     
             <section class = "section">
                 <h2 class = "section-h2">
-                    <a href="">熱門影評</a>
+                    <a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews">熱門影評</a>
                 </h2>
-                <a href="" class = "all-link">更多</a>
+                <a href="${pageContext.request.contextPath}/profile?id=${id}&action=reviews" class = "all-link">更多</a>
                 <ul class = "film-details-list poster-list">
                     <li class = "film-detail film-watched">
                         <div class = "poster film-poster poster-container">

@@ -56,9 +56,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- CSS stylesheet -->
-    <link href="${pageContext.request.contextPath}/follow/css/reviews.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/css/reviews.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
+    <script src="${pageContext.request.contextPath}/js/profile.js"></script>
     
 </head>
 <body class = "reviews films-reviewed">
@@ -110,7 +110,7 @@
                         </li>
                       <c:if test="${param.id==loginMemberId}">
                         <li class = "navitem">
-                            <a class = "navlink" href="">
+                            <a class = "navlink" href="<%=request.getContextPath()%>/shop/shopSearch.jsp">
                                 我的訂單<i class="fa fa-clipboard-list"></i>
                             </a>
                         </li>
@@ -181,7 +181,7 @@
 	                            <div class = "poster film-poster poster-container">
 	                                <div>
 	                                    <img class = "image" src="${pageContext.request.contextPath}/DBGifReaderProfile?movieId=${reviewVO.movieId}" width="70" height="105" alt="I Kill Giants">
-	                                    <a class = "frame" href="">
+	                                    <a class = "frame" href="Links_Controller?movieId=${reviewVO.movieId}&action=getOneMovie_From_Home">
 	                                        <span class = "frame-title">黑寡婦 (2021)</span>
 	                                        <span class = "overlay"></span>
 	                                    </a>
@@ -189,7 +189,7 @@
 	                            </div>
 	                            <div class = "film-detail-content">
 	                                <h2 class = "headline-2">
-	                                    <a href="">${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}</a>
+	                                    <a href="Links_Controller?movieId=${reviewVO.movieId}&action=getOneMovie_From_Home">${movieSvc.getOneMovie(reviewVO.movieId).getMovieName()}</a>
 	                                    <small class = "metadata">
 	                                        <a href="">${rvwSvc.getReleaseYear(reviewVO)}</a>
 	                                    </small>
@@ -199,7 +199,7 @@
 	                                        <span class = "rating -blue rated-5">${reviewVO.starRate}</span>
 	                                        <span class = "content-metadata">
 	                                            <span class = "date">
-	                                                <a class = "context" href="">
+	                                                <a class = "context" href="${pageContext.request.contextPath}/profile?id=${reviewVO.userId}">
 	                                                    Watched by
 	                                                    <strong class = "name">${memSvc.getOneMember(reviewVO.userId).getUsername()}</strong>
 	                                                </a>

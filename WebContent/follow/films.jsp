@@ -60,11 +60,11 @@
 	rel="stylesheet">
 
 <!-- CSS stylesheet -->
-<link href="${pageContext.request.contextPath}/follow/css/films.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/films.css" rel="stylesheet" />
 
 <!-- jQuery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/follow/js/profile.js"></script>
+<script src="${pageContext.request.contextPath}/js/profile.js"></script>
 
 </head>
 <body class="films films-rated">
@@ -99,7 +99,7 @@
 								動態牆 </a></li>
                       <c:if test="${param.id==loginMemberId}">
                         <li class = "navitem">
-                            <a class = "navlink" href="">
+                            <a class = "navlink" href="<%=request.getContextPath()%>/shop/shopSearch.jsp">
                                 我的訂單<i class="fa fa-clipboard-list"></i>
                             </a>
                         </li>
@@ -161,7 +161,7 @@
 									<img class="image"
 										src="${pageContext.request.contextPath}/DBGifReaderProfile?movieId=${reviewVO.movieId}"
 										width="150" height="225" alt="I Kill Giants"> <a
-										class="frame" href=""> <!-- <span class = "frame-title">殺死巨人的女孩(2017)</span> -->
+										class="frame" href="Links_Controller?movieId=${reviewVO.movieId}&action=getOneMovie_From_Home"> 
 										<span class="overlay"></span>
 									</a>
 								</div>

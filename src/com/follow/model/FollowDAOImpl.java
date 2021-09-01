@@ -26,15 +26,15 @@ public class FollowDAOImpl implements FollowDAO{
 	public static final String PASSWORD = "4579616593";
 
 // the prepared statements
-	public static final String CREATE_STMT = "insert into FOLLOW values(default, ?, ?, ?)";
-	public static final String UPDATE_STMT = "update FOLLOW set sourceID = ?, targetID = ?, updatedAt = ? where followID = ?";
-	public static final String DELETEBYID_STMT = "delete from FOLLOW where followID = ?";
-	public static final String FINDBYID_STMT = "select * from FOLLOW where followID = ?";
-	public static final String FINDBYSOURCE_STMT = "select * from FOLLOW where sourceID = ?";
-	public static final String FINDBYTARGET_STMT = "select * from FOLLOW where targetID = ?";
-	public static final String FINDALL_STMT = "select * from FOLLOW";
-	public static final String FINDBYSNT_STMT = "select * from FOLLOW where sourceID = ? and targetID = ?";
-	public static final String DELETEBYSNT_STMT = "delete from FOLLOW where sourceID = ? and targetID = ?";
+	public static final String CREATE_STMT = "insert into MOVIEON.FOLLOW values(default, ?, ?, ?)";
+	public static final String UPDATE_STMT = "update MOVIEON.FOLLOW set sourceID = ?, targetID = ?, updatedAt = ? where followID = ?";
+	public static final String DELETEBYID_STMT = "delete from MOVIEON.FOLLOW where followID = ?";
+	public static final String FINDBYID_STMT = "select * from MOVIEON.FOLLOW where followID = ?";
+	public static final String FINDBYSOURCE_STMT = "select * from MOVIEON.FOLLOW where sourceID = ?";
+	public static final String FINDBYTARGET_STMT = "select * from MOVIEON.FOLLOW where targetID = ?";
+	public static final String FINDALL_STMT = "select * from MOVIEON.FOLLOW";
+	public static final String FINDBYSNT_STMT = "select * from MOVIEON.FOLLOW where sourceID = ? and targetID = ?";
+	public static final String DELETEBYSNT_STMT = "delete from MOVIEON.FOLLOW where sourceID = ? and targetID = ?";
 // static block to hold	driver used by all
 //	private static DataSource ds = null;
 	static {

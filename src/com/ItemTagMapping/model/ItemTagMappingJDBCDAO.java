@@ -11,20 +11,20 @@ import java.sql.*;
 
 public class ItemTagMappingJDBCDAO implements ItemTagMappingDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
+	String url = "jdbc:mysql://35.201.252.250:3306/MOVIEON?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "Ab3345678";
+	String passwd = "4579616593";
 	
 	private static final String INSERT_STMT = 
-		"INSERT INTO ItemTagMapping (itemId, itemTagCategoryNumber) VALUES (?, ?)";
+		"INSERT INTO MOVIEON.ItemTagMapping (itemId, itemTagCategoryNumber) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT tagId,itemId,itemTagCategoryNumber FROM ItemTagMapping order by tagId";
+		"SELECT tagId,itemId,itemTagCategoryNumber FROM MOVIEON.ItemTagMapping order by tagId";
 	private static final String GET_ONE_STMT = 
-		"SELECT tagId,itemId,itemTagCategoryNumber FROM ItemTagMapping where tagId = ?";
+		"SELECT tagId,itemId,itemTagCategoryNumber FROM MOVIEON.ItemTagMapping where tagId = ?";
 	private static final String DELETE = 
-			"DELETE FROM ItemTagMapping where tagId = ?";
+			"DELETE FROM MOVIEON.ItemTagMapping where tagId = ?";
 	private static final String UPDATE = 
-		"UPDATE ItemTagMapping set itemId=?,itemTagCategoryNumber=? where tagId = ?";
+		"UPDATE MOVIEON.ItemTagMapping set itemId=?,itemTagCategoryNumber=? where tagId = ?";
 
 	@Override
 	public void insert(ItemTagMappingVO itemTagMappingVO) {

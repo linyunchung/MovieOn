@@ -25,19 +25,19 @@ public class ReviewDAO implements ReviewDAO_interface{
 	}
 	
 	public static final String INSERT_STMT=
-			"insert into MOVIEREVIEW (userId, movieId, reviewTitle, starRate, review, postedAt) values (?, ?, ?, ?, ?, ?)";
+			"insert into MOVIEON.MOVIEREVIEW (userId, movieId, reviewTitle, starRate, review, postedAt) values (?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE_STMT=
-			"update MOVIEREVIEW set userId=?, movieId=?, reviewTitle=?, starRate=?, review=? ,postedAt=? where reviewId = ?";
+			"update MOVIEON.MOVIEREVIEW set userId=?, movieId=?, reviewTitle=?, starRate=?, review=? ,postedAt=? where reviewId = ?";
 	public static final String DELETE_STMT=
-			"delete from MOVIEREVIEW where reviewId = ?";
+			"delete from MOVIEON.MOVIEREVIEW where reviewId = ?";
 	public static final String GET_ONE_STMT=
-			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW where reviewId = ?";
+			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEON.MOVIEREVIEW where reviewId = ?";
 	public static final String GET_ALL_STMT=
-			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEREVIEW ORDER BY postedAt DESC";
+			"select reviewId, userId, movieId, reviewTitle, starRate, review, postedAt from MOVIEON.MOVIEREVIEW ORDER BY postedAt DESC";
 	public static final String GET_ALL_BY_USER_STMT=
-			"select * from MOVIEREVIEW where userID = ? order by postedAt desc";
+			"select * from MOVIEON.MOVIEREVIEW where userID = ? order by postedAt desc";
 	public static final String GET_FRIEND_ACTIVITY_STMT=
-			"SELECT * FROM MOVIEREVIEW where userid in ( "
+			"SELECT * FROM MOVIEON.MOVIEREVIEW where userid in ( "
 					+ "	SELECT targetID FROM FOLLOW where sourceID = ? "
 			+ ") order by postedAt desc;";
 	

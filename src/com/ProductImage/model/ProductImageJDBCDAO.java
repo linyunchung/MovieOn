@@ -10,20 +10,20 @@ import java.sql.*;
 
 public class ProductImageJDBCDAO implements ProductImageDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
+	String url = "jdbc:mysql://35.201.252.250:3306/MOVIEON?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "Ab3345678";
+	String passwd = "4579616593";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO ProductImage (itemId, productImage) VALUES (?, ?)";
+		"INSERT INTO MOVIEON.ProductImage (itemId, productImage) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT imageId,itemId, productImage FROM ProductImage order by imageId";
+		"SELECT imageId,itemId, productImage FROM MOVIEON.ProductImage order by imageId";
 	private static final String GET_ONE_STMT = 
-		"SELECT imageId,itemId, productImage FROM ProductImage where imageId = ?";
+		"SELECT imageId,itemId, productImage FROM MOVIEON.ProductImage where imageId = ?";
 	private static final String UPDATE = 
-		"UPDATE ProductImage set itemId=?,productImage=? where imageId = ?";
+		"UPDATE MOVIEON.ProductImage set itemId=?,productImage=? where imageId = ?";
 	private static final String DELETE = 
-			"DELETE FROM ProductImage where imageId = ?";
+			"DELETE FROM MOVIEON.ProductImage where imageId = ?";
 
 	@Override
 	public void insert(ProductImageVO productImageVO) {

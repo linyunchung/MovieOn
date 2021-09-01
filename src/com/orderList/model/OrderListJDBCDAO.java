@@ -10,15 +10,15 @@ public class OrderListJDBCDAO implements OrderListDAO_interface {
 	String passwd = "4579616593";
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO orderList(price,itemQty,orderId,itemId) VALUES (?,?,?,?)";
+			"INSERT INTO MOVIEON.orderList(price,itemQty,orderId,itemId) VALUES (?,?,?,?)";
 	private static final String GET_ALL_STMT = 
-			"SELECT orderListId,price,itemQty,orderId,itemId FROM orderList order by orderListId";
+			"SELECT orderListId,price,itemQty,orderId,itemId FROM MOVIEON.orderList order by orderListId";
 	private static final String GET_ALL_STMT_BY_ORDER_ID = 
-			"SELECT orderListId,price,itemQty,orderId,itemId FROM orderList where orderId = ? order by orderListId";
+			"SELECT orderListId,price,itemQty,orderId,itemId FROM MOVIEON.orderList where orderId = ? order by orderListId";
 	private static final String GET_ONE_STMT = 
-			"SELECT orderListId,price,itemQty,orderId,itemId FROM orderList where orderListId = ?";
+			"SELECT orderListId,price,itemQty,orderId,itemId FROM MOVIEON.orderList where orderListId = ?";
 	private static final String UPDATE = 
-			"UPDATE orderList set price=?, itemQty=?, orderId=?, itemId=? where orderListId = ?";
+			"UPDATE MOVIEON.orderList set price=?, itemQty=?, orderId=?, itemId=? where orderListId = ?";
 
 
 

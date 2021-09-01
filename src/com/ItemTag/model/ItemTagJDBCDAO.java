@@ -11,18 +11,18 @@ import java.sql.*;
 
 public class ItemTagJDBCDAO implements ItemTagDAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei";
+	String url = "jdbc:mysql://35.201.252.250:3306/MOVIEON?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "Ab3345678";
+	String passwd = "4579616593";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO ItemTag (itemTag) VALUES (?)";
+		"INSERT INTO MOVIEON.ItemTag (itemTag) VALUES (?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT itemTagCategoryNumber,itemTag FROM ItemTag order by itemTagCategoryNumber";
+		"SELECT itemTagCategoryNumber,itemTag FROM MOVIEON.ItemTag order by itemTagCategoryNumber";
 	private static final String GET_ONE_STMT = 
-		"SELECT itemTagCategoryNumber,itemTag FROM ItemTag where itemTagCategoryNumber = ?";
+		"SELECT itemTagCategoryNumber,itemTag FROM MOVIEON.ItemTag where itemTagCategoryNumber = ?";
 	private static final String UPDATE = 
-		"UPDATE ItemTag set itemTag=? where itemTagCategoryNumber = ?";
+		"UPDATE MOVIEON.ItemTag set itemTag=? where itemTagCategoryNumber = ?";
 
 	@Override
 	public void insert(ItemTagVO itemTagVO) {
