@@ -85,10 +85,10 @@
 					       
 					<div id="cover" class="coverflow">
         
-					        <a href='#'><img class="img"  src="/movieon/ItemPic1?itemId=${itemVO.itemId}"></a>
-					        <a href='#'><img class="img"  src="/movieon/ItemPic2?itemId=${itemVO.itemId}"></a>
-					        <a href='#'><img class="img"  src="/movieon/ItemPic3?itemId=${itemVO.itemId}"></a>
-					        <a href='#'><img class="img"  src="/movieon/ItemPic?itemId=${itemVO.itemId}" ></a>
+					        <a href='#'><img class="img"  src="<%=request.getContextPath()%>/shop/ItemPic1?itemId=${itemVO.itemId}"></a>
+					        <a href='#'><img class="img"  src="<%=request.getContextPath()%>/shop/ItemPic2?itemId=${itemVO.itemId}"></a>
+					        <a href='#'><img class="img"  src="<%=request.getContextPath()%>/shop/ItemPic3?itemId=${itemVO.itemId}"></a>
+					        <a href='#'><img class="img"  src="<%=request.getContextPath()%>/shop/ItemPic?itemId=${itemVO.itemId}" ></a>
 					       
 					        <div class="panel">°Ó«~½s¸¹¡G${itemVO.itemId }<br>
 					        								${itemVO.itemName }<br>

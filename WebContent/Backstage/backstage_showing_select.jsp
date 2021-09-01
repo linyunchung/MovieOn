@@ -31,7 +31,7 @@
 <body>
 
 	<!-- header部分include -->
-	<%@ include file="backstage_header.file"%>
+	<%@ include file="header.file"%>
 
 	<div class="content">
 
@@ -41,12 +41,12 @@
 			<div class="aside_search">
 
 				<a class="aside_btn"
-					href="<%=request.getContextPath()%>/backstage/backstage_add_theater.jsp">上架影城表</a>
+					href="<%=request.getContextPath()%>/Backstage/backstage_add_theater.jsp">上架影城表</a>
 
 				<a class="aside_btn aside_addtime"
-					href="<%=request.getContextPath()%>/backstage/backstage_add_time.jsp">新增電影時刻表</a>
+					href="<%=request.getContextPath()%>/Backstage/backstage_add_time.jsp">新增電影時刻表</a>
 
-				<a class="aside_btn" href="<%=request.getContextPath()%>/backstage/backstage_showing_select.jsp">已上架管理</a>
+				<a class="aside_btn" href="<%=request.getContextPath()%>/Backstage/backstage_showing_select.jsp">已上架管理</a>
 			</div>
 		</div>
 

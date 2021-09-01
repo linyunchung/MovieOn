@@ -259,7 +259,7 @@ public class ItemServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-//			try {
+			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				String itemName = req.getParameter("itemName");
 				if (itemName == null || itemName.trim().length() == 0) {
@@ -371,12 +371,12 @@ public class ItemServlet extends HttpServlet {
 				successView.forward(req, res);				
 				
 				/***************************其他可能的錯誤處理**********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add(e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/Backstage/backstage.html");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/Backstage/itemInsert.jsp");
+				failureView.forward(req, res);
+			}
 		}
 //		
 //		

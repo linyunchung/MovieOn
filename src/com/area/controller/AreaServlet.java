@@ -73,7 +73,7 @@ public class AreaServlet extends HttpServlet {
 					req.setAttribute("areaVO", areaVO);
 				}
 				req.setAttribute("theaterVO", theaterVO);
-				RequestDispatcher failurview = req.getRequestDispatcher("/backstage/backstage_add_theater.jsp");
+				RequestDispatcher failurview = req.getRequestDispatcher("/Backstage/backstage_add_theater.jsp");
 				failurview.forward(req,res);
 				return;
 			}
@@ -93,14 +93,14 @@ public class AreaServlet extends HttpServlet {
 			/*************************新增完成，轉回頁面*******************************/
 			successMsg = "新增成功";
 			req.setAttribute("successMsg", successMsg);
-			String url = "/backstage/backstage_add_theater.jsp";
+			String url = "/Backstage/backstage_add_theater.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			
 			
 			}catch(Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failurview = req.getRequestDispatcher("/backstage/backstage_add_theater.jsp");
+				RequestDispatcher failurview = req.getRequestDispatcher("/Backstage/backstage_add_theater.jsp");
 				failurview.forward(req, res);
 			}
 

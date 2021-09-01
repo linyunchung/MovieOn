@@ -92,7 +92,7 @@ public class ShowingServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()) {
 					req.setAttribute("showingVO", showingVO);
-					RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_add_time.jsp");
+					RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_add_time.jsp");
 					failurView.forward(req, res);
 					return;
 				}
@@ -114,7 +114,7 @@ public class ShowingServlet extends HttpServlet {
 				
 				
 				/**************************轉回頁面*********************************/
-				String url = "/backstage/backstage_add_time.jsp";
+				String url = "/Backstage/backstage_add_time.jsp";
 				successMsg = "新增成功";
 				req.setAttribute("successMsg", successMsg);
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -123,7 +123,7 @@ public class ShowingServlet extends HttpServlet {
 				
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_add_time.jsp");
+				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_add_time.jsp");
 				failurView.forward(req, res);
 			}
 			
@@ -152,13 +152,13 @@ public class ShowingServlet extends HttpServlet {
 			
 				if(!errorMsgs.isEmpty()) {
 					
-					RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_showing_select.jsp");
+					RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_select.jsp");
 					failurView.forward(req, res);
 					return;
 				}
 				/*************************************************************************/
 				req.setAttribute("showingVO", showingVO);
-				String url = "/backstage/backstage_showing_select.jsp";
+				String url = "/Backstage/backstage_showing_select.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 			
@@ -166,7 +166,7 @@ public class ShowingServlet extends HttpServlet {
 			
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料"+e.getMessage());
-				RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_showing_select.jsp");
+				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_select.jsp");
 				failurView.forward(req, res);
 			}
 		
@@ -188,13 +188,13 @@ public class ShowingServlet extends HttpServlet {
 				ShowingVO showingVO = showingSvc.getOneShowing(showingId);
 				
 				req.setAttribute("showingVO", showingVO);
-				String url = "/backstage/backstage_showing_update.jsp";
+				String url = "/Backstage/backstage_showing_update.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
-				RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_showing_view");
+				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_view");
 				failurView.forward(req, res);
 			}
 		}
@@ -241,7 +241,7 @@ public class ShowingServlet extends HttpServlet {
 			
 			if(!errorMsgs.isEmpty()) {
 				req.setAttribute("showingVO", showingVO);
-				RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_showing_update.jsp");
+				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_update.jsp");
 				failurView.forward(req, res);
 				return;
 			}
@@ -254,7 +254,7 @@ public class ShowingServlet extends HttpServlet {
 			successMsg = "修改成功";
 			req.setAttribute("successMsg", successMsg);
 			req.setAttribute("showingVO", showingVO);
-			String url = "/backstage/backstage_showing_update.jsp";
+			String url = "/Backstage/backstage_showing_update.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			
@@ -263,7 +263,7 @@ public class ShowingServlet extends HttpServlet {
 			
 			} catch (Exception e) {
 				errorMsgs.add("無法更新資料"+e.getMessage());
-				RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_showing_update.jsp");
+				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_update.jsp");
 				failurView.forward(req, res);
 			}
 		}
@@ -288,7 +288,7 @@ public class ShowingServlet extends HttpServlet {
 				
 			} catch (Exception e) {
 				errorMsgs.add("刪除失敗"+e.getMessage());
-				RequestDispatcher failurView = req.getRequestDispatcher("/backstage/backstage_showing_select.jsp");
+				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_select.jsp");
 				failurView.forward(req, res);
 			}
 		}

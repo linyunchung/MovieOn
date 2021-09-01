@@ -69,7 +69,7 @@ public class ShowingViewServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
-			try {
+//			try {
 
 				HttpSession session = req.getSession();
 				MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
@@ -106,11 +106,11 @@ public class ShowingViewServlet extends HttpServlet {
 				RequestDispatcher success = req.getRequestDispatcher(url);
 				success.forward(req, res);
 
-			} catch (Exception e) {
-				errorMsgs.add("¥¢±Ñ" + e.getMessage());
-				RequestDispatcher failur = req.getRequestDispatcher("/showing/showing_search.jsp");
-				failur.forward(req, res);
-			}
+//			} catch (Exception e) {
+//				errorMsgs.add("¥¢±Ñ" + e.getMessage());
+//				RequestDispatcher failur = req.getRequestDispatcher("/showing/showing_search.jsp");
+//				failur.forward(req, res);
+//			}
 		}
 
 	}

@@ -132,21 +132,21 @@
         </table>
 
         <div class="pic" id="preview">
-            <img src="/movieon/ItemPic?itemId=${itemVO.itemId}" >
+            <img src="<%=request.getContextPath()%>/shop/ItemPic?itemId=${itemVO.itemId}" >
         </div>
         
 
         <div class="pic1" id="preview1">
-            <img src="/movieon/ItemPic1?itemId=${itemVO.itemId}"">
+            <img src="<%=request.getContextPath()%>/shop/ItemPic1?itemId=${itemVO.itemId}">
         </div>
 
         <div class="pic2" id="preview2">
-            <img src="/movieon/ItemPic2?itemId=${itemVO.itemId}"">
+            <img src="<%=request.getContextPath()%>/shop/ItemPic2?itemId=${itemVO.itemId}">
         </div>
         
 
         <div class="pic3" id="preview3">
-            <img src="/movieon/ItemPic3?itemId=${itemVO.itemId}"">
+            <img src="<%=request.getContextPath()%>/shop/ItemPic3?itemId=${itemVO.itemId}">
         </div>
 
 			<button class="modification" type="submit" >修改商品資料</button> 

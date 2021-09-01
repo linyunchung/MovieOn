@@ -223,61 +223,61 @@ $(function() {
 
 // 取得使用者地理位置
 
-window.addEventListener("load", function() {
-
-	var fetchLocation;
-	var api_key = '75dbb58980664b4a9259ede880434358';
-
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			console.log(position);
-
-			fetchLocation = {
-				lat : position.coords.latitude,
-				lng : position.coords.longitude
-			};
-
-			console.log(fetchLocation.lat);
-			console.log(fetchLocation.lng);
-
-			var request_url = 'https://api.opencagedata.com/geocode/v1/json'
-					+ '?'
-					+ 'key='
-					+ api_key
-					+ '&q='
-					+ encodeURIComponent(fetchLocation.lat + ','
-							+ fetchLocation.lng) + '&pretty=1'
-					+ '&no_annotations=1';
-
-			// var request = new XMLHttpRequest();
-			// request.open('GET', request_url, true);
-
-			// var data = JSON.parse(request.responseText);
-			// console.log(data.results[0].components.county);
-
-			fetch(request_url).then(function(res) {
-				return res.json();
-			}).then(
-					function(data) {
-						console.log(data);
-
-						var city = JSON.stringify(
-								data.results[0].components.city).replace(/\"/g,
-								"");
-						console.log(city);
-
-						$("select[name='select_search_area']").prepend(
-								"<option selected = 'selected' value='" + city
-										+ "'>" + city + "</option>");
-
-						removeSameOption();
-
-					});
-
-		})
-	}
-
-})
+//window.addEventListener("load", function() {
+//
+//	var fetchLocation;
+//	var api_key = '75dbb58980664b4a9259ede880434358';
+//
+//	if (navigator.geolocation) {
+//		navigator.geolocation.getCurrentPosition(function(position) {
+//			console.log(position);
+//
+//			fetchLocation = {
+//				lat : position.coords.latitude,
+//				lng : position.coords.longitude
+//			};
+//
+//			console.log(fetchLocation.lat);
+//			console.log(fetchLocation.lng);
+//
+//			var request_url = 'https://api.opencagedata.com/geocode/v1/json'
+//					+ '?'
+//					+ 'key='
+//					+ api_key
+//					+ '&q='
+//					+ encodeURIComponent(fetchLocation.lat + ','
+//							+ fetchLocation.lng) + '&pretty=1'
+//					+ '&no_annotations=1';
+//
+//			// var request = new XMLHttpRequest();
+//			// request.open('GET', request_url, true);
+//
+//			// var data = JSON.parse(request.responseText);
+//			// console.log(data.results[0].components.county);
+//
+//			fetch(request_url).then(function(res) {
+//				return res.json();
+//			}).then(
+//					function(data) {
+//						console.log(data);
+//
+//						var city = JSON.stringify(
+//								data.results[0].components.city).replace(/\"/g,
+//								"");
+//						console.log(city);
+//
+//						$("select[name='select_search_area']").prepend(
+//								"<option selected = 'selected' value='" + city
+//										+ "'>" + city + "</option>");
+//
+//						removeSameOption();
+//
+//					});
+//
+//		})
+//	}
+//
+//})
 
 // 在選項中刪除同樣的
 function removeSameOption() {

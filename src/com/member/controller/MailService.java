@@ -55,21 +55,21 @@ public class MailService {
    }
 	
 	
-	 public static void main (String args[]){
-		 
-		 
-
-      String to = "movieontw@gmail.com";
-      
-      String subject = "密碼通知";
-      
-      String passRandom = "1234567";
-      String messageText = "Hello! " + " 請謹記此密碼: " + passRandom + "\n"; 
-       
-      MailService mailService = new MailService();
-      mailService.sendMail(to, subject, messageText);
-
-   }
+//	 public static void main (String args[]){
+//		 
+//		 
+//
+//      String to = "movieontw@gmail.com";
+//      
+//      String subject = "密碼通知";
+//      
+//      String passRandom = "1234567";
+//      String messageText = "Hello! " + " 請謹記此密碼: " + passRandom + "\n"; 
+//       
+//      MailService mailService = new MailService();
+//      mailService.sendMail(to, subject, messageText);
+//
+//   }
 
 
 }

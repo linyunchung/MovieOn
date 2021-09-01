@@ -47,8 +47,8 @@
             opacity: 0;
             filter: alpha(opacity=0);
             /*當圖片數量增加，影片長度需更改，變為5s*圖片數量*/
-            -webkit-animation: silder 9s linear infinite;
-            animation: silder 9s linear infinite;
+            -webkit-animation: silder 6s linear infinite;
+            animation: silder 6s linear infinite;
         }
         
         
@@ -101,8 +101,8 @@
 	        position: absolute;
 			top: 50%;
 			margin: -100px 0 0 0;
-            -webkit-animation-delay: 6s;
-            animation-delay: 6s;
+            -webkit-animation-delay: 4s;
+            animation-delay: 4s;
             -webkit-animation-play-state: paused;
             animation-play-state: paused;
         }
@@ -111,8 +111,8 @@
         	position: absolute;
 			top: 50%;
 			margin: -100px 0 0 0;
-            -webkit-animation-delay: 3s;
-            animation-delay: 3s;
+            -webkit-animation-delay: 2s;
+            animation-delay: 2s;
             -webkit-animation-play-state: paused;
             animation-play-state: paused;
         }

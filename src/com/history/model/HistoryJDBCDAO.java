@@ -24,7 +24,7 @@ public class HistoryJDBCDAO implements HistoryDAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/movieOn");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/MOVIEON");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -33,17 +33,17 @@ public class HistoryJDBCDAO implements HistoryDAO_interface {
 	
 	
 	private static final String INSERT_STMT =
-			"INSERT INTO History (userId,showingId) VALUES (?, ?)";
+			"INSERT INTO MOVIEON.History (userId,showingId) VALUES (?, ?)";
 	private static final String UPDATE = 
-			"UPDATE History SET userId=?,showingId=? WHERE historyId=?";
+			"UPDATE MOVIEON.History SET userId=?,showingId=? WHERE historyId=?";
 	private static final String DELETE = 
-			"DELETE FROM History WHERE userId=? AND showingId=?";
+			"DELETE FROM MOVIEON.History WHERE userId=? AND showingId=?";
 	private static final String GET_ONE_STMT = 
-			"SELECT historyId,userId,showingId FROM History WHERE historyId=?";
+			"SELECT historyId,userId,showingId FROM MOVIEON.History WHERE historyId=?";
 	private static final String GET_ALL_STMT = 
-			"SELECT historyId,userId,showingId FROM History";
+			"SELECT historyId,userId,showingId FROM MOVIEON.History";
 	private static final String GET_BY_USER = 
-			"SELECT historyId,userId,showingId FROM History WHERE userId =?";
+			"SELECT historyId,userId,showingId FROM MOVIEON.History WHERE userId =?";
 	
 //	static {
 //		try {
