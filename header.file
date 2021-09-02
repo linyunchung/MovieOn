@@ -1,0 +1,66 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<div id="header">
+    <a href="" class="logo">
+      <img src="../img/logo.png" alt="">
+    </a>
+    <nav>
+
+      <ul>
+
+        <li class="dropdown">
+          <a href="">電影探索</a>
+          <ul>
+            <li><a href="#">查詢電影類型</a></li>
+            <li><a href="#">電影推薦</a></li>
+            <li><a href="#">留下影評</a></li>
+            <li><a href="#">影評中心</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="">交友</a>
+          <ul>
+            <li><a href="#">媒合配對</a></li>
+            <li><a href="#">即時訊息</a></li>
+            <li><a href="#">好友名單</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="<%=request.getContextPath()%>/showing/showing_search.jsp">電影時刻表</a>
+          
+        </li>
+        <li class="dropdown">
+          <a href="">商城</a>
+          <ul>
+            <li><a href="#">商品列表</a></li>
+            <li><a href="#">購物車</a></li>
+            <li><a href="#">訂單查詢</a></li>
+            <li><a href="#">客服中心</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="">會員中心</a>
+          <ul>
+            <li><a href="#">我的評分</a></li>
+            <li><a href="#">我的影評</a></li>
+            <li><a href="#">我追蹤的作者</a></li>
+            <li><a href="#">購物紀錄</a></li>
+            <li><a href="#">動態牆</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="search" action="search.php">
+        <input name="q" placeholder="Search..." type="search">
+      </form>
+      <c:if test="${empty memberVO.username}">
+						<button class="signin">
+							<a id="sign_in" href="${pageContext.request.contextPath}/member/log_in.jsp">會員登入</a>
+						</button>
+					</c:if> 
+		<c:if test="${not empty memberVO.username}">
+			<button class="signin">
+				<a href="<%=request.getContextPath()%>/LogoutServlet">登出</a>
+			</button>
+		</c:if> 
+    </nav>
+
+  </div>
