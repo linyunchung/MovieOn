@@ -1,210 +1,240 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-	pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.member.model.*"%>	
+
+<%
+	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="BIG5">
-<title>Insert title here</title>
-<link href="css/profile.css" type="text/css" rel="stylesheet" >
+<title>å€‹äººè³‡è¨Šä¿®æ”¹</title>
+<link href="${pageContext.request.contextPath}/member/css/profile.css" type="text/css" rel="stylesheet" >
 </head>
 <body>
+<div class="header"><jsp:include page="/member/index.jsp" /></div>
 	<div class="body">
 		<div class="p">
-			<p>­Ó¤H¸ê®Æ</p>
+
+
+			<p>å€‹äººè³‡æ–™</p>
 			<div class="nav">
 				<ul id="menu">
-					<li><a href="acct_info.jsp">±b¸¹¸ê°T</a></li>
-					<li><a href="change_password.jsp">§ó´«±K½X</a></li>
-					<li><a>­Ó¤H¸ê®Æ</a></li>
-					<li><a href="add_cc.jsp">±b¤á³]©w</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/acct_info.jsp">å¸³è™Ÿè³‡è¨Š</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/change_password.jsp">æ›´æ›å¯†ç¢¼</a></li>
+					<li><a>å€‹äººè³‡æ–™</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/add_cc.jsp">å¸³æˆ¶è¨­å®š</a></li>
 				</ul>
 			</div>
-			<form action="#" method="post" id="profile">
+			<form action="member.do" method="post" id="profile" enctype="multipart/form-data" >
+			<div>
+								<c:if test="${not empty errorMsgs}">
+						<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li id="error" style="color: red">${message}</li>
+							</c:forEach>
+						</ul>
+					</c:if>
+			</div>
 				<div class="ziliao">
 					<div class="box"></div>
 					<hr id="u_hr">
 					<div class="row">
 						<div id="question">
-							<label>­Ó¤H¹Ï¥Ü</label>
+							<label>å€‹äººåœ–ç¤º</label>
 						</div>
 						<div id="answer">
 							<div id="preview">
-								<span class="text">¹wÄı</span>
+								<img id="pic" src="/test/DBGifReader?userid=${memberVO.userid}"><span class="text" >é è¦½</span>
 							</div>
 							<div id="photo_btn">
-								<input type="file" id="p_file">
+								<input type="file" id="p_file" name="upload" >
 							</div>
 
 						</div>
 					</div>
 					<div class="row">
 						<div id="question">
-							<label>©m¦W</label>
+							<label>å§“å</label>
 						</div>
 						<div id="answer">
-							<input type="text" name="username" id="username">
+							<input type="hidden" name="username" value="${memberVO.username}">
+							<input type="text" name="name" id="name" value="${memberVO.name}">
+							<input type="hidden" name="userid" id="userid" value="${memberVO.userid}">
 						</div>
 					</div>
 					<div class="row">
 						<div id="question">
-							<label>©Ê§O</label>
+							<label>æ€§åˆ¥</label>
 						</div>
 						<div id="answer">
-							<input type="radio" name="gender" id="man"><label
-								id="gender" for="man">¨k</label> <input type="radio"
-								name="gender" id="woman"><label id="gender" for="woman">¤k</label>
-							<input type="radio" name="gender" id="secret"><label
-								id="gender" for="secret">¯µ±K</label>
+							<input type="radio" name="gender" id="man" value="ç”·" <c:if test="${memberVO.gender == 'ç”·' }">checked</c:if>>
+							<label id="gender" for="man">ç”·</label> 
+							<input type="radio" name="gender" id="woman" value="å¥³" <c:if test="${memberVO.gender == 'å¥³' }">checked</c:if>>
+							<label id="gender" for="woman">å¥³</label>
+							<input type="radio" name="gender" id="secret" value="ç§˜å¯†" <c:if test="${memberVO.gender == 'ç§˜å¯†' }">checked</c:if>>
+							<label id="gender" for="secret">ç§˜å¯†</label>
 						</div>
 					</div>
 					<div class="row">
 						<div id="question">
-							<label>¥Í¤é</label>
+							<label>ç”Ÿæ—¥</label>
 						</div>
 						<div id="answer-date">
-							<input type="date" id="date">
-						</div>
+							<input type="date" id="date" value="${memberVO.birthday}"
+							 name="birthday">
+						</div> 
 					</div>
 					<div class="row">
 						<div id="question">
-							<label>¦a§}</label>
+							<label>åœ°å€</label>
 						</div>
 						<div id="answer">
-							<select id="city">
-								<option>¿¤¥«</option>
-								<option>¥x¥_¥«</option>
-								<option>·s¥_¥«</option>
-								<option>®ç¶é¥«</option>
-								<option>¥x¤¤¥«</option>
-								<option>¥x«n¥«</option>
-								<option>°ª¶¯¥«</option>
-								<option>°ò¶©¥«</option>
-								<option>·s¦Ë¥«</option>
-								<option>¹Å¸q¥«</option>
-								<option>·s¦Ë¿¤</option>
-								<option>­]®ß¿¤</option>
-								<option>¹ü¤Æ¿¤</option>
-								<option>«n§ë¿¤</option>
-								<option>¶³ªL¿¤</option>
-								<option>¹Å¸q¿¤</option>
-								<option>«ÌªF¿¤</option>
-								<option>©yÄõ¿¤</option>
-								<option>ªá½¬¿¤</option>
-								<option>»OªF¿¤</option>
-								<option>¼ê´ò¿¤</option>
-							</select> <input type="text" name="address" id="address"
-								placeholder="½Ğ¿é¤J¦a§}">
+							<input type="text" name="address" id="address"
+								placeholder="è«‹è¼¸å…¥åœ°å€" value="${memberVO.address}">
 						</div>
 					</div>
 					<div class="row">
 						<div id="question">
-							<label>±Ğ¨|µ{«×</label>
+							<label>æ•™è‚²ç¨‹åº¦</label>
 						</div>
 						<div id="answer-edu">
-							<select>
-								<option>°ê¤p</option>
-								<option>°ê¤¤</option>
-								<option>°ª¤¤Â¾</option>
-								<option>¤j¾Ç</option>
-								<option>ºÓ¤h</option>
-								<option>³Õ¤h</option>
+							<select size="1" name="education">
+								<option value="åœ‹å°" ${(memberVO.education=='åœ‹å°')?'selected':''}>åœ‹å°</option>
+								<option value="åœ‹ä¸­" ${(memberVO.education=='åœ‹ä¸­')?'selected':''}>åœ‹ä¸­</option>
+								<option value="é«˜ä¸­" ${(memberVO.education=='é«˜ä¸­')?'selected':''}>é«˜ä¸­è· </option>
+								<option value="å¤§å­¸" ${(memberVO.education=='å¤§å­¸')?'selected':''}>å¤§å­¸</option>
+								<option value="ç¢©å£«" ${(memberVO.education=='ç¢©å£«')?'selected':''}>ç¢©å£«</option>
+								<option value="åšå£«" ${(memberVO.education=='åšå£«')?'selected':''}>åšå£«</option>
 							</select>
 						</div>
 					</div>
 					<div class="row">
 						<div id="question">
-							<label>Â¾·~</label>
+							<label>è·æ¥­</label>
 						</div>
 						<div id="answer-job">
-							<select>
-								<option>ª÷¿Ä·~</option>
-								<option>·|­p®v</option>
-								<option>¤uµ{®v</option>
-								<option>¦æ¬F¤H­û</option>
-								<option>«ß®v</option>
-								<option>Âå®v</option>
-								<option>Âå®v</option>
-								<option>¾Ç¥Í</option>
-								<option>¦Û¥Ñ·~</option>
-								<option>µL·~</option>
+							<select name="occupation">
+								<option value="é‡‘èæ¥­" ${(memberVO.occupation=='é‡‘èæ¥­')?'selected':''}>é‡‘èæ¥­</option>
+								<option value="æœƒè¨ˆå¸«" ${(memberVO.occupation=='æœƒè¨ˆå¸«')?'selected':''}>æœƒè¨ˆå¸«</option>
+								<option value="å·¥ç¨‹å¸«" ${(memberVO.occupation=='å·¥ç¨‹å¸«')?'selected':''}>å·¥ç¨‹å¸« </option>
+								<option value="è¡Œæ”¿" ${(memberVO.occupation=='è¡Œæ”¿äººå“¡')?'selected':''}>è¡Œæ”¿äººå“¡</option>
+								<option value="å¾‹å¸«" ${(memberVO.occupation=='å¾‹å¸«')?'selected':''}>å¾‹å¸«</option>
+								<option value="é†«å¸«" ${(memberVO.occupation=='é†«å¸«')?'selected':''}>é†«å¸«</option>
+								<option value="è€å¸«" ${(memberVO.occupation=='è€å¸«')?'selected':''}>è€å¸«</option>
+								<option value="å­¸ç”Ÿ" ${(memberVO.occupation=='å­¸ç”Ÿ')?'selected':''}>å­¸ç”Ÿ</option>
+								<option value="è‡ªç”±æ¥­" ${(memberVO.occupation=='è‡ªç”±æ¥­')?'selected':''}>è‡ªç”±æ¥­</option>
+								<option value="ç„¡æ¥­" ${(memberVO.occupation=='ç„¡æ¥­')?'selected':''}>ç„¡æ¥­</option>
 							</select>
 						</div>
 					</div>
-					<div class="row">
+	<!-- 				<div class="row">
 						<div id="question">
-							<label>³ßÅwªº¹q¼vÃş«¬</label>
+							<label>å–œæ­¡çš„é›»å½±é¡å‹</label>
 						</div>
 						<div id="answer-movie">
-							<input type="checkbox" name="movie" value="action"><label
-								id="mv" for="action">°Ê§@¤ù</label> <input type="checkbox"
-								name="movie" value="sci-fi"><label id="mv" for="sci-fi">¬ì¤Û¤ù</label>
-							<input type="checkbox" name="movie" value="war"><label
-								id="mv" for="war">¾Ôª§¤ù</label> <input type="checkbox"
-								name="movie" value="comedy"><label id="mv" for="comedy">³ß¼@¤ù</label>
-							<input type="checkbox" name="movie" value="horror"><label
-								id="mv" for="horror">®£©Æ¤ù</label> <input type="checkbox"
-								name="movie" value="romance"><label id="mv"
-								for="romance">·R±¡¤ù</label> <input type="checkbox" name="movie"
-								value="drama"><label id="mv" for="drama">¼@±¡¤ù</label> <input
-								type="checkbox" name="movie" value="historical"><label
-								id="mv" for="historical">¾ú¥v¤ù</label> <input type="checkbox"
-								name="movie" value="animation"><label id="mv"
-								for="animation">°Êµe¤ù</label>
+							<input type="checkbox" name="movie" value="10">
+							<label id="mv" for="action">å‹•ä½œç‰‡</label> 
+							
+							<input type="checkbox" name="movie" value="20">
+							<label id="mv" for="sci-fi">ç§‘å¹»ç‰‡</label>
+							
+							<input type="checkbox" name="movie" value="30">
+							<label id="mv" for="war">æˆ°çˆ­ç‰‡</label>
+							
+							<input type="checkbox" name="movie" value="40">
+							<label id="mv" for="comedy">å–œåŠ‡ç‰‡</label>
+							
+							<input type="checkbox" name="movie" value="50">
+							<label id="mv" for="horror">ææ€–ç‰‡</label> 
+							
+							<input type="checkbox" name="movie" value="60">
+							<label id="mv" for="romance">æ„›æƒ…ç‰‡</label>
+							
+							<input type="checkbox" name="movie" value="70">
+							<label id="mv" for="drama">åŠ‡æƒ…ç‰‡</label>
+							
+							<input type="checkbox" name="movie" value="80">
+							<label id="mv" for="historical">æ­·å²ç‰‡</label>
+							
+							<input type="checkbox" name="movie" value="90">
+							<label id="mv" for="animation">å‹•ç•«ç‰‡</label>
 						</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div id="question">
-							<label>³Ì³ßÅwªº¹q¼v</label>
+							<label>Instagram</label>
+							<label id="fb">Facebook</label>
+							<label id="twt">Twitter</label>
 						</div>
 						<div id="answer">
-							<input type="text" name="favorite" id="favorite">
-						</div>
-					</div>
-					<div class="row">
-						<div id="question">
-							<label>ªÀ¸s³sµ²</label>
-						</div>
-						<div id="answer">
-							<input type="text" name="username" id="social"
-								placeholder="Instagram"> <input type="text"
-								name="username" id="social2" placeholder="Facebook"> <input
-								type="text" name="username" id="social2" placeholder="Twitter">
+							<input type="text" name="ig" id="social" placeholder="Instagram" value="${memberVO.ig}"> 
+							<input type="text" name="fb" id="social2" placeholder="Facebook" value="${memberVO.fb}"> 
+							<input type="text" name="twt" id="social2" placeholder="Twitter" value="${memberVO.twt}">
 						</div>
 					</div>
 					<div>
 						<hr>
-						<button type="submit" id="cancel">¨ú®ø</button>
-						<button type="submit" id="save">Àx¦s</button>
+						<button type="submit" id="cancel">å–æ¶ˆ</button>
+ 						<input type="hidden" name="action" value="updateProfile">
+<%-- 						<input type="hidden" name="email" value="${memberVO.email}"> --%>
+						<input type="submit" id="save" value="å„²å­˜">
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
+</body>
+<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script> --%>
+
+<style>
+  .xdsoft_datetimepicker .xdsoft_datepicker {
+           width:  300px;   /* width:  300px; */
+  }
+  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+           height: 151px;   /* height:  151px; */
+  }
+</style>
+
 	<script>
 		var preview_el = document.getElementById("preview");
 		var p_file_el = document.getElementById("p_file");
 
 		var preview_img = function(file) {
-			//   var img_node = document.createElement("img");
-			var reader = new FileReader(); // ¥Î¨ÓÅª¨úÀÉ®×
+			var reader = new FileReader(); // ç”¨ä¾†è®€å–æª”æ¡ˆ
 			reader.addEventListener("load", function() {
 				console.log(reader.result);
 				let img_node = document.createElement("img");
-				img_node.setAttribute("src", reader.result); // <img src="abdafaewre">
-				img_node.setAttribute("class", "preview_img"); // <img src="abdafaewre" class="preview_img">
+				img_node.setAttribute("src", reader.result); 
+				img_node.setAttribute("class", "preview_img");
 				preview_el.innerHTML = '';
 				preview_el.append(img_node);
 			});
-			reader.readAsDataURL(file); // Åª¨úÀÉ®×
+			reader.readAsDataURL(file); // è®€å–æª”æ¡ˆ
 		};
 
 		p_file_el.addEventListener("change", function(e) {
 			if (this.files.length > 0) {
 				preview_img(this.files[0]);
 			} else {
-				preview_el.innerHTML = '<span class="text">¹wÄı¹Ï</span>';
+				preview_el.innerHTML = '<span class="text">é è¦½åœ–</span>';
 			}
 		});
+ 		
+<%--         $.datetimepicker.setLocale('zh');
+        $('#date').datetimepicker({
+           theme: '',              //theme: 'dark',
+ 	       timepicker:false,       //timepicker:true,
+ 	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
+ 	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+ 		   value: '<%=memberVO.getBirthday()%>', // value:   new Date(),
+        });  --%>
 	</script>
-</body>
 </html>

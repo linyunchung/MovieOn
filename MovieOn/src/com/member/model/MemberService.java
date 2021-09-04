@@ -1,6 +1,10 @@
 package com.member.model;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.Part;
 
 public class MemberService {
 	
@@ -8,44 +12,50 @@ public class MemberService {
 	
 	public MemberService () {
 		dao = new MemberJDBCDAO();
-	}
-	
-	public MemberVO addMember(String username, String email, String password,
-			String address, String mobile, String joindate, String profilepic, String name, String gender,
-			String birthday, String education, String occupation, String ig, String fb, String twt, Integer admin) {
+	}	
+	public MemberVO addMember(String username, String email, String password) {
 		
 		MemberVO memberVO = new MemberVO();
 		
-//		memberVO.setUserid(userid);
-		memberVO.setName(name);
+		memberVO.setUsername(username);
 		memberVO.setEmail(email);
 		memberVO.setPassword(password);
-		memberVO.setAddress(address);
-		memberVO.setMobile(mobile);
-		memberVO.setJoindate(joindate);
-		memberVO.setProfilepic(profilepic);
-		memberVO.setName(name);
-		memberVO.setGender(gender);
-		memberVO.setBirthday(birthday);
-		memberVO.setEducation(education);
-		memberVO.setOccupation(occupation);
-		memberVO.setIg(ig);
-		memberVO.setFb(fb);
-		memberVO.setTwt(twt);
-		memberVO.setAdmin(admin);
 		dao.insert(memberVO);
 		
 		return memberVO;
 	}
 	
+	
+	public MemberVO updateProfile(byte[] profilepic, String name, String gender, java.sql.Date birthday, String address, String education, String occupation, String ig, String fb, String twt, Integer userid, String username) {
+		
+		MemberVO memberVO = new MemberVO();
+	
+		memberVO.setProfilepic(profilepic);
+		memberVO.setName(name);
+		memberVO.setGender(gender);
+		memberVO.setBirthday(birthday);
+		memberVO.setAddress(address);
+		memberVO.setEducation(education);
+		memberVO.setOccupation(occupation);
+		memberVO.setIg(ig);
+		memberVO.setFb(fb);
+		memberVO.setTwt(twt);
+		memberVO.setUserid(userid);
+		memberVO.setUsername(username);
+		dao.updateProfile(memberVO);
+		
+		return memberVO;
+	}
+	
+	
 	public MemberVO updateMember(Integer userid, String username, String email, String password,
-			String address, String mobile, String joindate, String profilepic, String name, String gender,
-			String birthday, String education, String occupation, String ig, String fb, String twt, Integer admin) {
+			String address, Timestamp joindate, String mobile, byte[] profilepic, String name, String gender,
+			java.sql.Date birthday, String education, String occupation, String ig, String fb, String twt) {
 		
 		MemberVO memberVO = new MemberVO();
 		
 		memberVO.setUserid(userid);
-		memberVO.setName(name);
+		memberVO.setUsername(username);
 		memberVO.setEmail(email);
 		memberVO.setPassword(password);
 		memberVO.setAddress(address);
@@ -60,7 +70,6 @@ public class MemberService {
 		memberVO.setIg(ig);
 		memberVO.setFb(fb);
 		memberVO.setTwt(twt);
-		memberVO.setAdmin(admin);
 		dao.update(memberVO);
 		
 		return memberVO;
@@ -70,7 +79,7 @@ public class MemberService {
 		dao.delete(userid);
 	}
 	
-	public MemberVO getoneMember(Integer userid) {
+	public MemberVO getOneMember(Integer userid) {
 		return dao.findByPrimaryKey(userid);
 	}
 	
@@ -78,8 +87,23 @@ public class MemberService {
 		return dao.getAll();
 	}
 	
+	public MemberVO login(String email, String password) {
+
+		return dao.login(email, password);
+	}
+
+	public MemberVO changepwd(String password, Integer userid) {
+		
+		MemberVO memberVO = new MemberVO();
+		
+		memberVO.setPassword(password);
+		memberVO.setUserid(userid);
+		dao.changepwd(memberVO);
+		
+		return memberVO;
+	}
 	
-	
-	
-	
+	public MemberVO getEmail(String email) {
+		return dao.findByEmail(email);
+	}
 }
