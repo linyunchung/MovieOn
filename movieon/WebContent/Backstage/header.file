@@ -1,0 +1,56 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+
+
+    <div id="header">
+        <a href="backstage.html" class="logo">
+            <img src="img/logo.png" alt="">
+        </a>
+        <nav>
+
+            <ul>
+
+                <li class="dropdown">
+                    <a href="">會員管理</a>
+                    	<ul>
+	                        <li><a href="memberDataSearch.jsp">會員資料查詢</a></li>
+	                        <li><a href="<%=request.getContextPath()%>/Backstage/result1.jsp">會員QA</a></li>
+	                    </ul>
+                </li>
+
+                
+
+                <li class="dropdown">
+                    <a href="">電影管理</a>
+                    <ul>
+                        <li><a href="movieDataSearch.jsp">已上架電影管理</a></li>
+                        <li><a href="movieDataInsert.jsp">上架新電影</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">商品管理</a>
+                    <ul>
+                        <li><a href="itemSearch.jsp">已上架商品管理</a></li>
+                        <li><a href="itemInsert.jsp">上架新商品</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">電影時刻表</a>
+                    <ul>
+                        <li><a href="backstage_add_theater.jsp">上架影城表</a></li>
+                        <li><a href="backstage_add_time.jsp">新增電影時刻表</a></li>
+                        <li><a href="backstage_showing_select.jsp">已上架管理</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+            <button class="signin">
+                <a href="<%=request.getContextPath()%>/Backstage/backstage.html">回到首頁</a>
+            </button>
+
+        </nav>
+
+    </div>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台管理員</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/backstage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="header">
+        <a href="backstage.html" class="logo">
+            <img src="img/logo.png" alt="">
+        </a>
+        <nav>
+
+            <ul>
+
+                <li class="dropdown">
+                    <a href="">會員管理</a>
+                    	<ul>
+	                        <li><a href="memberDataSearch.jsp">會員資料查詢</a></li>
+	                        <li><a href="result1.jsp">會員QA</a></li>
+	                    </ul>
+                </li>
+
+                
+
+                <li class="dropdown">
+                    <a href="">電影管理</a>
+                    <ul>
+                        <li><a href="movieDataSearch.jsp">已上架電影管理</a></li>
+                        <li><a href="movieDataInsert.jsp">上架新電影</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">商品管理</a>
+                    <ul>
+                        <li><a href="itemSearch.jsp">已上架商品管理</a></li>
+                        <li><a href="itemInsert.jsp">上架新商品</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">電影時刻表</a>
+                    <ul>
+                        <li><a href="backstage_add_theater.jsp">上架影城表</a></li>
+                        <li><a href="backstage_add_time.jsp">新增電影時刻表</a></li>
+                        <li><a href="backstage_showing_select.jsp">已上架管理</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+            <button class="signin">
+                <a href="backstage.html">回到首頁</a>
+            </button>
+
+        </nav>
+
+    </div>
+
+    <div class="main">
+
+
+        <div class="member">
+            <h1>會員管理</h1>
+            <hr>
+            <a href="memberDataSearch.jsp"  class="a">會員資料查詢</a><br>
+            <a href="result1.jsp" class="a">會員QA</a>
+
+        </div>
+
+        <div class="movie">
+            <h1>電影管理</h1>
+            <hr>
+            <a href="movieDataSearch.jsp"  class="a">電影資料查詢</a><br>
+            <a href="movieDataInsert.jsp" class="a">新增電影資料</a>
+
+        </div>
+
+        <div class="item">
+            <h1>商城管理</h1>
+            <hr>
+            <a href="itemSearch.jsp" class="a">商品資料查詢</a><br>
+            <a href="itemInsert.jsp" class="a">新增商品資料</a><br>
+            
+
+        </div>
+
+        <div class="theater">
+            <h1>電影時刻表</h1> 
+            <hr>
+            
+            <a href="backstage_add_theater.jsp" class="a">上架影城表</a><br>
+            <a href="backstage_add_time.jsp" class="a">新增電影時刻表</a><br>
+            <a href="backstage_showing_select.jsp" class="a">已上架時刻表管理</a>
+        </div>
+        
+        
+        
+
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/nav.js"></script>
+</body>
+
+</html>

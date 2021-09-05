@@ -1,0 +1,14 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<div class="footer">
+
+    <ul>
+      <li>回到首頁</li>
+      <li>關於我們</li>
+      <li>服務說明</li>
+      <li>客服</li>
+      <li>聯絡我們</li>
+      <li><i class="fa fa-instagram"></i></li>
+      <li><i class="fa fa-facebook"></i></li>
+    </ul>
+    <span>@ MovieOn. Made by programming students in Taipei, Taiwan. For learning purposes only.</span>
+  </div>
