@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>Insert title here</title>
+<title>個人資訊修改</title>
 <link href="${pageContext.request.contextPath}/css/profile.css" type="text/css" rel="stylesheet" >
 </head>
 <body>
@@ -63,6 +63,7 @@
 							<label>姓名</label>
 						</div>
 						<div id="answer">
+							<input type="hidden" name="username" value="${memberVO.username}">
 							<input type="text" name="name" id="name" value="${memberVO.name}">
 							<input type="hidden" name="userid" id="userid" value="${memberVO.userid}">
 						</div>

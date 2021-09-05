@@ -61,6 +61,42 @@
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/profile.js"></script>
+    
+    <style>
+		.pagination{
+		  overflow: hidden;
+		  position: relative;
+		  border-top: 1 solid #345;
+		  padding-top: 10px;
+		}
+		
+		.paginate-nextprev{
+		  font-size: 12px;
+		}
+		
+		.pagination .paginate-nextprev a{
+		  color: #9ab;
+		  background: #283038;
+		  white-space: nowrap;
+		  border-radius: 3px;
+		  box-shadow: inset 0 1px 0 hsla(0deg 0% 100% / 5%);
+		  display: block;
+		  line-height: 1px;
+		  padding: 9px 15px;
+		}
+		
+		.pagination .paginate-nextprev a:hover{
+		  color:rgb(221, 238, 255);
+		  background: rgb(48, 56, 64);
+		}
+		.pagination .previous{
+		  float: left;
+		}
+		
+		.pagination .next{
+		  float: right;
+		}  
+    </style>
 	    
 </head>
 <body class = "network">
@@ -178,7 +214,8 @@
                     </div>
 
                     <ul class = "poster-list film-list films-details-list">
-						<c:forEach var="reviewVO" items="${list}" >	
+                    <%@ include file="pages/page1.file"%>
+						<c:forEach var="reviewVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">	
 	                        <li class = "film-detail film-watched">
 	                            <div class = "poster film-poster poster-container">
 	                                <div>
@@ -224,11 +261,9 @@
 	                            </div>    
 	                        </li>
 	                    </c:forEach>
+	                    
                     </ul>
-
-
-                    <div class = "pagination"></div>
-
+				<%@ include file="pages/page2.file"%>
                 </section>
 
             </div>

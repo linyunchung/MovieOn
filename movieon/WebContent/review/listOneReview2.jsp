@@ -373,7 +373,7 @@ div.nav>div.nav-links>a {
                     <h1 class="entry-title">〔<%=movieVO.getMovieName()%>〕<%=reviewVO.getReviewTitle() %>
                     </h1>
                     <div class="entry-meta">
-                    <a class="article-author"><%=memberVO_username.getUsername() %></a>
+                    <a class="article-author" href="${pageContext.request.contextPath}/profile?id=<%=memberVO_username.getUserid()%>"><%=memberVO_username.getUsername() %></a>
                     <c:if test="<%= memberVO_2 == null || (memberVO_2.getUserid() != reviewVO.getUserId() && !follList.stream().anyMatch(f -> f.getTargetID() == reviewVO.getUserId())) %>">
                     	<form method="post" action="<%=request.getContextPath()%>/ProfileServlet">
                     		<input type="hidden" name="targetId" value="<%= reviewVO.getUserId()%>">

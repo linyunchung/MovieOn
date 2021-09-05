@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.Part;
 
@@ -30,7 +29,7 @@ public class MemberService {
 	}
 	
 	
-	public MemberVO updateProfile(byte[] profilepic, String name, String gender, java.sql.Date birthday, String address, String education, String occupation, String ig, String fb, String twt, Integer userid) {
+	public MemberVO updateProfile(byte[] profilepic, String name, String gender, java.sql.Date birthday, String address, String education, String occupation, String ig, String fb, String twt, Integer userid, String username) {
 		
 		MemberVO memberVO = new MemberVO();
 	
@@ -45,6 +44,7 @@ public class MemberService {
 		memberVO.setFb(fb);
 		memberVO.setTwt(twt);
 		memberVO.setUserid(userid);
+		memberVO.setUsername(username);
 		dao.updateProfile(memberVO);
 		
 		return memberVO;

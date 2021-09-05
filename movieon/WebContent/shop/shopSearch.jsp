@@ -107,22 +107,23 @@
 						</ul>
 					</li>
 
-					<li class="dropdown"><a href="">會員中心</a>
-						<ul>
-						<c:if test="${empty memberVO.username}">
-							<a href="<%=request.getContextPath()%>/profile">會員中心 </a>
-						</c:if> 
-						<c:if test="${not empty memberVO.username}">
+					<li class="dropdown">
+<!-- 					<a href="">會員中心</a> -->
+<%-- 						<c:if test="${empty memberVO.username}"> --%>
+<%-- 							<a href="<%=request.getContextPath()%>/profile">會員中心 </a> --%>
+<%-- 						</c:if>  --%>
+<%-- 						<c:if test="${not empty memberVO.username}"> --%>
 							<a href="<%=request.getContextPath()%>/profile">${memberVO.username} </a>
-							<ul>
-								<li><a href="${pageContext.request.contextPath}/profile?action=myfilms">我的評分</a></li>
+						<ul>
+<!-- 							<ul> -->
+			<li><a href="${pageContext.request.contextPath}/profile?action=myfilms">我的評分</a></li>
             <li><a href="${pageContext.request.contextPath}/profile?action=myreviews">我的影評</a></li>
             <li><a href="${pageContext.request.contextPath}/profile?action=myfollowers">我的粉絲</a></li>
             <li><a href="${pageContext.request.contextPath}/profile?action=myfollowing">追蹤中</a></li>
             <li><a href="${pageContext.request.contextPath}/profile?action=mynetwork">動態牆</a></li>
             <li><a href="${pageContext.request.contextPath}/shop/shopSearch.jsp">我的訂單</a></li>
 							</ul>
-						</c:if>
+<%-- 						</c:if> --%>
 					</li>
 				</ul>
 

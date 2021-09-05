@@ -42,7 +42,7 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("請輸入會員ID");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -54,7 +54,7 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("會員ID格式不正確");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -66,21 +66,21 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("查無資料");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
 				/************************************************************/
 				req.setAttribute("memberVO", memberVO);
-				String url = "/member/listOneMember.jsp";
+				String url = "/member/memberData.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				/***********************************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -133,6 +133,8 @@ public class MemberServlet extends HttpServlet {
 				String fb = req.getParameter("fb");
 
 				String twt = req.getParameter("twt");
+				
+                String username = req.getParameter("username");
 
 				MemberService memberSvc = new MemberService();
 				InputStream in = req.getPart("upload").getInputStream();
@@ -147,6 +149,7 @@ public class MemberServlet extends HttpServlet {
 
 				MemberVO memberVO = new MemberVO();
 				memberVO.setName(name);
+                memberVO.setUsername(username);
 				memberVO.setProfilepic(profilepic);
 				memberVO.setAddress(address);
 				memberVO.setBirthday(birthday);
@@ -167,7 +170,7 @@ public class MemberServlet extends HttpServlet {
 
 				/***************************************************************************/
 				memberVO = memberSvc.updateProfile(profilepic, name, gender, birthday, address, education, occupation,
-						ig, fb, twt, userid);
+						ig, fb, twt, userid, username);
 
 				/***************************************************************************/
 
@@ -278,13 +281,12 @@ public class MemberServlet extends HttpServlet {
 		}
 		
 		
-		if ("deleteCreditCard".equals(action)) {
+		if ("deleteCard".equals(action)) {
 			
-
-			Integer userid = new Integer(req.getParameter("userid"));
+			Integer creditid = new Integer(req.getParameter("creditid"));
 
 			CreditCardService ccSvc = new CreditCardService();
-			ccSvc.deleteCreditCard(userid);
+			ccSvc.deleteCreditCard(creditid);
 
 			/*
 			 * String url = "/member/listAllMember.jsp"; RequestDispatcher successView =

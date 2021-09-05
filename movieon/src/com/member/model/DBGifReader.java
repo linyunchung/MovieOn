@@ -19,7 +19,7 @@ public class DBGifReader extends HttpServlet {
 			Statement stmt = con.createStatement();
 			String userid = req.getParameter("userid");
 			ResultSet rs = stmt.executeQuery(
-				"select profilepic from MEMBER where userid =" + userid);
+				"select profilepic from MOVIEON.MEMBER where userid =" + userid);
 
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("profilepic"));
@@ -42,7 +42,7 @@ public class DBGifReader extends HttpServlet {
 	public void init() throws ServletException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://mysql0719.jnlyc.cloudns.cl:3306/MOVIEON?serverTimezone=Asia/Taipei", "root", "Ab3345678");
+			con = DriverManager.getConnection("jdbc:mysql://35.201.252.250:3306/MOVIEON?serverTimezone=Asia/Taipei", "root", "4579616593");
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
 		} catch (SQLException e) {

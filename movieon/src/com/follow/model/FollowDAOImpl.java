@@ -19,11 +19,11 @@ import com.mysql.cj.xdevapi.PreparableStatement;
 
 public class FollowDAOImpl implements FollowDAO{
 
-// the DB login info
-	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://35.201.252.250:3306/MOVIEON?serverTimezone=Asia/Taipei";
-	public static final String USER = "root";
-	public static final String PASSWORD = "4579616593";
+// the DB login info, swapped for ds later
+//	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//	public static final String URL = "jdbc:mysql://35.201.252.250:3306/MOVIEON?serverTimezone=Asia/Taipei";
+//	public static final String USER = "root";
+//	public static final String PASSWORD = "4579616593";
 
 // the prepared statements
 	public static final String CREATE_STMT = "insert into MOVIEON.FOLLOW values(default, ?, ?, ?)";
@@ -36,14 +36,15 @@ public class FollowDAOImpl implements FollowDAO{
 	public static final String FINDBYSNT_STMT = "select * from MOVIEON.FOLLOW where sourceID = ? and targetID = ?";
 	public static final String DELETEBYSNT_STMT = "delete from MOVIEON.FOLLOW where sourceID = ? and targetID = ?";
 // static block to hold	driver used by all
-//	private static DataSource ds = null;
+	private static DataSource ds = null;
+	
 	static {
 		try {
-//			Context ctx = new InitialContext();
-//			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/MOVIEON");
-			Class.forName(DRIVER);
-//		} catch (NamingException e) {
-		} catch (ClassNotFoundException e) {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/MOVIEON");
+//			Class.forName(DRIVER);
+		} catch (NamingException e) {
+//		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
@@ -61,8 +62,8 @@ public class FollowDAOImpl implements FollowDAO{
 		
 		try {
 			//改DataSource連線，可以不需要帳密和網址
-//			con = ds.getConnection(); 
-			con = DriverManager.getConnection(URL,USER,PASSWORD); //先改回來，上線前再換DataSource
+			con = ds.getConnection(); 
+//			con = DriverManager.getConnection(URL,USER,PASSWORD); //先改回來，上線前再換DataSource
 			pstmt = con.prepareStatement(CREATE_STMT);
 			
 //			pstmt.setInt(1, follow.getFollowID());
@@ -142,8 +143,8 @@ public class FollowDAOImpl implements FollowDAO{
 		PreparedStatement pstmt = null;
 		
 		try {
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
+//			con = DriverManager.getConnection(URL,USER,PASSWORD);
 			pstmt = con.prepareStatement(DELETEBYID_STMT);
 			
 			pstmt.setInt(1, followID);
@@ -179,8 +180,8 @@ public class FollowDAOImpl implements FollowDAO{
 		FollowVO followVO = new FollowVO();
 		
 		try {
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
+//			con = DriverManager.getConnection(URL,USER,PASSWORD);
 			pstmt = con.prepareStatement(FINDBYID_STMT); 
 			
 			pstmt.setInt(1, followID);
@@ -229,8 +230,8 @@ public class FollowDAOImpl implements FollowDAO{
 		List<FollowVO> list = new ArrayList<FollowVO>();		
 		
 		try {
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
+//			con = DriverManager.getConnection(URL,USER,PASSWORD);
 			pstmt = con.prepareStatement(FINDALL_STMT);
 			
 			rs = pstmt.executeQuery();
@@ -281,8 +282,8 @@ public class FollowDAOImpl implements FollowDAO{
 		List<FollowVO> list = new ArrayList<FollowVO>();		
 		
 		try {
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
+//			con = DriverManager.getConnection(URL,USER,PASSWORD);
 			pstmt = con.prepareStatement(FINDBYSOURCE_STMT);
 			pstmt.setInt(1, userID);
 			
@@ -334,8 +335,8 @@ public class FollowDAOImpl implements FollowDAO{
 		List<FollowVO> list = new ArrayList<FollowVO>();		
 		
 		try {
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
+//			con = DriverManager.getConnection(URL,USER,PASSWORD);
 			pstmt = con.prepareStatement(FINDBYTARGET_STMT);
 			pstmt.setInt(1, userID);
 			
@@ -387,8 +388,8 @@ public class FollowDAOImpl implements FollowDAO{
 		FollowVO followVO = null;
 		
 		try {
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
+//			con = DriverManager.getConnection(URL,USER,PASSWORD);
 			pstmt = con.prepareStatement(FINDBYSNT_STMT); 
 			
 			pstmt.setInt(1, sourceId);
@@ -439,8 +440,8 @@ public class FollowDAOImpl implements FollowDAO{
 		PreparedStatement pstmt = null;
 		
 		try {
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(URL,USER,PASSWORD);
+			con = ds.getConnection();
+//			con = DriverManager.getConnection(URL,USER,PASSWORD);
 			pstmt = con.prepareStatement(DELETEBYSNT_STMT);
 			
 			pstmt.setInt(1, sourceId);

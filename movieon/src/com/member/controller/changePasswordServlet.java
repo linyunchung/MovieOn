@@ -46,10 +46,12 @@ public class changePasswordServlet extends HttpServlet {
 					errorMsgs.add("新密碼兩次輸入不一樣");
 				}
 				
-				/*
-				 * MemberVO memberVO = new MemberVO(); memberVO.setPassword(newpassword);
-				 * memberVO.setUserid(userid);
-				 */
+				MemberService memberSvc = new MemberService();
+				MemberVO memberVO = memberSvc.changepwd(newpassword, userid);	
+				
+				if(!memberVO.getPassword().equals(password)) {
+					errorMsgs.add("舊密碼有誤");
+				} 
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -59,18 +61,16 @@ public class changePasswordServlet extends HttpServlet {
 				}
 				
 				/***************************************************************************/	
-				MemberService memberSvc = new MemberService();
-				MemberVO memberVO = memberSvc.changepwd(newpassword, userid);	
-				
-				if(password == null) {
-					errorMsgs.add("eee");
-				}
-
+				if(memberVO.getPassword().equals(password) && newpassword.equals(newpassword2)) {
 					
-				req.setAttribute("memberVO", memberVO);
-				String url = "/member/change_password.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
+					req.setAttribute("memberVO", memberVO);
+					String url = "/member/change_password.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);	
+					
+				} else {
+					return;
+				}
 
 			
 			  } catch (Exception e) { errorMsgs.add("修改資料失敗:"+e.getMessage());

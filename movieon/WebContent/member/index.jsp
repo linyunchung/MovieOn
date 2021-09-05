@@ -29,7 +29,7 @@
 		<div class="navbar">
 			<i class='bx bx-menu'></i>
 			<div class="logo">
-				<a href="${pageContext.request.contextPath}/member/index.jsp"><img
+				<a href="${pageContext.request.contextPath}/Home.jsp"><img
 					src="${pageContext.request.contextPath}/img/logo.png"></a>
 			</div>
 			<div class="nav-links">
@@ -37,34 +37,35 @@
 					<span class="logo_name">MovieOn</span> <i class='bx bx-x'></i>
 				</div>
 				<ul class="links">
-					<li><a class="tansuo" href="#">電影探索</a> <i
+					<li><a class="tansuo" href="${pageContext.request.contextPath}/Home.jsp">電影探索</a> <i
 						class='bx bx-chevron-down arrow tan-arrow'></i>
 						<ul class="tansuo-sub-menu sub-menu">
-							<li><a href="#">查詢電影類型</a></li>
-							<li><a href="#">電影推薦</a></li>
-							<li><a href="#">留下影評</a></li>
-							<li><a href="#">影評中心</a></li>
+							<li><a href="<%=request.getContextPath()%>/moviesHome/movieGenre.jsp">查詢電影類型</a></li>
+							<li><a href="<%=request.getContextPath()%>/moviesHome/movies_home.jsp">電影推薦</a></li>
+							<li><a href="<%=request.getContextPath()%>/review/addReview.jsp">留下影評</a></li>
+							<li><a href="<%=request.getContextPath()%>/review/reviewCenter.jsp">影評中心</a></li>
 						</ul></li>
-					<li><a class="shike" href="#">電影時刻</a> <i
+					<li><a class="shike" href="<%=request.getContextPath()%>/showing/showing_search.jsp">電影時刻</a> <i
 						class='bx bx-chevron-down arrow shike-arrow'></i>
 						<ul class="shike-sub-menu sub-menu">
 							<li><a href="#">場次查詢</a></li>
 							<li><a href="#">歷史記錄</a></li>
 						</ul></li>
-					<li><a class="jiaoyou" href="#">交友</a> <i
-						class='bx bx-chevron-down arrow jiaoyou-arrow'></i>
-						<ul class="jiaoyou-sub-menu sub-menu">
-							<li><a href="#">媒合配對</a></li>
-							<li><a href="#">即時訊息</a></li>
-							<li><a href="#">好友名單</a></li>
-						</ul></li>
-					<li><a class="shangcheng" href="#">商城</a> <i
+<!-- 					<li><a class="jiaoyou" href="#">交友</a> <i -->
+<!-- 						class='bx bx-chevron-down arrow jiaoyou-arrow'></i> -->
+<!-- 						<ul class="jiaoyou-sub-menu sub-menu"> -->
+<!-- 							<li><a href="#">媒合配對</a></li> -->
+<!-- 							<li><a href="#">即時訊息</a></li> -->
+<!-- 							<li><a href="#">好友名單</a></li> -->
+<!-- 						</ul></li> -->
+					<li><a class="shangcheng" href="${pageContext.request.contextPath}/shop/shopPage.jsp">商城</a> <i
 						class='bx bx-chevron-down arrow shangcheng-arrow'></i>
 						<ul class="shangcheng-sub-menu sub-menu">
-							<li><a href="#">商品列表</a></li>
-							<li><a href="#">購物車</a></li>
-							<li><a href="#">訂單查詢</a></li>
-							<li><a href="#">客服中心</a></li>
+							<li><a href="<%=request.getContextPath()%>/shop/shopItem.jsp">商品列表</a></li>
+							<li><a href="<%=request.getContextPath()%>/shop/shopCart.jsp">購物車</a></li>
+<!-- 							<li><a href="#">訂單查詢</a></li> -->
+							<li><a href="<%=request.getContextPath()%>/shop/shopService.jsp">客服中心</a></li>
+							<li><a href="<%=request.getContextPath()%>/prob/contactcs.jsp">聯絡客服</a></li>
 						</ul></li>
 					<c:if test="${empty memberVO.username}">
 						<li id="sign">
@@ -72,14 +73,15 @@
 						</li>
 					</c:if> 
 					<c:if test="${not empty memberVO.username}">
-						<li><a class="zhongxin" href="#"> <span class="um_span">${memberVO.username}</span></a>
+						<li><a class="zhongxin" href="<%=request.getContextPath()%>/profile"> <span class="um_span">${memberVO.username}</span></a>
 							<i class='bx bx-chevron-down arrow zhongxin-arrow'></i>
 							<ul class="zhongxin-sub-menu sub-menu">
-								<li><a href="#">我的評分</a></li>
-								<li><a href="#">我的影評</a></li>
-								<li><a href="#">我追蹤的作者</a></li>
-								<li><a href="#">購物記錄</a></li>
-								<li><a href="#">動態墻</a></li>
+					            <li><a href="${pageContext.request.contextPath}/profile?action=myfilms">我的評分</a></li>
+					            <li><a href="${pageContext.request.contextPath}/profile?action=myreviews">我的影評</a></li>
+					            <li><a href="${pageContext.request.contextPath}/profile?action=myfollowers">我的粉絲</a></li>
+					            <li><a href="${pageContext.request.contextPath}/profile?action=myfollowing">追蹤中</a></li>
+					            <li><a href="${pageContext.request.contextPath}/profile?action=mynetwork">動態牆</a></li>
+					            <li><a href="${pageContext.request.contextPath}/shop/shopSearch.jsp">我的訂單</a></li>
 								<li><a href="${pageContext.request.contextPath}/member/acct_info.jsp">會員資料</a></li>
 								<li><a href="<%=request.getContextPath()%>/LogoutServlet">登出</a></li>
 							</ul>

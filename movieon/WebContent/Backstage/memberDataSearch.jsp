@@ -44,7 +44,7 @@
 
 			 <br> 
 			 
-			 <span>查詢所有電影資訊</span>
+			 <span>查詢所有會員資訊</span>
 			<button class="send1"
 				onclick="window.location.href='memberDataGetAll.jsp'">查詢</button>
 
