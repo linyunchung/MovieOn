@@ -32,10 +32,10 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			
-			// 1.³]©w©ópstmt.executeUpdate()¤§«e
+			// 1.è¨­å®šæ–¼pstmt.executeUpdate()ä¹‹å‰
 			con.setAutoCommit(false); 
 			
-			//¥ı·s¼W­q³æ
+			//å…ˆæ–°å¢è¨‚å–®
 			String cols[] = { "orderId" };
 			pstmt = con.prepareStatement(INSERT_STMT, cols);
 			pstmt.setString(1, orderInfoVO.getOrderStatus());
@@ -51,27 +51,27 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface {
 			pstmt.setString(11, orderInfoVO.getPayStatus());
 			pstmt.executeUpdate();
 
-			// ¨ú±o¹ïÀ³ªº¦Û¼W¥DÁä­È
+			// å–å¾—å°æ‡‰çš„è‡ªå¢ä¸»éµå€¼
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				next_order_no = rs.getInt(1);
-				System.out.println("¦Û¼W¥DÁä­È= " + next_order_no + "(­è·s¼W¦¨¥\ªº­q³æ½s¸¹)");
+				System.out.println("è‡ªå¢ä¸»éµå€¼= " + next_order_no + "(å‰›æ–°å¢æˆåŠŸçš„è¨‚å–®ç·¨è™Ÿ)");
 			} else {
-				System.out.println("¥¼¨ú±o¦Û¼W¥DÁä­È");
+				System.out.println("æœªå–å¾—è‡ªå¢ä¸»éµå€¼");
 			}
 			rs.close();
 			
-			// ¦A·s¼W­q³æ©ú²Ó¤º®e
+			// å†æ–°å¢è¨‚å–®æ˜ç´°å…§å®¹
 			OrderListJDBCDAO OrderList = new OrderListJDBCDAO();
 			for (OrderListVO OrderListVO : orderListVOList) {
 				OrderListVO.setOrderId(next_order_no);
 				OrderList.insert(OrderListVO, orderListVOList, con);
 			}
 			
-			// 2.³]©w©ópstmt.executeUpdate()¤§«á
+			// 2.è¨­å®šæ–¼pstmt.executeUpdate()ä¹‹å¾Œ
 			con.commit();
 			con.setAutoCommit(true);
-			System.out.println("·s¼W­q³æ½s¸¹ " + next_order_no + " ®É¡A©ú²Ó¦P®É³Q·s¼W§¹²¦");
+			System.out.println("æ–°å¢è¨‚å–®ç·¨è™Ÿ " + next_order_no + " æ™‚ï¼Œæ˜ç´°åŒæ™‚è¢«æ–°å¢å®Œç•¢");
 			
 	
 		} catch (ClassNotFoundException e) {
@@ -79,7 +79,7 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface {
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			try {
-				// µo¥Í¨Ò¥~§Y¶i¦ærollback°Ê§@
+				// ç™¼ç”Ÿä¾‹å¤–å³é€²è¡Œrollbackå‹•ä½œ
 				con.rollback();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -292,38 +292,38 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface {
 //
 //		OrderInfoJDBCDAO dao = new OrderInfoJDBCDAO();
 //
-//		// ·s¼W
+//		// æ–°å¢
 //		OrderInfoVO orderInfoVO1 = new OrderInfoVO();
-//		orderInfoVO1.setOrderStatus("³B²z¤¤");
+//		orderInfoVO1.setOrderStatus("è™•ç†ä¸­");
 //		orderInfoVO1.setOrderDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-//		orderInfoVO1.setPaymentMethodId("«H¥Î¥d");
-//		orderInfoVO1.setDeliveryMethodId("¦v°t¨ì©²");
-//		orderInfoVO1.setConsignee("ªL¬F¹F");
+//		orderInfoVO1.setPaymentMethodId("ä¿¡ç”¨å¡");
+//		orderInfoVO1.setDeliveryMethodId("å®…é…åˆ°åºœ");
+//		orderInfoVO1.setConsignee("æ—æ”¿é”");
 //		orderInfoVO1.setMobile("0981098897");
-//		orderInfoVO1.setAddress("¥x¥_¥«¤¤¤s°Ï«n¨ÊªF¸ô¤T¬q219«Ñ6¼Ó");
+//		orderInfoVO1.setAddress("å°åŒ—å¸‚ä¸­å±±å€å—äº¬æ±è·¯ä¸‰æ®µ219å··6æ¨“");
 //		orderInfoVO1.setInvoiceId("QR12435678");
 //		orderInfoVO1.setUserId(5);
 //		orderInfoVO1.setOrderTotal(300);
-//		orderInfoVO1.setPayStatus("¤w¥I´Ú");
+//		orderInfoVO1.setPayStatus("å·²ä»˜æ¬¾");
 //		dao.insert(orderInfoVO1);
 //
-//		// ­×§ï
+//		// ä¿®æ”¹
 //		OrderInfoVO orderInfoVO2 = new OrderInfoVO();
 //		orderInfoVO2.setOrderId(2);
-//		orderInfoVO2.setOrderStatus("¤w§¹¦¨");
+//		orderInfoVO2.setOrderStatus("å·²å®Œæˆ");
 //		orderInfoVO2.setOrderDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-//		orderInfoVO2.setPaymentMethodId("ATMÂà±b");
-//		orderInfoVO2.setDeliveryMethodId("¦v°t¨ì©²");
-//		orderInfoVO2.setConsignee("§d¨È¼w");
+//		orderInfoVO2.setPaymentMethodId("ATMè½‰å¸³");
+//		orderInfoVO2.setDeliveryMethodId("å®…é…åˆ°åºœ");
+//		orderInfoVO2.setConsignee("å³äºå¾·");
 //		orderInfoVO2.setMobile("0988765432");
 //		orderInfoVO2.setAddress("100, Mingquan East Road, Taipei, Taiwan");
 //		orderInfoVO2.setInvoiceId("MW97602397");
 //		orderInfoVO2.setUserId(2);
 //		orderInfoVO2.setOrderTotal(600);
-//		orderInfoVO2.setPayStatus("¤w¥I´Ú");
+//		orderInfoVO2.setPayStatus("å·²ä»˜æ¬¾");
 //		dao.update(orderInfoVO2);
 //
-//		// ¬d¸ß
+//		// æŸ¥è©¢
 //		OrderInfoVO orderInfoVO3 = dao.findByPrimaryKey(002);
 //		System.out.print(orderInfoVO3.getOrderId() + ",");
 //		System.out.print(orderInfoVO3.getOrderStatus() + ",");
@@ -339,7 +339,7 @@ public class OrderInfoJDBCDAO implements OrderInfoDAO_interface {
 //		System.out.println(orderInfoVO3.getPayStatus());
 //		System.out.println("---------------------");
 //
-//		// ¬d¸ß
+//		// æŸ¥è©¢
 //		List<OrderInfoVO> list = dao.getAll();
 //		for (OrderInfoVO aOrderInfo : list) {
 //			System.out.print(aOrderInfo.getOrderId() + ",");

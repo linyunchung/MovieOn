@@ -15,11 +15,11 @@ import javax.mail.internet.MimeMessage;
 
 public class MailService {
 	
-	// ³]©w¶Ç°e¶l¥ó:¦Ü¦¬«H¤HªºEmail«H½c,Email¥D¦®,Email¤º®e
+	// è¨­å®šå‚³é€éƒµä»¶:è‡³æ”¶ä¿¡äººçš„Emailä¿¡ç®±,Emailä¸»æ—¨,Emailå…§å®¹
 	public void sendMail(String to, String subject, String messageText) {
 			
 	   try {
-		   // ³]©w¨Ï¥ÎSSL³s½u¦Ü Gmail smtp Server
+		   // è¨­å®šä½¿ç”¨SSLé€£ç·šè‡³ Gmail smtp Server
 		   Properties props = new Properties();
 		   props.put("mail.smtp.host", "smtp.gmail.com");
 		   props.put("mail.smtp.socketFactory.port", "465");
@@ -27,8 +27,8 @@ public class MailService {
 		   props.put("mail.smtp.auth", "true");
 		   props.put("mail.smtp.port", "465");
 
-       // ¡´³]©w gmail ªº±b¸¹ & ±K½X (±NÂÇ¥Ñ§AªºGmail¨Ó¶Ç°eEmail)
-       // ¡´¶·±NmyGmailªº¡i¦w¥ş©Ê¸û§CªºÀ³¥Îµ{¦¡¦s¨úÅv¡j¥´¶}
+       // â—è¨­å®š gmail çš„å¸³è™Ÿ & å¯†ç¢¼ (å°‡è—‰ç”±ä½ çš„Gmailä¾†å‚³é€Email)
+       // â—é ˆå°‡myGmailçš„ã€å®‰å…¨æ€§è¼ƒä½çš„æ‡‰ç”¨ç¨‹å¼å­˜å–æ¬Šã€‘æ‰“é–‹
 	     final String myGmail = "massey9527@gmail.com";
 	     final String myGmail_password = "ma32c9a2124";
 		   Session session = Session.getInstance(props, new Authenticator() {
@@ -41,15 +41,15 @@ public class MailService {
 		   message.setFrom(new InternetAddress(myGmail));
 		   message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
 		  
-		   //³]©w«H¤¤ªº¥D¦®  
+		   //è¨­å®šä¿¡ä¸­çš„ä¸»æ—¨  
 		   message.setSubject(subject);
-		   //³]©w«H¤¤ªº¤º®e 
+		   //è¨­å®šä¿¡ä¸­çš„å…§å®¹ 
 		   message.setText(messageText);
 
 		   Transport.send(message);
-		   System.out.println("¶Ç°e¦¨¥\!");
+		   System.out.println("å‚³é€æˆåŠŸ!");
      }catch (MessagingException e){
-	     System.out.println("¶Ç°e¥¢±Ñ!");
+	     System.out.println("å‚³é€å¤±æ•—!");
 	     e.printStackTrace();
      }
    }
@@ -61,10 +61,10 @@ public class MailService {
 //
 //      String to = "movieontw@gmail.com";
 //      
-//      String subject = "±K½X³qª¾";
+//      String subject = "å¯†ç¢¼é€šçŸ¥";
 //      
 //      String passRandom = "1234567";
-//      String messageText = "Hello! " + " ½ĞÂÔ°O¦¹±K½X: " + passRandom + "\n"; 
+//      String messageText = "Hello! " + " è«‹è¬¹è¨˜æ­¤å¯†ç¢¼: " + passRandom + "\n"; 
 //       
 //      MailService mailService = new MailService();
 //      mailService.sendMail(to, subject, messageText);

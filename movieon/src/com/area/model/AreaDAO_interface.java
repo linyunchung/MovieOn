@@ -1,4 +1,4 @@
-package com.area.model; 
+package com.area.model;
 
 import java.util.List;
 

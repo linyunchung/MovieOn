@@ -62,8 +62,9 @@
 						</ul>
 					</li>
 					
-					<li class="dropdown"><a href="">會員中心</a>
+					<li class="dropdown">
 						<c:if test="${empty memberVO.username}">
+					<a href="">會員中心</a>
 							<a href="<%=request.getContextPath()%>/profile">會員中心 </a>
 						</c:if> 
 						<c:if test="${not empty memberVO.username}">

@@ -28,7 +28,7 @@ public class ShowingServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		/******************************·s¼W****************************/
+		/******************************æ–°å¢****************************/
 		
 		if("insert".equals(action)) {
 			
@@ -46,7 +46,7 @@ public class ShowingServlet extends HttpServlet {
 					showingDate = java.sql.Date.valueOf(req.getParameter("showingDate").trim());
 				} catch (IllegalArgumentException e) {
 					showingDate = new java.sql.Date(System.currentTimeMillis());
-					errorMsgs.add("½Ğ¿ï¾Ü¤é´Á");
+					errorMsgs.add("è«‹é¸æ“‡æ—¥æœŸ");
 				}
 				
 				
@@ -55,10 +55,10 @@ public class ShowingServlet extends HttpServlet {
 					 showingTime = java.sql.Time.valueOf(req.getParameter("showingTime").trim());
 				} catch (IllegalArgumentException e) {
 					showingTime = new java.sql.Time(1000*60*60*24);
-					errorMsgs.add("½Ğ¿ï¾Ü®É¶¡");
+					errorMsgs.add("è«‹é¸æ“‡æ™‚é–“");
 				}
 				
-				/******************¦hµ§®É¶¡³]©w***********************/
+				/******************å¤šç­†æ™‚é–“è¨­å®š***********************/
 				
 				java.sql.Time showingTime2 = null;
 				try {
@@ -99,7 +99,7 @@ public class ShowingServlet extends HttpServlet {
 					return;
 				}
 				
-				/****************************¶}©l·s¼W**************************************/
+				/****************************é–‹å§‹æ–°å¢**************************************/
 				
 				ShowingService showingSvc = new ShowingService();
 				showingSvc.addShowing(theaterId, movieId, showingDate, showingTime);
@@ -115,9 +115,9 @@ public class ShowingServlet extends HttpServlet {
 				}
 				
 				
-				/**************************Âà¦^­¶­±*********************************/
+				/**************************è½‰å›é é¢*********************************/
 				String url = "/Backstage/backstage_add_time.jsp";
-				successMsg = "·s¼W¦¨¥\";
+				successMsg = "æ–°å¢æˆåŠŸ";
 				req.setAttribute("successMsg", successMsg);
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
@@ -131,7 +131,7 @@ public class ShowingServlet extends HttpServlet {
 			
 		}
 		
-		/*********************************¿ï¾Ü¼v«°»P¹q¼v¬d¸ß**************************************/
+		/*********************************é¸æ“‡å½±åŸèˆ‡é›»å½±æŸ¥è©¢**************************************/
 		
 		if("getBy_Movie_Theater".equals(action)) {
 			
@@ -148,7 +148,7 @@ public class ShowingServlet extends HttpServlet {
 				ShowingService showingSvc = new ShowingService();
 				List<ShowingVO> showingVO =  showingSvc.getByTheaterAndMovie(theaterId,movieId);
 				if(showingVO.isEmpty()) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				
 			
@@ -167,14 +167,14 @@ public class ShowingServlet extends HttpServlet {
 			
 			
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ"+e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™"+e.getMessage());
 				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_select.jsp");
 				failurView.forward(req, res);
 			}
 		
 		}
 		
-		/*******************************¿ï¾Ü¤@µ§§ó·s*************************************/
+		/*******************************é¸æ“‡ä¸€ç­†æ›´æ–°*************************************/
 		
 		if("getOne_For_Update".equals(action)) {
 			
@@ -195,13 +195,13 @@ public class ShowingServlet extends HttpServlet {
 				successView.forward(req, res);
 				
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ"+e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™"+e.getMessage());
 				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_view");
 				failurView.forward(req, res);
 			}
 		}
 		
-		/**********************************§ó·s*****************************************/
+		/**********************************æ›´æ–°*****************************************/
 		
 		if("update".equals(action)) {
 			
@@ -222,7 +222,7 @@ public class ShowingServlet extends HttpServlet {
 				showingDate = java.sql.Date.valueOf(req.getParameter("showingDate").trim());
 			} catch (IllegalArgumentException e) {
 				showingDate = new java.sql.Date(System.currentTimeMillis());
-				errorMsgs.add("½Ğ¿ï¾Ü¤é´Á");
+				errorMsgs.add("è«‹é¸æ“‡æ—¥æœŸ");
 			}
 			
 			java.sql.Time showingTime = null;
@@ -230,7 +230,7 @@ public class ShowingServlet extends HttpServlet {
 				showingTime = java.sql.Time.valueOf(req.getParameter("showingTime").trim());
 			} catch (IllegalArgumentException e) {
 				showingTime = new java.sql.Time(1000*60*60*24);
-				errorMsgs.add("½Ğ¿ï¾Ü®É¶¡");
+				errorMsgs.add("è«‹é¸æ“‡æ™‚é–“");
 			}
 			
 			
@@ -253,7 +253,7 @@ public class ShowingServlet extends HttpServlet {
 			ShowingService showingSvc = new ShowingService();
 			showingVO = showingSvc.updaShowing(theaterId, movieId, showingDate, showingTime, showingId);
 			
-			successMsg = "­×§ï¦¨¥\";
+			successMsg = "ä¿®æ”¹æˆåŠŸ";
 			req.setAttribute("successMsg", successMsg);
 			req.setAttribute("showingVO", showingVO);
 			String url = "/Backstage/backstage_showing_update.jsp";
@@ -264,13 +264,13 @@ public class ShowingServlet extends HttpServlet {
 			
 			
 			} catch (Exception e) {
-				errorMsgs.add("µLªk§ó·s¸ê®Æ"+e.getMessage());
+				errorMsgs.add("ç„¡æ³•æ›´æ–°è³‡æ–™"+e.getMessage());
 				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_update.jsp");
 				failurView.forward(req, res);
 			}
 		}
 		
-		/****************************************¤@Áä§R°£ÂÂªº®É¨èªí*******************************************/
+		/****************************************ä¸€éµåˆªé™¤èˆŠçš„æ™‚åˆ»è¡¨*******************************************/
 		
 		if("delete".equals(action)) {
 			
@@ -310,14 +310,14 @@ public class ShowingServlet extends HttpServlet {
 					
 				}
 				
-				successMsg = "§R°£¦¨¥\";
+				successMsg = "åˆªé™¤æˆåŠŸ";
 				req.setAttribute("successMsg", successMsg);
 				String url = "/Backstage/backstage_showing_select.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 			} catch (Exception e) {
-				errorMsgs.add("§R°£¥¢±Ñ"+e.getMessage());
+				errorMsgs.add("åˆªé™¤å¤±æ•—"+e.getMessage());
 				RequestDispatcher failurView = req.getRequestDispatcher("/Backstage/backstage_showing_select.jsp");
 				failurView.forward(req, res);
 			}

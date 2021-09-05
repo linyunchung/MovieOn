@@ -27,42 +27,42 @@ public class ReviewServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		//·s¼W
-		if ("insert".equals(action)) { // ¨Ó¦ÛaddReview.jspªº½Ğ¨D
+		//æ–°å¢
+		if ("insert".equals(action)) { // ä¾†è‡ªaddReview.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs); // "errorMsgs"¹ïÀ³${errorMsgs}
+			req.setAttribute("errorMsgs", errorMsgs); // "errorMsgs"å°æ‡‰${errorMsgs}
 			
 			try {
-				/*********************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z *************************/
-				Integer userId = new Integer(req.getParameter("userId")); // ·|­û¦WºÙ
+				/*********************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† *************************/
+				Integer userId = new Integer(req.getParameter("userId")); // æœƒå“¡åç¨±
 				
 				String reviewTitle = req.getParameter("reviewTitle");
 				if (reviewTitle == null || reviewTitle.trim().length() == 0) {
-					errorMsgs.add("¼vµû¼ĞÃD: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å½±è©•æ¨™é¡Œ: è«‹å‹¿ç©ºç™½");
 				}
 
-				Integer movieId = new Integer(req.getParameter("movieId").trim()); // ¹q¼v¤U©Ô¿ï³æ
+				Integer movieId = new Integer(req.getParameter("movieId").trim()); // é›»å½±ä¸‹æ‹‰é¸å–®
 
-				String postedAt = req.getParameter("postedAt"); // µo¥¬¤é´Á
+				String postedAt = req.getParameter("postedAt"); // ç™¼å¸ƒæ—¥æœŸ
 
 				String ratingStr = req.getParameter("rating");
 				System.out.println(ratingStr);
 				Double starRate = null;
 				if (ratingStr == null) {
-					errorMsgs.add("¼vµûµû¤À: ½Ğµ¹¤©¤À¼Æ");
+					errorMsgs.add("å½±è©•è©•åˆ†: è«‹çµ¦äºˆåˆ†æ•¸");
 				} else {
 					starRate = new Double(ratingStr);
 				}
 
 				String review = req.getParameter("review");
 				if (review == null || review.trim().length() == 0) {
-					errorMsgs.add("¼vµû¤º¤å: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å½±è©•å…§æ–‡: è«‹å‹¿ç©ºç™½");
 				}else {
 					if(review.trim().length() < 100) {
-						errorMsgs.add("¼vµû¤º¤å: ­n¶W¹L100­Ó¦r!!!");
+						errorMsgs.add("å½±è©•å…§æ–‡: è¦è¶…é100å€‹å­—!!!");
 					}
 				}
 				
@@ -76,28 +76,28 @@ public class ReviewServlet extends HttpServlet {
 
 //				System.out.println(errorMsgs.size());
 
-				// ­Y¤W­z¦³¥ô¤@Äæ¦ì¨S¶ñ©Î¶ñªº®æ¦¡¿ù»~, ³£­nªğ¦^¨ì­ì¨Óªº­¶­±addReview.jsp
-				// ¿é¤JÅçÃÒ¦³³q¹L´N¤£·|¶i¨ìif, ·|¶]¨ì¨BÆJ2¶}©l·s¼W¸ê®Æ
+				// è‹¥ä¸Šè¿°æœ‰ä»»ä¸€æ¬„ä½æ²’å¡«æˆ–å¡«çš„æ ¼å¼éŒ¯èª¤, éƒ½è¦è¿”å›åˆ°åŸä¾†çš„é é¢addReview.jsp
+				// è¼¸å…¥é©—è­‰æœ‰é€šéå°±ä¸æœƒé€²åˆ°if, æœƒè·‘åˆ°æ­¥é©Ÿ2é–‹å§‹æ–°å¢è³‡æ–™
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("reviewVO", reviewVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºreviewVOª«¥ó,¤]¦s¤Jreq
+					req.setAttribute("reviewVO", reviewVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„reviewVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 					RequestDispatcher failureView = req.getRequestDispatcher("/review/addReview.jsp"); //forward
 					failureView.forward(req, res);
 					return;
 				}
 
-				/********************************** 2.¶}©l·s¼W¸ê®Æ ***************************************/
+				/********************************** 2.é–‹å§‹æ–°å¢è³‡æ–™ ***************************************/
 				ReviewService revSvc = new ReviewService();
 				reviewVO = revSvc.addReview(userId, movieId, reviewTitle, starRate, review,
 						Timestamp.valueOf(postedAt));
 
-				/*************************** 3.·s¼W§¹¦¨,¤Ş¾É¦Ü¼vµû¤¤¤ß­¶­±Åı¨Ï¥ÎªÌ½T»{¦³·s¼W¦¨¥\ ***********/
+				/*************************** 3.æ–°å¢å®Œæˆ,å¼•å°è‡³å½±è©•ä¸­å¿ƒé é¢è®“ä½¿ç”¨è€…ç¢ºèªæœ‰æ–°å¢æˆåŠŸ ***********/
 				String url = "/review/listAllReview_byDAO.jsp";
 				String url2 = "/review/reviewCenter.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url2); // ·s¼W¦¨¥\«áÂà¥ælistAllReview_byDAO.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url2); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllReview_byDAO.jsp
 				successView.forward(req, res);
 
-				/*************************** ¨ä¥L¥i¯àªº¿ù»~³B²z **********************************/
+				/*************************** å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç† **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/review/addReview.jsp");
@@ -106,91 +106,91 @@ public class ReviewServlet extends HttpServlet {
 		} // insert
 
 		
-		//§R°£
-		if ("delete".equals(action)) { // ¨Ó¦ÛlistAllReview_byDAO.javaªº½Ğ¨D (¼vµû²M³æ)
+		//åˆªé™¤
+		if ("delete".equals(action)) { // ä¾†è‡ªlistAllReview_byDAO.javaçš„è«‹æ±‚ (å½±è©•æ¸…å–®)
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
-				/****** Step 1.±µ¦¬½Ğ¨D°Ñ¼Æ, ¦]¬°¨Ï¥ÎªÌ¤£¥Î¿é¤J¤å¦r«ö«ö¶s¦Ó¤w, ©Ò¥H¤£¥Î®æ¦¡ÅçÃÒ ******/
+				/****** Step 1.æ¥æ”¶è«‹æ±‚åƒæ•¸, å› ç‚ºä½¿ç”¨è€…ä¸ç”¨è¼¸å…¥æ–‡å­—æŒ‰æŒ‰éˆ•è€Œå·², æ‰€ä»¥ä¸ç”¨æ ¼å¼é©—è­‰ ******/
 				Integer reviewId = new Integer(req.getParameter("reviewId"));
 
-				/****** Step 2.¶}©l§R¸ê®Æ, «Ø¥ßservice object, ¥h©I¥sReviewDAOªºdelete() ********/
+				/****** Step 2.é–‹å§‹åˆªè³‡æ–™, å»ºç«‹service object, å»å‘¼å«ReviewDAOçš„delete() ********/
 				ReviewService revSvc = new ReviewService();
-				revSvc.deleteReview(reviewId); // reviewId©ñ¨ìservice, ¥h©I¥sReviewDAOªºdelete()
+				revSvc.deleteReview(reviewId); // reviewIdæ”¾åˆ°service, å»å‘¼å«ReviewDAOçš„delete()
 
-				/****** Step 3.§R°£§¹¦¨,·Ç³ÆÂà¥æ ***************/
+				/****** Step 3.åˆªé™¤å®Œæˆ,æº–å‚™è½‰äº¤ ***************/
 				String url = "/review/listAllReview_byDAO.jsp";
 //				String url2 = "/review/reviewCenter.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // §R°£¦¨¥\«á,Âà¥æ¦^°e¥X§R°£ªº¨Ó·½ºô­¶listAllReview_byDAO.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // åˆªé™¤æˆåŠŸå¾Œ,è½‰äº¤å›é€å‡ºåˆªé™¤çš„ä¾†æºç¶²é listAllReview_byDAO.jsp
 				successView.forward(req, res);
-				System.out.println("§R°£¦¨¥\");
+				System.out.println("åˆªé™¤æˆåŠŸ");
 			} catch (Exception e) {
-				errorMsgs.add("§R°£¸ê®Æ¥¢±Ñ:" + e.getMessage());
+				errorMsgs.add("åˆªé™¤è³‡æ–™å¤±æ•—:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/review/listAllReview_byDAO.jsp");
 				failureView.forward(req, res);
 			}
 		}//delete
 
 		
-		if ("getOne_For_Update".equals(action)) { // ¨Ó¦ÛlistAllReview_byDAO.javaªº½Ğ¨D (¼vµû²M³æ)
+		if ("getOne_For_Update".equals(action)) { // ä¾†è‡ªlistAllReview_byDAO.javaçš„è«‹æ±‚ (å½±è©•æ¸…å–®)
 			List<String> errorMsgs = new LinkedList<>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
-				/****** Step 1.±µ¦¬½Ğ¨D°Ñ¼Æ,*****/
-				Integer reviewId = new Integer(req.getParameter("reviewId")); //§ì¨ì­n­×§ï(½s¿è)¤å³¹ªº¤å³¹id
+				/****** Step 1.æ¥æ”¶è«‹æ±‚åƒæ•¸,*****/
+				Integer reviewId = new Integer(req.getParameter("reviewId")); //æŠ“åˆ°è¦ä¿®æ”¹(ç·¨è¼¯)æ–‡ç« çš„æ–‡ç« id
 				
-				/****** Step 2.¶}©l¬d¸ß¸ê®Æ, «Ø¥ßservice object, ¥h©I¥sReviewDAOªºgetOneReview(©ñreviewId) ********/
+				/****** Step 2.é–‹å§‹æŸ¥è©¢è³‡æ–™, å»ºç«‹service object, å»å‘¼å«ReviewDAOçš„getOneReview(æ”¾reviewId) ********/
 				ReviewService revSvc = new ReviewService();
 				ReviewVO reviewVO=revSvc.getOneReview(reviewId);
 				
-				/****** Step 3.¬d¸ß§¹¦¨,·Ç³Æ¤Ş¾É¨ì½s¿è¼vµûªº­¶­± ***************/
-				req.setAttribute("reviewVO", reviewVO); //¥]¤F²{¦³ªº¸ê®Æ, ¬°¦ó¥i¥H³o¼Ë¼g.....?
+				/****** Step 3.æŸ¥è©¢å®Œæˆ,æº–å‚™å¼•å°åˆ°ç·¨è¼¯å½±è©•çš„é é¢ ***************/
+				req.setAttribute("reviewVO", reviewVO); //åŒ…äº†ç¾æœ‰çš„è³‡æ–™, ç‚ºä½•å¯ä»¥é€™æ¨£å¯«.....?
 				String url = "/review/update_review_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// ¦¨¥\Âà¥æ update_review_input.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url);// æˆåŠŸè½‰äº¤ update_review_input.jsp
 				successView.forward(req, res);
 			}catch(Exception e) {
-				errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/review/reviewCenter.jsp");
 				failureView.forward(req, res);
 			}
 		} // getOne_For_Update
 		
 		
-		//­×§ï
-		if ("update".equals(action)) { // ¨Ó¦Ûupdate_review_input.jspªº½Ğ¨D
+		//ä¿®æ”¹
+		if ("update".equals(action)) { // ä¾†è‡ªupdate_review_input.jspçš„è«‹æ±‚
 			List<String> errorMsgs = new LinkedList<>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 				Integer reviewId = new Integer(req.getParameter("reviewId")); 
 				Integer userId = new Integer(req.getParameter("userId"));
 				String reviewTitle = req.getParameter("reviewTitle");
 				if (reviewTitle == null || reviewTitle.trim().length() == 0) {
-					errorMsgs.add("¼vµû¼ĞÃD: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å½±è©•æ¨™é¡Œ: è«‹å‹¿ç©ºç™½");
 				}
 
-				Integer movieId = new Integer(req.getParameter("movieId").trim()); // ¹q¼v¤U©Ô¿ï³æ
+				Integer movieId = new Integer(req.getParameter("movieId").trim()); // é›»å½±ä¸‹æ‹‰é¸å–®
 
-				String postedAt = req.getParameter("postedAt"); // µo¥¬¤é´Á
+				String postedAt = req.getParameter("postedAt"); // ç™¼å¸ƒæ—¥æœŸ
 
 				String ratingStr = req.getParameter("rating");
 				System.out.println(ratingStr);
 				Double starRate = null;
 				if (ratingStr == null) {
-					errorMsgs.add("¼vµûµû¤À: ½Ğµ¹¤©¤À¼Æ");
+					errorMsgs.add("å½±è©•è©•åˆ†: è«‹çµ¦äºˆåˆ†æ•¸");
 				} else {
 					starRate = new Double(ratingStr);
 				}
 
 				String review = req.getParameter("review");
 				if (review == null || review.trim().length() == 0) {
-					errorMsgs.add("¼vµû¤º¤å: ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å½±è©•å…§æ–‡: è«‹å‹¿ç©ºç™½");
 				}else {
 					if(review.length() < 100) {
-						errorMsgs.add("¼vµû¤º¤å: ­n¶W¹L100­Ó¦r!!!");
+						errorMsgs.add("å½±è©•å…§æ–‡: è¦è¶…é100å€‹å­—!!!");
 					}
 				}
 				
@@ -208,25 +208,25 @@ public class ReviewServlet extends HttpServlet {
 				reviewVO.setPostedAt(Timestamp.valueOf(postedAt));
 				
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("reviewVO", reviewVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºreviewVOª«¥ó,¤]¦s¤Jreq
+					req.setAttribute("reviewVO", reviewVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„reviewVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 					RequestDispatcher failureView = req.getRequestDispatcher("/review/update_review_input.jsp"); //forward
 					failureView.forward(req, res);
 					return;
 				}
 
-				/********************************** 2.¶}©l­×§ï¸ê®Æ ***************************************/
+				/********************************** 2.é–‹å§‹ä¿®æ”¹è³‡æ–™ ***************************************/
 				ReviewService revSvc = new ReviewService();
 				revSvc.updateReview(reviewId, userId, movieId, reviewTitle, starRate, review, Timestamp.valueOf(postedAt));
 				
-				/***************************3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
+				/***************************3.ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
 				req.setAttribute("reviewVO", reviewVO);
-				String url = "/review/listOneReview2.jsp"; //Âà¥æµ¹³æ¤@¬d¸ß
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥ælistOneReview2.jsp
+				String url = "/review/listOneReview2.jsp"; //è½‰äº¤çµ¦å–®ä¸€æŸ¥è©¢
+				RequestDispatcher successView = req.getRequestDispatcher(url); // ä¿®æ”¹æˆåŠŸå¾Œ,è½‰äº¤listOneReview2.jsp
 				successView.forward(req, res);
 				
 				
 			}catch(Exception e) {
-				errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:"+e.getMessage());
+				errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/review/update_review_input.jsp");
 				failureView.forward(req, res);

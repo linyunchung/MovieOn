@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
 <jsp:useBean id="movieSvc" scope="page"
 	class="com.movie.model.MovieService" />
 <jsp:useBean id="theaterSvc" scope="page"
@@ -91,6 +90,13 @@
 							</button>
 
 						</form>
+						<form method="post"
+							action="<%=request.getContextPath()%>/showing/showing.do">
+							<button class="search_btn" style="background-color:#FFBE0B;width: 80px;border-color: #FFBE0B;">
+								<input type="hidden" name="action" value="delete">
+								¤@Áä§R°£
+							</button>
+						</form>	
 					</div>
 
 <%if(request.getAttribute("showingVO")!=null) {%>

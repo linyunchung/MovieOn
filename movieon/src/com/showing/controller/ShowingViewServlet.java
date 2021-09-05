@@ -32,7 +32,7 @@ public class ShowingViewServlet extends HttpServlet {
 
 		String action = req.getParameter("action");
 
-		/************************************¬d¥X®É¨èªí********************************************/
+		/************************************æŸ¥å‡ºæ™‚åˆ»è¡¨********************************************/
 
 		if ("getShowingTime".equals(action)) {
 
@@ -55,14 +55,14 @@ public class ShowingViewServlet extends HttpServlet {
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("¬d¸ß¥¢±Ñ" + e.getMessage());
+				errorMsgs.add("æŸ¥è©¢å¤±æ•—" + e.getMessage());
 				RequestDispatcher failur = req.getRequestDispatcher("/showing/showing_search.jsp");
 				failur.forward(req, res);
 			}
 
 		}
 
-		/************************************* Àx¦s¾ú¥v¬ö¿ı********************************************/
+		/************************************* å„²å­˜æ­·å²ç´€éŒ„********************************************/
 
 		if ("saveShowingTime".equals(action)) {
 
@@ -74,12 +74,12 @@ public class ShowingViewServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 				
-				// §ì¨ú¬d¸ß¹Lªº¬ö¿ı
+				// æŠ“å–æŸ¥è©¢éçš„ç´€éŒ„
 				List<ShowingVO> list = (List<ShowingVO>) session.getAttribute("showingVO");
 				
-				//¨Sµn¤Jªº³B²z
+				//æ²’ç™»å…¥çš„è™•ç†
 				if (memberVO == null) {
-					req.setAttribute("message", "½Ğ¥ıµn¤J !");
+					req.setAttribute("message", "è«‹å…ˆç™»å…¥ !");
 					req.setAttribute("showingVO", list);
 					RequestDispatcher failur = req.getRequestDispatcher("/showing/showing_search.jsp");
 					failur.forward(req, res);
@@ -98,16 +98,16 @@ public class ShowingViewServlet extends HttpServlet {
 					historyVO = historySvc.addHistory(userId, showingVO.getShowingId());
 				}
 
-				/*********************·s¼W¦¨¥\Âà¦^­¶­±************************/
+				/*********************æ–°å¢æˆåŠŸè½‰å›é é¢************************/
 				
-				req.setAttribute("message", "Àx¦s¦¨¥\");
+				req.setAttribute("message", "å„²å­˜æˆåŠŸ");
 				req.setAttribute("showingVO", list);
 				String url = "/showing/showing_search.jsp";
 				RequestDispatcher success = req.getRequestDispatcher(url);
 				success.forward(req, res);
 
 //			} catch (Exception e) {
-//				errorMsgs.add("¥¢±Ñ" + e.getMessage());
+//				errorMsgs.add("å¤±æ•—" + e.getMessage());
 //				RequestDispatcher failur = req.getRequestDispatcher("/showing/showing_search.jsp");
 //				failur.forward(req, res);
 //			}

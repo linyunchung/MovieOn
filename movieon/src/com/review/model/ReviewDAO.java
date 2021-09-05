@@ -47,7 +47,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 		PreparedStatement pstmt=null;
 		
 		try {
-			con=ds.getConnection();	//Step2 «Ø¥ß³s½u
+			con=ds.getConnection();	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, reviewVO.getUserId());
@@ -57,8 +57,8 @@ public class ReviewDAO implements ReviewDAO_interface{
 			pstmt.setString(5, reviewVO.getReview());
 			pstmt.setTimestamp(6, reviewVO.getPostedAt());
 			
-			pstmt.executeUpdate(); //Step3 °e¥XSQL command
-			System.out.println("·s¼W¦¨¥\");
+			pstmt.executeUpdate(); //Step3 é€å‡ºSQL command
+			System.out.println("æ–°å¢æˆåŠŸ");
 		} catch(SQLException se) {
 			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		}finally {
@@ -78,7 +78,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 		PreparedStatement pstmt=null;
 		
 		try {
-			con=ds.getConnection();	//Step2 «Ø¥ß³s½u
+			con=ds.getConnection();	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setInt(1, reviewVO.getUserId());
@@ -89,8 +89,8 @@ public class ReviewDAO implements ReviewDAO_interface{
 			pstmt.setTimestamp(6, reviewVO.getPostedAt());
 			pstmt.setInt(7, reviewVO.getReviewId());
 			
-			pstmt.executeUpdate(); //Step3 °e¥XSQL command
-			System.out.println("§ó·s¦¨¥\");
+			pstmt.executeUpdate(); //Step3 é€å‡ºSQL command
+			System.out.println("æ›´æ–°æˆåŠŸ");
 		} catch(SQLException se) {
 			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		}finally {
@@ -110,13 +110,13 @@ public class ReviewDAO implements ReviewDAO_interface{
 		PreparedStatement pstmt=null;
 		
 		try {
-			con=ds.getConnection();	//Step2 «Ø¥ß³s½u
+			con=ds.getConnection();	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, reviewId);
 			
-			pstmt.executeUpdate(); //Step3 °e¥XSQL command
-			System.out.println("§R°£¦¨¥\");
+			pstmt.executeUpdate(); //Step3 é€å‡ºSQL command
+			System.out.println("åˆªé™¤æˆåŠŸ");
 		} catch(SQLException se) {
 			throw new RuntimeException("A database error occured. "+ se.getMessage());
 		}finally {
@@ -137,7 +137,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 		ResultSet rs=null;
 		ReviewVO reviewVO=null;
 		try {
-			con=ds.getConnection();	//Step2 «Ø¥ß³s½u
+			con=ds.getConnection();	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(GET_ONE_STMT);
 			
 			pstmt.setInt(1, reviewId);
@@ -175,7 +175,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 		ReviewVO reviewVO=null;
 		List<ReviewVO> list=new ArrayList();
 		try {
-			con=ds.getConnection();	//Step2 «Ø¥ß³s½u
+			con=ds.getConnection();	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(GET_ALL_STMT);
 			
 			rs=pstmt.executeQuery();
@@ -212,7 +212,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 		ReviewVO reviewVO=null;
 		List<ReviewVO> list=new ArrayList();
 		try {
-			con=ds.getConnection();	//Step2 «Ø¥ß³s½u
+			con=ds.getConnection();	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(GET_ALL_BY_USER_STMT);
 			
 			pstmt.setInt(1, userId);
@@ -254,7 +254,7 @@ public class ReviewDAO implements ReviewDAO_interface{
 		ReviewVO reviewVO=null;
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		try {
-			con=ds.getConnection();	//Step2 «Ø¥ß³s½u
+			con=ds.getConnection();	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(GET_FRIEND_ACTIVITY_STMT);
 			
 			pstmt.setInt(1, userId);

@@ -28,7 +28,7 @@ public class AreaServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		
 		
-		/*************************·s¼W¦a°Ï»P¼v«°*******************************/
+		/*************************æ–°å¢åœ°å€èˆ‡å½±åŸ*******************************/
 		if("insert".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -38,10 +38,10 @@ public class AreaServlet extends HttpServlet {
 			try {
 			
 			String city = req.getParameter("city");
-			String cityReg = "^[(\u4e00-\u9fa5)]{0,3}$"; //¥¿«hªí¹F¦¡
+			String cityReg = "^[(\u4e00-\u9fa5)]{0,3}$"; //æ­£å‰‡è¡¨é”å¼
 			
 			if(!city.trim().matches(cityReg)) {
-				errorMsgs.add("¦a°ÏÄæ¦ì¥u¯à¬O¤¤¤å¡A¥Bªø«×¬°³Ì¦h¬°3");
+				errorMsgs.add("åœ°å€æ¬„ä½åªèƒ½æ˜¯ä¸­æ–‡ï¼Œä¸”é•·åº¦ç‚ºæœ€å¤šç‚º3");
 			}
 			
 			
@@ -49,16 +49,16 @@ public class AreaServlet extends HttpServlet {
 			String theaterNameReg = "^[(\u4e00-\u9fa5)]{3,10}$";
 			
 			if(theaterName==null || theaterName.trim().length()==0) {
-				errorMsgs.add("¼v«°Äæ¦ì¤£¥iªÅ¥Õ");
+				errorMsgs.add("å½±åŸæ¬„ä½ä¸å¯ç©ºç™½");
 			}else if(!theaterName.trim().matches(theaterNameReg)) {
-				errorMsgs.add("¼v«°Äæ¦ì¥u¯à¬O¤¤¤å");
+				errorMsgs.add("å½±åŸæ¬„ä½åªèƒ½æ˜¯ä¸­æ–‡");
 			}
 			
 			Integer areaNum = new Integer(req.getParameter("area").trim());
 			
 			AreaVO areaVO = new AreaVO();
 			
-			//­Y·s¼W¦a°ÏÄæ¦ì¬°ªÅ«h¤£¶i¸ê®Æ®w
+			//è‹¥æ–°å¢åœ°å€æ¬„ä½ç‚ºç©ºå‰‡ä¸é€²è³‡æ–™åº«
 			if(city.trim().length()!=0) {
 				areaVO.setCity(city);
 			}
@@ -78,9 +78,9 @@ public class AreaServlet extends HttpServlet {
 				return;
 			}
 			
-			/*************************¶}©l·s¼W*******************************/
+			/*************************é–‹å§‹æ–°å¢*******************************/
 			
-			//­Y·s¼W¦a°ÏÄæ¦ì¬°ªÅ«h¤£¶i¸ê®Æ®w
+			//è‹¥æ–°å¢åœ°å€æ¬„ä½ç‚ºç©ºå‰‡ä¸é€²è³‡æ–™åº«
 			if(city.trim().length()!=0) {
 				AreaService areaSvc = new AreaService();
 				areaSvc.addArea(city);
@@ -90,8 +90,8 @@ public class AreaServlet extends HttpServlet {
 			TheaterService theaterSvc = new TheaterService();
 			theaterSvc.addTheater(areaNum, theaterName);
 			
-			/*************************·s¼W§¹¦¨¡AÂà¦^­¶­±*******************************/
-			successMsg = "·s¼W¦¨¥\";
+			/*************************æ–°å¢å®Œæˆï¼Œè½‰å›é é¢*******************************/
+			successMsg = "æ–°å¢æˆåŠŸ";
 			req.setAttribute("successMsg", successMsg);
 			String url = "/Backstage/backstage_add_theater.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);

@@ -275,7 +275,7 @@ public class CreditCardJDBCDAO implements CreditCardDAO_interface {
 		CreditCardJDBCDAO dao = new CreditCardJDBCDAO();
 		
 		
-		//·s¼W
+		//æ–°å¢
 		CreditCardVO creditCardVO1 = new CreditCardVO();
 		creditCardVO1.setCreditid(7);
 		creditCardVO1.setUserid(7);
@@ -284,16 +284,16 @@ public class CreditCardJDBCDAO implements CreditCardDAO_interface {
 		creditCardVO1.setCardholder("chen wei lian");
 		creditCardVO1.setCreditpin("606");
 		dao.insert(creditCardVO1);
-		System.out.println("·s¼W¦¨¥\");
+		System.out.println("æ–°å¢æˆåŠŸ");
 		
 		
-		//§R°£
+		//åˆªé™¤
 //		dao.delete(7);
 		
 		
 		
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 //		CreditCardVO creditCardVO3 = dao.findByPrimaryKey(1);
 //		System.out.println(creditCardVO3.getCreditid() + ",");
 //		System.out.println(creditCardVO3.getUserid() + ",");
@@ -302,7 +302,7 @@ public class CreditCardJDBCDAO implements CreditCardDAO_interface {
 //		System.out.println(creditCardVO3.getCardholder() + ",");
 //		System.out.println(creditCardVO3.getCreditpin() + ",");
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 //		List<CreditCardVO> list = dao.getAll();
 //		for (CreditCardVO aCreditCard : list) {
 //			System.out.println(aCreditCard.getCreditid() + ",");

@@ -28,9 +28,9 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		PreparedStatement pstmt=null;
 		
 		try {
-			Class.forName(DRIVER);	//Step1 ¸ü¤JÅX°Ê
-			System.out.println("¸ü¤JÅX°Ê¦¨¥\");
-			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 «Ø¥ß³s½u
+			Class.forName(DRIVER);	//Step1 è¼‰å…¥é©…å‹•
+			System.out.println("è¼‰å…¥é©…å‹•æˆåŠŸ");
+			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, reviewVO.getUserId());
@@ -40,8 +40,8 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 			pstmt.setString(5, reviewVO.getReview());
 			pstmt.setTimestamp(6, reviewVO.getPostedAt());
 			
-			pstmt.executeUpdate(); //Step3 °e¥XSQL command
-			System.out.println("·s¼W¦¨¥\");
+			pstmt.executeUpdate(); //Step3 é€å‡ºSQL command
+			System.out.println("æ–°å¢æˆåŠŸ");
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "+ e.getMessage());
 		}catch(SQLException se) {
@@ -63,9 +63,9 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		PreparedStatement pstmt=null;
 		
 		try {
-			Class.forName(DRIVER);	//Step1 ¸ü¤JÅX°Ê
-			System.out.println("¸ü¤JÅX°Ê¦¨¥\");
-			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 «Ø¥ß³s½u
+			Class.forName(DRIVER);	//Step1 è¼‰å…¥é©…å‹•
+			System.out.println("è¼‰å…¥é©…å‹•æˆåŠŸ");
+			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setInt(1, reviewVO.getUserId());
@@ -76,8 +76,8 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 			pstmt.setTimestamp(6, reviewVO.getPostedAt());
 			pstmt.setInt(7, reviewVO.getReviewId());
 			
-			pstmt.executeUpdate(); //Step3 °e¥XSQL command
-			System.out.println("§ó·s¦¨¥\");
+			pstmt.executeUpdate(); //Step3 é€å‡ºSQL command
+			System.out.println("æ›´æ–°æˆåŠŸ");
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "+ e.getMessage());
 		}catch(SQLException se) {
@@ -99,15 +99,15 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		PreparedStatement pstmt=null;
 		
 		try {
-			Class.forName(DRIVER);	//Step1 ¸ü¤JÅX°Ê
-			System.out.println("¸ü¤JÅX°Ê¦¨¥\");
-			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 «Ø¥ß³s½u
+			Class.forName(DRIVER);	//Step1 è¼‰å…¥é©…å‹•
+			System.out.println("è¼‰å…¥é©…å‹•æˆåŠŸ");
+			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, reviewId);
 			
-			pstmt.executeUpdate(); //Step3 °e¥XSQL command
-			System.out.println("§R°£¦¨¥\");
+			pstmt.executeUpdate(); //Step3 é€å‡ºSQL command
+			System.out.println("åˆªé™¤æˆåŠŸ");
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "+ e.getMessage());
 		}catch(SQLException se) {
@@ -130,9 +130,9 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		ResultSet rs=null;
 		ReviewVO reviewVO=null;
 		try {
-			Class.forName(DRIVER);	//Step1 ¸ü¤JÅX°Ê
-			System.out.println("¸ü¤JÅX°Ê¦¨¥\");
-			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 «Ø¥ß³s½u
+			Class.forName(DRIVER);	//Step1 è¼‰å…¥é©…å‹•
+			System.out.println("è¼‰å…¥é©…å‹•æˆåŠŸ");
+			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(GET_ONE_STMT);
 			
 			pstmt.setInt(1, reviewId);
@@ -172,9 +172,9 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		ReviewVO reviewVO=null;
 		List<ReviewVO> list=new ArrayList();
 		try {
-			Class.forName(DRIVER);	//Step1 ¸ü¤JÅX°Ê
-			System.out.println("¸ü¤JÅX°Ê¦¨¥\");
-			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 «Ø¥ß³s½u
+			Class.forName(DRIVER);	//Step1 è¼‰å…¥é©…å‹•
+			System.out.println("è¼‰å…¥é©…å‹•æˆåŠŸ");
+			con=DriverManager.getConnection(URL,USERID,PWD);	//Step2 å»ºç«‹é€£ç·š
 			pstmt=con.prepareStatement(GET_ALL_STMT);
 			
 			rs=pstmt.executeQuery();
@@ -211,38 +211,38 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		ReviewJDBCDAO dao=new ReviewJDBCDAO();
 		
 		/*
-		//·s¼W
+		//æ–°å¢
 		ReviewVO reviewVO_insert = new ReviewVO();
 		reviewVO_insert.setUserId(1);
 		reviewVO_insert.setMovieId(1001);
-		reviewVO_insert.setReviewTitle("¡iµL¹p¼vµû¡j¡m´cÆF¥j³ù6¡G³Ì²×³¹¡n³Õ¤h¡A¤S¬O§A¡H¡H");
+		reviewVO_insert.setReviewTitle("ã€ç„¡é›·å½±è©•ã€‘ã€Šæƒ¡éˆå¤å ¡6ï¼šæœ€çµ‚ç« ã€‹åšå£«ï¼Œåˆæ˜¯ä½ ï¼Ÿï¼Ÿ");
 		reviewVO_insert.setStarRate(5.0);
-		reviewVO_insert.setReview("­º¥ı¡A§Ú«D±`³ßÅw³o³¡¹q¼v¡A¥H¨t¦C¹q¼vªºµ²§À¨Ó»¡¡A¡m´cÆF¥j³ù6¡G³Ì²×³¹¡nªí²{±o«Ü¤£¿ù¡C¬Û¸û¦b´cÆF¥j³ù«e¤­¶°¤¤¡A¤j¦h³£¦b»s³y°İÃD¡AÆ[²³¥H¬°¤w¸g¶V¨Ó¶V±µªñ¯u¬Û®É¡A¤Sµ¹§Ú­Ì²´«e»X¤W¤@¼hÃú¡A°t¨¤­Ì¤]·|µL½tµL¬Gªº¥¢ÂÜ¡A¦Ó¥BAlice±`¦b¦U¶°ªºµ²§À¹J¨ì¤@­Ó«Ü¤jªº¦M¾÷¡A¨ì¤F¤U¤@¶°«o¯ó¯óªº¥æ¥N¹L¥h¡CÁöµM³o¶°¦n¹³¤]¦³³oºØ±¡§Î¡A¦ı¬O³o¦¸¡m³Ì²×³¹¡n¤j·§¯uªº¬O³Ì²×³¹¤F¡C(¤£¹L¤j®a³£ª¾¹D¡A­ş¤Ñ·Q¦A¥X¨ÓÁÈ¤@µ§ÁÙ¬O¦³¥i¯àªº)");
+		reviewVO_insert.setReview("é¦–å…ˆï¼Œæˆ‘éå¸¸å–œæ­¡é€™éƒ¨é›»å½±ï¼Œä»¥ç³»åˆ—é›»å½±çš„çµå°¾ä¾†èªªï¼Œã€Šæƒ¡éˆå¤å ¡6ï¼šæœ€çµ‚ç« ã€‹è¡¨ç¾å¾—å¾ˆä¸éŒ¯ã€‚ç›¸è¼ƒåœ¨æƒ¡éˆå¤å ¡å‰äº”é›†ä¸­ï¼Œå¤§å¤šéƒ½åœ¨è£½é€ å•é¡Œï¼Œè§€çœ¾ä»¥ç‚ºå·²ç¶“è¶Šä¾†è¶Šæ¥è¿‘çœŸç›¸æ™‚ï¼Œåˆçµ¦æˆ‘å€‘çœ¼å‰è’™ä¸Šä¸€å±¤éœ§ï¼Œé…è§’å€‘ä¹Ÿæœƒç„¡ç·£ç„¡æ•…çš„å¤±è¹¤ï¼Œè€Œä¸”Aliceå¸¸åœ¨å„é›†çš„çµå°¾é‡åˆ°ä¸€å€‹å¾ˆå¤§çš„å±æ©Ÿï¼Œåˆ°äº†ä¸‹ä¸€é›†å»è‰è‰çš„äº¤ä»£éå»ã€‚é›–ç„¶é€™é›†å¥½åƒä¹Ÿæœ‰é€™ç¨®æƒ…å½¢ï¼Œä½†æ˜¯é€™æ¬¡ã€Šæœ€çµ‚ç« ã€‹å¤§æ¦‚çœŸçš„æ˜¯æœ€çµ‚ç« äº†ã€‚(ä¸éå¤§å®¶éƒ½çŸ¥é“ï¼Œå“ªå¤©æƒ³å†å‡ºä¾†è³ºä¸€ç­†é‚„æ˜¯æœ‰å¯èƒ½çš„)");
 		reviewVO_insert.setPostedAt(Timestamp.valueOf("2020-01-26 10:10:10"));
 		
 		dao.insert(reviewVO_insert);
 		*/
 		
-		//­×§ï
+		//ä¿®æ”¹
 		/*
 		ReviewVO reviewVO_update = new ReviewVO();
 		
 		reviewVO_update.setReviewId(11);
 		reviewVO_update.setUserId(1);
 		reviewVO_update.setMovieId(1001);
-		reviewVO_update.setReviewTitle("¡m´cÆF¥j³ù6¡G³Ì²×³¹¡n³Õ¤h¡A¤S¬O§A¡H¡H");
+		reviewVO_update.setReviewTitle("ã€Šæƒ¡éˆå¤å ¡6ï¼šæœ€çµ‚ç« ã€‹åšå£«ï¼Œåˆæ˜¯ä½ ï¼Ÿï¼Ÿ");
 		reviewVO_update.setStarRate(4.5);
-		reviewVO_update.setReview("­º¥ı¡A§Ú«D±`³ßÅw³o³¡¹q¼v¡A¥H¨t¦C¹q¼vªºµ²§À¨Ó»¡¡A¡m´cÆF¥j³ù6¡G³Ì²×³¹¡nªí²{±o«Ü¤£¿ù¡C¬Û¸û¦b´cÆF¥j³ù«e¤­¶°¤¤¡A¤j¦h³£¦b»s³y°İÃD¡AÆ[²³¥H¬°¤w¸g¶V¨Ó¶V±µªñ¯u¬Û®É¡A¤Sµ¹§Ú­Ì²´«e»X¤W¤@¼hÃú¡A°t¨¤­Ì¤]·|µL½tµL¬Gªº¥¢ÂÜ¡A¦Ó¥BAlice±`¦b¦U¶°ªºµ²§À¹J¨ì¤@­Ó«Ü¤jªº¦M¾÷¡A¨ì¤F¤U¤@¶°«o¯ó¯óªº¥æ¥N¹L¥h¡CÁöµM³o¶°¦n¹³¤]¦³³oºØ±¡§Î¡A¦ı¬O³o¦¸¡m³Ì²×³¹¡n¤j·§¯uªº¬O³Ì²×³¹¤F¡C(¤£¹L¤j®a³£ª¾¹D¡A­ş¤Ñ·Q¦A¥X¨ÓÁÈ¤@µ§ÁÙ¬O¦³¥i¯àªº)");
+		reviewVO_update.setReview("é¦–å…ˆï¼Œæˆ‘éå¸¸å–œæ­¡é€™éƒ¨é›»å½±ï¼Œä»¥ç³»åˆ—é›»å½±çš„çµå°¾ä¾†èªªï¼Œã€Šæƒ¡éˆå¤å ¡6ï¼šæœ€çµ‚ç« ã€‹è¡¨ç¾å¾—å¾ˆä¸éŒ¯ã€‚ç›¸è¼ƒåœ¨æƒ¡éˆå¤å ¡å‰äº”é›†ä¸­ï¼Œå¤§å¤šéƒ½åœ¨è£½é€ å•é¡Œï¼Œè§€çœ¾ä»¥ç‚ºå·²ç¶“è¶Šä¾†è¶Šæ¥è¿‘çœŸç›¸æ™‚ï¼Œåˆçµ¦æˆ‘å€‘çœ¼å‰è’™ä¸Šä¸€å±¤éœ§ï¼Œé…è§’å€‘ä¹Ÿæœƒç„¡ç·£ç„¡æ•…çš„å¤±è¹¤ï¼Œè€Œä¸”Aliceå¸¸åœ¨å„é›†çš„çµå°¾é‡åˆ°ä¸€å€‹å¾ˆå¤§çš„å±æ©Ÿï¼Œåˆ°äº†ä¸‹ä¸€é›†å»è‰è‰çš„äº¤ä»£éå»ã€‚é›–ç„¶é€™é›†å¥½åƒä¹Ÿæœ‰é€™ç¨®æƒ…å½¢ï¼Œä½†æ˜¯é€™æ¬¡ã€Šæœ€çµ‚ç« ã€‹å¤§æ¦‚çœŸçš„æ˜¯æœ€çµ‚ç« äº†ã€‚(ä¸éå¤§å®¶éƒ½çŸ¥é“ï¼Œå“ªå¤©æƒ³å†å‡ºä¾†è³ºä¸€ç­†é‚„æ˜¯æœ‰å¯èƒ½çš„)");
 		reviewVO_update.setPostedAt(Timestamp.valueOf("2021-08-01 00:00:00"));
 		dao.update(reviewVO_update);
 		*/
 		
-		//§R°£
+		//åˆªé™¤
 		//dao.delete(11);
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 		
-		ReviewVO reviewVO_find_One =dao.findByPrimaryKey(1); //¶Ç¦^ReviewVO object, ³z¹L¸Óobject¨Ó¾Ş§@getter/setter¤èªk
+		ReviewVO reviewVO_find_One =dao.findByPrimaryKey(1); //å‚³å›ReviewVO object, é€éè©²objectä¾†æ“ä½œgetter/setteræ–¹æ³•
 		System.out.print(reviewVO_find_One.getReviewId()+", ");
 		System.out.print(reviewVO_find_One.getUserId()+", ");
 		System.out.print(reviewVO_find_One.getMovieId()+", ");
@@ -253,7 +253,7 @@ public class ReviewJDBCDAO implements ReviewDAO_interface{
 		System.out.println("------------------------------------------------------------------------------------------------------------");
 		
 		
-		//¬d¸ß¥ş³¡
+		//æŸ¥è©¢å…¨éƒ¨
 		List<ReviewVO> list = dao.getAll();
 		for(ReviewVO review: list) {
 			System.out.println(review.getReviewId());

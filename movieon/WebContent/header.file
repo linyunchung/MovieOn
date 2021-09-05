@@ -14,7 +14,7 @@
 
 <div id="header">
     <a href="<%=request.getContextPath()%>/Home.jsp" class="logo">
-      <img src="<%=request.getContextPath()%>/img/logo.png" alt="">
+      <img src="${pageContext.request.contextPath}/img/logo.png" alt="">
     </a>
     <nav>
 
