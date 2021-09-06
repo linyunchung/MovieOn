@@ -31,87 +31,78 @@ body {
 
 /* *********************************************最上方導覽列的CSS************************************************* */
 /* 讓header可以集中一點 */
-nav.navbar>div.container {
-	/* border: 1px solid orangered; */
-	max-width: 1200px;
-}
+/* nav.navbar>div.container { */
+/* 	/* border: 1px solid orangered; */ */
+/* 	max-width: 1200px; */
+/* } */
 
-/* 移除logo的預設margin跟padding */
-a.navbar-brand {
-	margin: 0;
-	padding: 0;
-}
+/* /* 移除logo的預設margin跟padding */ */
+/* a.navbar-brand { */
+/* 	margin: 0; */
+/* 	padding: 0; */
+/* } */
 
-/* 移除nav預設padding */
-nav.navbar {
-	padding: 0;
-}
+/* /* 移除nav預設padding */ */
+/* nav.navbar { */
+/* 	padding: 0; */
+/* } */
 
-/* 導覽列的間距不要太密集 */
-a.nav-link {
-	margin-right: 16px;
-}
+/* /* 導覽列的間距不要太密集 */ */
+/* a.nav-link { */
+/* 	margin-right: 16px; */
+/* } */
 
-input.form-control {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
+/* input.form-control { */
+/* 	border-top-right-radius: 0; */
+/* 	border-bottom-right-radius: 0; */
+/* } */
 
-button.btn-outline-secondary {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
+/* button.btn-outline-secondary { */
+/* 	border-top-left-radius: 0; */
+/* 	border-bottom-left-radius: 0; */
+/* } */
 
-button.btn-login {
-	color: black;
-	background: #FFBE0B;
-	margin-left: 30px;
-	/*會員登入跟搜尋圖示隔開一點*/
-}
+/* button.btn-login { */
+/* 	color: black; */
+/* 	background: #FFBE0B; */
+/* 	margin-left: 30px; */
+/* 	/*會員登入跟搜尋圖示隔開一點*/ */
+/* } */
 
-button.btn-login:hover {
-	color: white;
-	font-weight: 900;
-	border: 2px solid white;
-	/* background-color: rgb(124, 170, 195); */
-	background: black;
-}
+/* button.btn-login:hover { */
+/* 	color: white; */
+/* 	font-weight: 900; */
+/* 	border: 2px solid white; */
+/* 	/* background-color: rgb(124, 170, 195); */ */
+/* 	background: black; */
+/* } */
 
-/* 第一層清單 */
-#navbarDropdown {
-	color: white;
-}
+/* /* 第一層清單 */ */
+/* #navbarDropdown { */
+/* 	color: white; */
+/* } */
 
-div.navbar-collapse>ul.navbar-nav li.nav-item a {
-	font-size: .9em;
-}
+/* div.navbar-collapse>ul.navbar-nav li.nav-item a { */
+/* 	font-size: .9em; */
+/* } */
 
-div.navbar-collapse>ul.navbar-nav li.nav-item a:hover {
-	/* padding:0; */
-	background-color: black;
-	color: white;
-}
+/* div.navbar-collapse>ul.navbar-nav li.nav-item a:hover { */
+/* 	/* padding:0; */ */
+/* 	background-color: black; */
+/* 	color: white; */
+/* } */
 
-ul.dropdown-menu {
-	padding: 0;
-}
+/* ul.dropdown-menu { */
+/* 	padding: 0; */
+/* } */
 
-ul.dropdown-menu>li a.dropdown-item {
-	border-top: 1px solid rgb(207, 207, 207);
-	padding: 6px 2px;
-}
+/* ul.dropdown-menu>li a.dropdown-item { */
+/* 	border-top: 1px solid rgb(207, 207, 207); */
+/* 	padding: 6px 2px; */
+/* } */
 
 /*-----------------------------------------GALLERY--------------------------------------------*/
-.flex-gallery {
-	margin-top: 50px;
-	/* display: flex; */
-	flex-direction: column;
-	/* justify-content: space-between; */
-	/* text-align: center; */
-	/* border: 1px solid blue; */
-	max-width: 1200px;
-	margin: 0 auto;
-}
+
 
 main.main-gallery {
 	margin-top: 20px;
@@ -241,91 +232,106 @@ div.nav>div.nav-links>a {
 .nav>#nav-check {
 	display: none;
 }
+
+/*******************************************最外層的container***********************************************/
+.flex-gallery {
+	margin-top: 50px;
+	/* display: flex; */
+	flex-direction: column;
+	/* justify-content: space-between; */
+	/* text-align: center; */
+	/* border: 1px solid blue; */
+	max-width: 1200px;
+	margin: 0 auto;
+}
 </style>
 
 <title>電影推薦</title>
+<link href="<%=request.getContextPath()%>/css/profile_header.css" rel="stylesheet" />
 </head>
 <body>
+	<%@include file="/header.file"%>
     <!--------------------------------------------- 導覽列 navbar ----------------------------------------------->
-    <nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #000000;">
-        <div class="container">
-            <a href="<%=request.getContextPath()%>/Home.jsp" class="navbar-brand"><img src="<%=request.getContextPath()%>/images/logo.png" alt="" width="100" height="50"></a>
+<!--     <nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #000000;"> -->
+<!--         <div class="container"> -->
+<%--             <a href="<%=request.getContextPath()%>/Home.jsp" class="navbar-brand"><img src="<%=request.getContextPath()%>/images/logo.png" alt="" width="100" height="50"></a> --%>
 
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            電影探索
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/moviesHome/movies_home.jsp">電影推薦</a></li>
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/moviesHome/movieGenre.jsp">電影類型</a></li>
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/review/addReview.jsp">留下影評</a></li>
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/review/reviewCenter.jsp">影評中心</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            交友
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">媒合配對</a></li>
-                            <li><a class="dropdown-item" href="#">即時訊息</a></li>
-                            <li><a class="dropdown-item" href="#">好友名單</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            會員中心
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">我的影評</a></li>
-                            <li><a class="dropdown-item" href="#">追蹤清單</a></li>
-                            <li><a class="dropdown-item" href="#">歷史購物紀錄</a></li>
-                            <li><a class="dropdown-item" href="#">動態牆</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            電影時刻表
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">場次查詢</a></li>
-                            <li><a class="dropdown-item" href="#">歷史搜尋紀錄</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            商城
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">商品列表</a></li>
-                            <li><a class="dropdown-item" href="#">購物車</a></li>
-                            <li><a class="dropdown-item" href="#">購物流程</a></li>
-                            <li><a class="dropdown-item" href="#">訂單查詢</a></li>
-                            <li><a class="dropdown-item" href="#">客服中心</a></li>
-                        </ul>
-                    </li>
-                    <form method="post" action="<%=request.getContextPath() %>/HomeServlet" class="d-flex" autocomplete="off">
-                        <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search">
-						<input type="hidden" name="action" value="getSearchResult">
-						<button class="btn btn-outline-secondary" type="submit" >
-							<i class="fas fa-search"></i>
-						</button>
-                    </form>
-                    <li class="nav-item">
-                        <!-- <a href="#instruction" class="nav-link" style="color:#FFBE0B">會員登入</a> -->
-                        <button class="btn btn-login" type="submit">會員登入</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!--             <div class="collapse navbar-collapse"> -->
+<!--                 <ul class="navbar-nav ms-auto"> -->
+<!--                     <li class="nav-item dropdown"> -->
+<!--                         <a class="nav-link" href="#" id="navbarDropdown" role="button" -->
+<!--                             data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--                             電影探索 -->
+<!--                         </a> -->
+<!--                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+<%--                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/moviesHome/movies_home.jsp">電影推薦</a></li> --%>
+<%--                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/moviesHome/movieGenre.jsp">電影類型</a></li> --%>
+<%--                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/review/addReview.jsp">留下影評</a></li> --%>
+<%--                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/review/reviewCenter.jsp">影評中心</a></li> --%>
+<!--                         </ul> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item dropdown"> -->
+<!--                         <a class="nav-link" href="#" id="navbarDropdown" role="button" -->
+<!--                             data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--                             交友 -->
+<!--                         </a> -->
+<!--                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+<!--                             <li><a class="dropdown-item" href="#">媒合配對</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">即時訊息</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">好友名單</a></li> -->
+<!--                         </ul> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item dropdown"> -->
+<!--                         <a class="nav-link" href="#" id="navbarDropdown" role="button" -->
+<!--                             data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--                             會員中心 -->
+<!--                         </a> -->
+<!--                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+<!--                             <li><a class="dropdown-item" href="#">我的影評</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">追蹤清單</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">歷史購物紀錄</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">動態牆</a></li> -->
+<!--                         </ul> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item dropdown"> -->
+<!--                         <a class="nav-link" href="#" id="navbarDropdown" role="button" -->
+<!--                             data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--                             電影時刻表 -->
+<!--                         </a> -->
+<!--                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+<!--                             <li><a class="dropdown-item" href="#">場次查詢</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">歷史搜尋紀錄</a></li> -->
+<!--                         </ul> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item dropdown"> -->
+<!--                         <a class="nav-link" href="#" id="navbarDropdown" role="button" -->
+<!--                             data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--                             商城 -->
+<!--                         </a> -->
+<!--                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+<!--                             <li><a class="dropdown-item" href="#">商品列表</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">購物車</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">購物流程</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">訂單查詢</a></li> -->
+<!--                             <li><a class="dropdown-item" href="#">客服中心</a></li> -->
+<!--                         </ul> -->
+<!--                     </li> -->
+<%--                     <form method="post" action="<%=request.getContextPath() %>/HomeServlet" class="d-flex" autocomplete="off"> --%>
+<!--                         <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search"> -->
+<!-- 						<input type="hidden" name="action" value="getSearchResult"> -->
+<!-- 						<button class="btn btn-outline-secondary" type="submit" > -->
+<!-- 							<i class="fas fa-search"></i> -->
+<!-- 						</button> -->
+<!--                     </form> -->
+<!--                     <li class="nav-item"> -->
+<!--                         <a href="#instruction" class="nav-link" style="color:#FFBE0B">會員登入</a> -->
+<!--                         <button class="btn btn-login" type="submit">會員登入</button> -->
+<!--                     </li> -->
+<!--                 </ul> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </nav> -->
+
 
     <!---------------------------------------------- 電影推薦 ------------------------------------------------->
     <section class="flex-gallery">

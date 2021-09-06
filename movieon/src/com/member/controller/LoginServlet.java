@@ -30,14 +30,14 @@ public class LoginServlet extends HttpServlet {
 				String email = req.getParameter("email");
 				String emailReg = "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 				if(email == null || (email.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤Jemail");
+					errorMsgs.add("è«‹è¼¸å…¥email");
 				} else if(!email.trim().matches(emailReg)) {
-					errorMsgs.add("email®æ¦¡¿ù»~");
+					errorMsgs.add("emailæ ¼å¼éŒ¯èª¤");
 				}
 				
 				String password = req.getParameter("password");
 				if(password == null || (password.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J±K½X");
+					errorMsgs.add("è«‹è¼¸å…¥å¯†ç¢¼");
 				}
 				MemberService memberSvc = new MemberService();
 				Byte admin = memberSvc.getEmail(email).getAdmin();
@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 				
 				MemberVO memberVO = memberSvc.login(email, password);
 				if (memberVO == null) {
-					errorMsgs.add("±b¸¹±K½X¿ù»~");
+					errorMsgs.add("å¸³è™Ÿå¯†ç¢¼éŒ¯èª¤");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req

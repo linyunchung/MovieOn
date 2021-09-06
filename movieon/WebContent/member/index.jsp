@@ -67,12 +67,12 @@
 							<li><a href="<%=request.getContextPath()%>/shop/shopService.jsp">客服中心</a></li>
 							<li><a href="<%=request.getContextPath()%>/prob/contactcs.jsp">聯絡客服</a></li>
 						</ul></li>
-					<c:if test="${empty memberVO.username}">
+					<c:if test="${sessionScope.memberVO.username==null}">
 						<li id="sign">
 							<a id="sign_in" href="${pageContext.request.contextPath}/member/log_in.jsp">會員登入</a>
 						</li>
 					</c:if> 
-					<c:if test="${not empty memberVO.username}">
+					<c:if test="${sessionScope.memberVO.username!=null}">
 						<li><a class="zhongxin" href="<%=request.getContextPath()%>/profile"> <span class="um_span">${memberVO.username}</span></a>
 							<i class='bx bx-chevron-down arrow zhongxin-arrow'></i>
 							<ul class="zhongxin-sub-menu sub-menu">

@@ -34,14 +34,14 @@ public class Links_Controller extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("getOne_From_Home".equals(action)) { // ¬İ¯S©w¤@½g"¼vµû"
+		if ("getOne_From_Home".equals(action)) { // çœ‹ç‰¹å®šä¸€ç¯‡"å½±è©•"
 			try {
 				
 				/*
 				HttpSession session = req.getSession();
 				MemberVO memVO = (MemberVO)session.getAttribute("memberVO");
-				if (memVO == null) {	//¨Sµn¤J,´N¨S¦³memberVO
-					RequestDispatcher successView = req.getRequestDispatcher("/member/log_in.jsp"); // forward¨ìµn¤J­¶­±
+				if (memVO == null) {	//æ²’ç™»å…¥,å°±æ²’æœ‰memberVO
+					RequestDispatcher successView = req.getRequestDispatcher("/member/log_in.jsp"); // forwardåˆ°ç™»å…¥é é¢
 					successView.forward(req, res);
 					return;
 				}
@@ -49,7 +49,7 @@ public class Links_Controller extends HttpServlet {
 				Integer reviewId = new Integer(req.getParameter("reviewId"));
 				
 				ReviewDAO dao = new ReviewDAO();
-				ReviewVO reviewVO = dao.findByPrimaryKey(reviewId); // ®Ú¾Ú¯S©wªº¼vµû½s¸¹§ä¨ì¸Óµ§¸ê®Æ(reviewVOª«¥ó)
+				ReviewVO reviewVO = dao.findByPrimaryKey(reviewId); // æ ¹æ“šç‰¹å®šçš„å½±è©•ç·¨è™Ÿæ‰¾åˆ°è©²ç­†è³‡æ–™(reviewVOç‰©ä»¶)
 
 				BufferedReader br = new BufferedReader(new StringReader(reviewVO.getReview()));
 				String text = br.lines()
@@ -57,11 +57,11 @@ public class Links_Controller extends HttpServlet {
 				
 				reviewVO.setReview(text);
 				
-				req.setAttribute("reviewVO", reviewVO); // ¦A±N±q¸ê®Æ®w¨ú¥XªºreviewVOª«¥ó,¦s¤Jreq
+				req.setAttribute("reviewVO", reviewVO); // å†å°‡å¾è³‡æ–™åº«å–å‡ºçš„reviewVOç‰©ä»¶,å­˜å…¥req
 				
 				
-				// ±N¨ú¥XªºreviewVO forward ¨ì ¸Ó½g¼vµû¥ş¤å
-				RequestDispatcher successView = req.getRequestDispatcher("/review/listOneReview2.jsp"); // forward¨ì³æ¤@¬d¸ß
+				// å°‡å–å‡ºçš„reviewVO forward åˆ° è©²ç¯‡å½±è©•å…¨æ–‡
+				RequestDispatcher successView = req.getRequestDispatcher("/review/listOneReview2.jsp"); // forwardåˆ°å–®ä¸€æŸ¥è©¢
 				successView.forward(req, res);
 				return;
 				
@@ -74,21 +74,21 @@ public class Links_Controller extends HttpServlet {
 
 		
 		
-		if ("getOneMovie_From_Home".equals(action)) { // ¬İ¯S©w"¤ù³æ"
+		if ("getOneMovie_From_Home".equals(action)) { // çœ‹ç‰¹å®š"ç‰‡å–®"
 			try {
 				Integer movieId = new Integer(req.getParameter("movieId"));
 
 				MovieJDBCDAO dao = new MovieJDBCDAO();
-				MovieVO movieVO = dao.findByPrimaryKey(movieId); // ®Ú¾Ú¹q¼v½s¸¹§ä¨ì¸Óµ§¸ê®Æ(movieVOª«¥ó)
+				MovieVO movieVO = dao.findByPrimaryKey(movieId); // æ ¹æ“šé›»å½±ç·¨è™Ÿæ‰¾åˆ°è©²ç­†è³‡æ–™(movieVOç‰©ä»¶)
 				
 				ReviewDAO rDao = new ReviewDAO();
 				Map<Integer, List<ReviewVO>> map = rDao.getAll().stream()
 							 .collect(Collectors.groupingBy(ReviewVO::getMovieId));
 				
-				List<ReviewVO> list = map.get(movieId); //¨S¤H¼g¼vµû´NµLªk¥ÎmovieId¥h§ì¨ºµ§ReviewVO object
+				List<ReviewVO> list = map.get(movieId); //æ²’äººå¯«å½±è©•å°±ç„¡æ³•ç”¨movieIdå»æŠ“é‚£ç­†ReviewVO object
 				if (list == null) {
-					req.setAttribute("average", 0.0); //0.0¤À
-					req.setAttribute("amount", 0);	//0¤H
+					req.setAttribute("average", 0.0); //0.0åˆ†
+					req.setAttribute("amount", 0);	//0äºº
 				} else {
 					OptionalDouble average = list.stream()
 												 .mapToDouble(r -> r.getStarRate())
@@ -102,10 +102,10 @@ public class Links_Controller extends HttpServlet {
 					}
 				}
 				
-				req.setAttribute("movieVO", movieVO); // ¦A±N±q¸ê®Æ®w¨ú¥XªºmovieVOª«¥ó,¦s¤Jreq
+				req.setAttribute("movieVO", movieVO); // å†å°‡å¾è³‡æ–™åº«å–å‡ºçš„movieVOç‰©ä»¶,å­˜å…¥req
 
-				// ±N¨ú¥XªºreviewVO forward ¨ì¸Ó¼v¤ùªº°ò¥»¸ê®Æ
-				RequestDispatcher successView = req.getRequestDispatcher("/moviesHome/oneMovie.jsp"); // forward¨ì³æ¤@¬d¸ß
+				// å°‡å–å‡ºçš„reviewVO forward åˆ°è©²å½±ç‰‡çš„åŸºæœ¬è³‡æ–™
+				RequestDispatcher successView = req.getRequestDispatcher("/moviesHome/oneMovie.jsp"); // forwardåˆ°å–®ä¸€æŸ¥è©¢
 				successView.forward(req, res);
 				return;
 

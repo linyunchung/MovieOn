@@ -23,7 +23,7 @@ public class DBGifReaderProfile extends HttpServlet {
 			Statement stmt = con.createStatement();
 			String movieId = req.getParameter("movieId");
 			ResultSet rs = stmt.executeQuery(
-					"SELECT poster FROM Movie WHERE movieId = " + movieId );
+					"SELECT poster FROM MOVIEON.Movie WHERE movieId = " + movieId );
 
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("poster"));

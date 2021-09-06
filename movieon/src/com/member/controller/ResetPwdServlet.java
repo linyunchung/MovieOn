@@ -34,9 +34,9 @@ public class ResetPwdServlet extends HttpServlet {
 				String email = req.getParameter("email");
 				String emailReg = "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 				if (email == null || (email.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤Jemail");
+					errorMsgs.add("è«‹è¼¸å…¥email");
 				} else if (!email.trim().matches(emailReg)) {
-					errorMsgs.add("email®æ¦¡¿ù»~");
+					errorMsgs.add("emailæ ¼å¼éŒ¯èª¤");
 				}
 						
 				MemberVO memberVO = new MemberVO();
@@ -58,7 +58,7 @@ public class ResetPwdServlet extends HttpServlet {
 				
 //				memberVO.getUserid();
 //				if(email == null) {
-//					errorMsgs.add("¬dµL¦¹email");
+//					errorMsgs.add("æŸ¥ç„¡æ­¤email");
 //				}
 				
 				getRandom random = new getRandom();
@@ -67,8 +67,8 @@ public class ResetPwdServlet extends HttpServlet {
 				
 				memberSvc.changepwd(xxx, memberVO.getUserid());
 
-				String subject = "·s±K½X";
-				String messageText = random.getStringRandom(10) ;
+				String subject = "æ–°å¯†ç¢¼";
+				String messageText = xxx ;
 					
 			    MailService mailService = new MailService();
 			    mailService.sendMail(email, subject, messageText);

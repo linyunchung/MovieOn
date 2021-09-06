@@ -32,17 +32,17 @@ public class SignupServlet extends HttpServlet {
 				String username = req.getParameter("username");
 				String usernameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (username == null || username.trim().length() == 0) {
-					errorMsgs.add("·|­û¦WºÙ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("æœƒå“¡åç¨±è«‹å‹¿ç©ºç™½");
 				} else if (!username.trim().matches(usernameReg)) {
-					errorMsgs.add("·|­û¦WºÙ¥u¯à­^¤å , ¼Æ¦r©M_ , ¥Bªø«×¥²¶·¦b2¨ì10¤§¶¡");
+					errorMsgs.add("æœƒå“¡åç¨±åªèƒ½è‹±æ–‡ , æ•¸å­—å’Œ_ , ä¸”é•·åº¦å¿…é ˆåœ¨2åˆ°10ä¹‹é–“");
 				}
 				String email = req.getParameter("email");
 				if (email == null || email.trim().length() == 0) {
-					errorMsgs.add("email½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("emailè«‹å‹¿ç©ºç™½");
 				}
 				String password = req.getParameter("password");
 				if (password == null || password.trim().length() == 0) {
-					errorMsgs.add("±K½X½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å¯†ç¢¼è«‹å‹¿ç©ºç™½");
 				}
 				
 				MemberVO memberVO = new MemberVO();

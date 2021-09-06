@@ -18,6 +18,7 @@ import com.creditcard.model.CreditCardVO;
 import com.google.gson.Gson;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
+import com.profile.model.FavoritesService;
 
 @MultipartConfig
 public class MemberServlet extends HttpServlet {
@@ -39,7 +40,7 @@ public class MemberServlet extends HttpServlet {
 			try {
 				String str = req.getParameter("userid");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J·|­ûID");
+					errorMsgs.add("è«‹è¼¸å…¥æœƒå“¡ID");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
@@ -51,7 +52,7 @@ public class MemberServlet extends HttpServlet {
 				try {
 					userid = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("·|­ûID®æ¦¡¤£¥¿½T");
+					errorMsgs.add("æœƒå“¡IDæ ¼å¼ä¸æ­£ç¢º");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
@@ -63,7 +64,7 @@ public class MemberServlet extends HttpServlet {
 				MemberService memberSvc = new MemberService();
 				MemberVO memberVO = memberSvc.getOneMember(userid);
 				if (memberVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
@@ -79,7 +80,7 @@ public class MemberServlet extends HttpServlet {
 
 				/***********************************************************/
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("memberDataSearch.jsp");
 				failureView.forward(req, res);
 			}
@@ -101,7 +102,7 @@ public class MemberServlet extends HttpServlet {
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/member/listAllMember.jsp");
 				failureView.forward(req, res);
 			}
@@ -180,7 +181,7 @@ public class MemberServlet extends HttpServlet {
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:" + e.getMessage());
+				errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/member/profile.jsp");
 				failureView.forward(req, res);
 			}
@@ -195,25 +196,25 @@ public class MemberServlet extends HttpServlet {
 				String username = req.getParameter("username");
 				String usernameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (username == null || username.trim().length() == 0) {
-					errorMsgs.add("·|­û¦WºÙ½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("æœƒå“¡åç¨±è«‹å‹¿ç©ºç™½");
 				} else if (!username.trim().matches(usernameReg)) {
-					errorMsgs.add("·|­û¦WºÙ¥u¯à­^¤å , ¼Æ¦r©M_ , ¥Bªø«×¥²¶·¦b2¨ì10¤§¶¡");
+					errorMsgs.add("æœƒå“¡åç¨±åªèƒ½è‹±æ–‡ , æ•¸å­—å’Œ_ , ä¸”é•·åº¦å¿…é ˆåœ¨2åˆ°10ä¹‹é–“");
 				}
 
 				String email = req.getParameter("email");
 				String emailReg = "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 				if (email == null || (email.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤Jemail");
+					errorMsgs.add("è«‹è¼¸å…¥email");
 				} else if (!email.trim().matches(emailReg)) {
-					errorMsgs.add("email®æ¦¡¿ù»~");
+					errorMsgs.add("emailæ ¼å¼éŒ¯èª¤");
 				}
 
 				String password = req.getParameter("password");
 				String password2 = req.getParameter("password2");
 				if (password == null || password.trim().length() == 0) {
-					errorMsgs.add("±K½X½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å¯†ç¢¼è«‹å‹¿ç©ºç™½");
 				} else if (!password.equals(password2)) {
-					errorMsgs.add("¨â¦¸±K½X¤£¤@¼Ë");
+					errorMsgs.add("å…©æ¬¡å¯†ç¢¼ä¸ä¸€æ¨£");
 				}
 
 				MemberVO memberVO = new MemberVO();
@@ -258,7 +259,7 @@ public class MemberServlet extends HttpServlet {
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("§R°£¸ê®Æ¥¢±Ñ" + e.getMessage());
+				errorMsgs.add("åˆªé™¤è³‡æ–™å¤±æ•—" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/member/listAllMember.jsp");
 				failureView.forward(req, res);
 			}

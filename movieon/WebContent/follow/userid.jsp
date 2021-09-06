@@ -1,3 +1,4 @@
+<%@page import="com.profile.model.FavoritesService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.member.model.*"%>
@@ -33,6 +34,12 @@
 	ReviewService reviewService = new ReviewService();
 	List<ReviewVO> revList = reviewService.getUserReview(id);
 	pageContext.setAttribute("revList", revList);
+%>
+
+<%
+	FavoritesService favSvc = new FavoritesService();
+	List<Integer> favList = favSvc.getFavoriteMovieIDs(id);
+	pageContext.setAttribute("favList", favList);
 %>
 
 <!-- Services -->
@@ -247,54 +254,20 @@
 				<section id="favorite" class="section">
 					<h2 class="section-h2">最愛電影</h2>
 					<ul class="poster-list -horizontal">
+					<c:forEach var="movieId" items="${favList}" begin="0" end="3">
 						<li class="poster-container">
 							<div class="poster">
 								<div>
 									<img class="image"
-										src="https://movies.yahoo.com.tw/i/o/production/movies/January2019/gUAASOn2Bx3qiaCcb0RN-1984x2835.JPG"
+										src="${pageContext.request.contextPath}/DBGifReaderProfile?movieId=${movieId}"
 										width="150" height="225" alt="I Kill Giants"> <a
-										class="frame" href=""> <span class="frame-title">殺死巨人的女孩(2017)</span>
+										class="frame" href="Links_Controller?movieId=${movieId}&action=getOneMovie_From_Home"> <span class="frame-title">殺死巨人的女孩(2017)</span>
 										<span class="overlay"></span>
 									</a>
 								</div>
 							</div>
 						</li>
-						<li class="poster-container">
-							<div class="poster">
-								<div>
-									<img class="image"
-										src="https://movies.yahoo.com.tw/public/index.php/y/r/w420/vu/movies/fp/mpost/63/55/6355.jpg"
-										width="150" height="225" alt="I Kill Giants"> <a
-										class="frame" href=""> <span class="frame-title">吹夢巨人(2016)</span>
-										<span class="overlay"></span>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li class="poster-container">
-							<div class="poster">
-								<div>
-									<img class="image"
-										src="https://movies.yahoo.com.tw/public/index.php/y/r/w420/vu/movies/fp/mpost/26/05/2605.jpg"
-										width="150" height="225" alt="I Kill Giants"> <a
-										class="frame" href=""> <span class="frame-title">無敵浩克(2008)</span>
-										<span class="overlay"></span>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li class="poster-container">
-							<div class="poster">
-								<div>
-									<img class="image"
-										src="https://movies.yahoo.com.tw/public/index.php/y/r/w420/vu/movies/fp/mpost/03/96/396.jpg"
-										width="150" height="225" alt="I Kill Giants"> <a
-										class="frame" href=""> <span class="frame-title">綠巨人浩克(2003)</span>
-										<span class="overlay"></span>
-									</a>
-								</div>
-							</div>
-						</li>
+					  </c:forEach>
 					</ul>
 				</section>
 

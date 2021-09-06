@@ -2,45 +2,45 @@
 
 
     <div id="header">
-        <a href="backstage.html" class="logo">
-            <img src="img/logo.png" alt="">
+        <a href="<%=request.getContextPath()%>/Backstage/backstage.html" class="logo">
+            <img src="<%=request.getContextPath()%>/img/logo.png" alt="">
         </a>
         <nav>
 
             <ul>
 
                 <li class="dropdown">
-                    <a href="">·|­ûºÞ²z</a>
+                    <a href="">ï¿½|ï¿½ï¿½ï¿½Þ²z</a>
                     	<ul>
-	                        <li><a href="memberDataSearch.jsp">·|­û¸ê®Æ¬d¸ß</a></li>
-	                        <li><a href="<%=request.getContextPath()%>/Backstage/result1.jsp">·|­ûQA</a></li>
+	                        <li><a href="memberDataSearch.jsp">ï¿½|ï¿½ï¿½ï¿½ï¿½Æ¬dï¿½ï¿½</a></li>
+	                        <li><a href="<%=request.getContextPath()%>/Backstage/result1.jsp">ï¿½|ï¿½ï¿½QA</a></li>
 	                    </ul>
                 </li>
 
                 
 
                 <li class="dropdown">
-                    <a href="">¹q¼vºÞ²z</a>
+                    <a href="">ï¿½qï¿½vï¿½Þ²z</a>
                     <ul>
-                        <li><a href="movieDataSearch.jsp">¤w¤W¬[¹q¼vºÞ²z</a></li>
-                        <li><a href="movieDataInsert.jsp">¤W¬[·s¹q¼v</a></li>
+                        <li><a href="movieDataSearch.jsp">ï¿½wï¿½Wï¿½[ï¿½qï¿½vï¿½Þ²z</a></li>
+                        <li><a href="movieDataInsert.jsp">ï¿½Wï¿½[ï¿½sï¿½qï¿½v</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="">°Ó«~ºÞ²z</a>
+                    <a href="">ï¿½Ó«~ï¿½Þ²z</a>
                     <ul>
-                        <li><a href="itemSearch.jsp">¤w¤W¬[°Ó«~ºÞ²z</a></li>
-                        <li><a href="itemInsert.jsp">¤W¬[·s°Ó«~</a></li>
+                        <li><a href="itemSearch.jsp">ï¿½wï¿½Wï¿½[ï¿½Ó«~ï¿½Þ²z</a></li>
+                        <li><a href="itemInsert.jsp">ï¿½Wï¿½[ï¿½sï¿½Ó«~</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="">¹q¼v®É¨èªí</a>
+                    <a href="">ï¿½qï¿½vï¿½É¨ï¿½ï¿½</a>
                     <ul>
-                        <li><a href="backstage_add_theater.jsp">¤W¬[¼v«°ªí</a></li>
-                        <li><a href="backstage_add_time.jsp">·s¼W¹q¼v®É¨èªí</a></li>
-                        <li><a href="backstage_showing_select.jsp">¤w¤W¬[ºÞ²z</a></li>
+                        <li><a href="backstage_add_theater.jsp">ï¿½Wï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½</a></li>
+                        <li><a href="backstage_add_time.jsp">ï¿½sï¿½Wï¿½qï¿½vï¿½É¨ï¿½ï¿½</a></li>
+                        <li><a href="backstage_showing_select.jsp">ï¿½wï¿½Wï¿½[ï¿½Þ²z</a></li>
                     </ul>
                 </li>
 
@@ -48,7 +48,7 @@
             </ul>
 
             <button class="signin">
-                <a href="<%=request.getContextPath()%>/Backstage/backstage.html">¦^¨ì­º­¶</a>
+                <a href="<%=request.getContextPath()%>/Backstage/backstage.html">ï¿½^ï¿½ì­ºï¿½ï¿½</a>
             </button>
 
         </nav>

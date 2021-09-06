@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.member.model.MemberService;
+import com.member.model.MemberVO;
 import com.review.model.ReviewService;
 import com.review.model.ReviewVO;
 
@@ -159,6 +161,7 @@ public class ReviewServlet extends HttpServlet {
 		} // getOne_For_Update
 		
 		
+		
 		//修改
 		if ("update".equals(action)) { // 來自update_review_input.jsp的請求
 			List<String> errorMsgs = new LinkedList<>();
@@ -220,6 +223,14 @@ public class ReviewServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("reviewVO", reviewVO);
+				
+				/*
+				Integer userid = new Integer(req.getParameter("userid"));
+				MemberService memSvc = new MemberService();
+				MemberVO memVO = memSvc.getOneMember(userid);
+				req.setAttribute("memberVO", memVO);
+				*/
+				
 				String url = "/review/listOneReview2.jsp"; //轉交給單一查詢
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneReview2.jsp
 				successView.forward(req, res);

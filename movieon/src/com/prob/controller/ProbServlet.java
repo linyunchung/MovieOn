@@ -25,7 +25,7 @@ public class ProbServlet extends HttpServlet {
 		
 		
 		
-        if ("insert".equals(action)) { // ¨Ó¦ÛaddEmp.jspªº½Ğ¨D  
+        if ("insert".equals(action)) { // ä¾†è‡ªaddEmp.jspçš„è«‹æ±‚  
 			
 //			List<String> errorMsgs = new LinkedList<String>();
 //			// Store this set in the request scope, in case we need to
@@ -33,7 +33,7 @@ public class ProbServlet extends HttpServlet {
 //			req.setAttribute("errorMsgs", errorMsgs);
 
 //			try {
-				/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+				/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 				String probtype = req.getParameter("probtype");
 				java.sql.Date probtime = java.sql.Date.valueOf(req.getParameter("probtime").trim());;
 				String content = req.getParameter("content");
@@ -48,24 +48,24 @@ public class ProbServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 //				if (!errorMsgs.isEmpty()) {
-//					req.setAttribute("empVO", empVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºempVOª«¥ó,¤]¦s¤Jreq
+//					req.setAttribute("empVO", empVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„empVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 //					RequestDispatcher failureView = req
 //							.getRequestDispatcher("/emp/addEmp.jsp");
 //					failureView.forward(req, res);
 //					return;
 //				}
 				
-				/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+				/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 				ProbJDBCDAO dao = new ProbJDBCDAO();
 //				empVO = empSvc.addEmp(ename, job, hiredate, sal, comm, deptno);
 				dao.insert(probVO);
 				
-				/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
+				/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
 				String url = "/prob/contactcs.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllEmp.jsp
 				successView.forward(req, res);				
 				
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 //			} catch (Exception e) {
 //				errorMsgs.add(e.getMessage());
 //				RequestDispatcher failureView = req
@@ -73,32 +73,32 @@ public class ProbServlet extends HttpServlet {
 //				failureView.forward(req, res);
 //			}
         }		
-        if ("getType_For_Display".equals(action)) { // ¨Ó¦Ûselect_page.jspªº½Ğ¨D
+        if ("getType_For_Display".equals(action)) { // ä¾†è‡ªselect_page.jspçš„è«‹æ±‚
 
 			
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 				String probtype = req.getParameter("probtype");
 				
-				if("¥ş³¡".equals(probtype)) {
+				if("å…¨éƒ¨".equals(probtype)) {
 					ProbJDBCDAO dao = new ProbJDBCDAO();
 					List<ProbVO> list = dao.getAll();
-					req.setAttribute("list",list); // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó,¦s¤Jreq
+					req.setAttribute("list",list); // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶,å­˜å…¥req
 					String url = "/Backstage/result1.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneEmp.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneEmp.jsp
 					successView.forward(req, res);
 				}
 				
-				/***************************2.¶}©l¬d¸ß¸ê®Æ*****************************************/
+				/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™*****************************************/
 				ProbJDBCDAO dao = new ProbJDBCDAO();
 				List<ProbVO> list = dao.findByType(probtype);
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("list",list); // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó,¦s¤Jreq
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("list",list); // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶,å­˜å…¥req
 				String url = "/Backstage/result1.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneEmp.jsp
 				successView.forward(req, res);
 				
 
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 		}	
 	}
 }

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
 	button.btn-outline-secondary {
@@ -21,31 +21,31 @@
       <ul>
 
         <li class="dropdown">
-          <a href="${pageContext.request.contextPath}/Home.jsp">¹q¼v±´¯Á</a>
+          <a href="${pageContext.request.contextPath}/Home.jsp">é›»å½±æŽ¢ç´¢</a>
           <ul>
-            <li><a href="<%=request.getContextPath()%>/moviesHome/movieGenre.jsp">¬d¸ß¹q¼vÃþ«¬</a></li>
-            <li><a href="<%=request.getContextPath()%>/moviesHome/movies_home.jsp">¹q¼v±ÀÂË</a></li>
-            <li><a href="<%=request.getContextPath()%>/review/addReview.jsp">¯d¤U¼vµû</a></li>
-            <li><a href="<%=request.getContextPath()%>/review/reviewCenter.jsp">¼vµû¤¤¤ß</a></li>
+            <li><a href="<%=request.getContextPath()%>/moviesHome/movieGenre.jsp">æŸ¥è©¢é›»å½±é¡žåž‹</a></li>
+            <li><a href="<%=request.getContextPath()%>/moviesHome/movies_home.jsp">é›»å½±æŽ¨è–¦</a></li>
+            <li><a href="<%=request.getContextPath()%>/review/addReview.jsp">ç•™ä¸‹å½±è©•</a></li>
+            <li><a href="<%=request.getContextPath()%>/review/reviewCenter.jsp">å½±è©•ä¸­å¿ƒ</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="<%=request.getContextPath()%>/showing/showing_search.jsp">¹q¼v®É¨èªí</a>
+          <a href="<%=request.getContextPath()%>/showing/showing_search.jsp">é›»å½±æ™‚åˆ»è¡¨</a>
           
         </li>
         <li class="dropdown">
-          <a href="${pageContext.request.contextPath}/shop/shopPage.jsp">°Ó«°</a>
+          <a href="${pageContext.request.contextPath}/shop/shopPage.jsp">å•†åŸŽ</a>
           <ul>
-            <li><a href="<%=request.getContextPath()%>/shop/shopItem.jsp">°Ó«~¦Cªí</a></li>
-            <li><a href="<%=request.getContextPath()%>/shop/shopCart.jsp">ÁÊª«¨®</a></li>
-            <li><a href="<%=request.getContextPath()%>/shop/shopService.jsp">«ÈªA¤¤¤ß</a></li>
-            <li><a href="<%=request.getContextPath()%>/prob/contactcs.jsp">Ápµ¸«ÈªA</a></li>
+            <li><a href="<%=request.getContextPath()%>/shop/shopItem.jsp">å•†å“åˆ—è¡¨</a></li>
+            <li><a href="<%=request.getContextPath()%>/shop/shopCart.jsp">è³¼ç‰©è»Š</a></li>
+            <li><a href="<%=request.getContextPath()%>/shop/shopService.jsp">å®¢æœä¸­å¿ƒ</a></li>
+            <li><a href="<%=request.getContextPath()%>/prob/contactcs.jsp">è¯çµ¡å®¢æœ</a></li>
           </ul>
         </li>
         <li class="dropdown">
 <c:if test="${empty memberVO.username}">
           <a href="<%=request.getContextPath()%>/follow/members.jsp">
-         	 ·|­û¤¤¤ß
+         	 æœƒå“¡ä¸­å¿ƒ
           </a>
 </c:if>
 <c:if test="${not empty memberVO.username}">
@@ -53,12 +53,12 @@
 			${memberVO.username}
           </a>
           <ul>
-            <li><a href="${pageContext.request.contextPath}/profile?action=myfilms">§Úªºµû¤À</a></li>
-            <li><a href="${pageContext.request.contextPath}/profile?action=myreviews">§Úªº¼vµû</a></li>
-            <li><a href="${pageContext.request.contextPath}/profile?action=myfollowers">§Úªº¯»µ·</a></li>
-            <li><a href="${pageContext.request.contextPath}/profile?action=myfollowing">°lÂÜ¤¤</a></li>
-            <li><a href="${pageContext.request.contextPath}/profile?action=mynetwork">°ÊºAÀð</a></li>
-            <li><a href="${pageContext.request.contextPath}/shop/shopSearch.jsp">§Úªº­q³æ</a></li>
+            <li><a href="${pageContext.request.contextPath}/profile?action=myfilms">æˆ‘çš„è©•åˆ†</a></li>
+            <li><a href="${pageContext.request.contextPath}/profile?action=myreviews">æˆ‘çš„å½±è©•</a></li>
+            <li><a href="${pageContext.request.contextPath}/profile?action=myfollowers">æˆ‘çš„ç²‰çµ²</a></li>
+            <li><a href="${pageContext.request.contextPath}/profile?action=myfollowing">è¿½è¹¤ä¸­</a></li>
+            <li><a href="${pageContext.request.contextPath}/profile?action=mynetwork">å‹•æ…‹ç‰†</a></li>
+            <li><a href="${pageContext.request.contextPath}/shop/shopSearch.jsp">æˆ‘çš„è¨‚å–®</a></li>
           </ul>
 </c:if>        	 
         </li>
@@ -74,12 +74,12 @@
       
       <c:if test="${empty memberVO.username}">
 						<button class="signin">
-							<a id="sign_in" href="${pageContext.request.contextPath}/member/log_in.jsp">·|­ûµn¤J</a>
+							<a id="sign_in" href="${pageContext.request.contextPath}/member/log_in.jsp">æœƒå“¡ç™»å…¥</a>
 						</button>
 					</c:if> 
 		<c:if test="${not empty memberVO.username}">
 			<button class="signin">
-				<a href="<%=request.getContextPath()%>/LogoutServlet">µn¥X</a>
+				<a href="<%=request.getContextPath()%>/LogoutServlet">ç™»å‡º</a>
 			</button>
 		</c:if> 
     </nav>

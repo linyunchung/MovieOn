@@ -24,6 +24,7 @@ body{
  font-size: 16px;
  font-family: 'Noto Sans TC', sans-serif !important;
  font-weight: 600;
+ text-transform: none;
 
 }
 
